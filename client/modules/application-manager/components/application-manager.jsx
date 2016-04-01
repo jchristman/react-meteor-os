@@ -9,7 +9,7 @@ const ApplicationManager = (props) => (
                     key={index}
                     index={index}
                     actions={props.actions}
-                    {...{ LocalState: props.LocalState }}
+                    {...{ LocalState: props.LocalState, focusMutex: props.focusMutex }}
                     {..._application}
                 />
             ))

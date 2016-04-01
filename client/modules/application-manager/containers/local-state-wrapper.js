@@ -1,6 +1,6 @@
 import {composeWithTracker, composeAll} from 'react-komposer';
 import {useDeps} from 'mantra-core';
-import ApplicationManager from '../components/application-manager.jsx';
+import ApplicationManager from './wrapper.js';
 
 const composer = (context, onData) => {
     onData(null, {});

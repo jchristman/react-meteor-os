@@ -35,12 +35,16 @@ class Window extends React.Component {
             connectDragPreview,
             isDragging
         } = this.props;
+
+        if (isDragging) return null;
         
         return connectDragPreview(
             <div 
                 className={getClasses(this.props)}
                 style={getStyle(this.props)}
-                onClick={(event) => { console.log("Clicked:",this.props); event.preventDefault(); event.stopPropagation(); return false; }}
+                onMouseEnter={this.props.unhideLayer}
+                onMouseLeave={this.props.hideLayer}
+                onMouseDown={this.grabFocus.bind(this)}
                 >
 
                 {
@@ -79,6 +83,11 @@ class Window extends React.Component {
                 <div className="dest-pane-outline-2"></div>
             </div>
         );
+    }
+
+    grabFocus() {
+        if (!_.contains(this.props.classes, 'focused'))
+            this.props.grabFocus(this.props.index);
     }
 
     closeWindow(event) {

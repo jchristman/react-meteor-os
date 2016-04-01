@@ -1,10 +1,16 @@
 import {DragSource} from 'react-dnd';
 import Window from '../components/window.jsx';
-import {WindowType} from '../lib/drag-types.js';
+
+const layerType = (props) => props.parent_id;
 
 const dragSourceSpec = {
     beginDrag: (props) => {
-        return {};
+        return {
+            _id: props._id,
+            index: props.index,
+            top: props.position.top,
+            left: props.position.left
+        };
     }
 }
 
@@ -12,8 +18,8 @@ const collect = (connect, monitor) => {
     return {
         connectDragSource: connect.dragSource(),
         connectDragPreview: connect.dragPreview(),
-        isDragging: monitor.isDragging()
+        isDragging: monitor.isDragging(),
     }
 }
 
-export default DragSource(WindowType, dragSourceSpec, collect)(Window);
+export default DragSource(layerType, dragSourceSpec, collect)(Window);

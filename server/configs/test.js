@@ -1,4 +1,8 @@
+import {Random} from 'meteor/random';
+
 const test_window1 = {
+    _id: Random.id(),
+
     position: {
         top: 10,
         left: 10,
@@ -7,11 +11,12 @@ const test_window1 = {
     },
 
     classes: [
-        'focused'
     ]
 };
 
 const test_window2 = {
+    _id: Random.id(),
+
     position: {
         top: 10,
         left: 600,
@@ -25,6 +30,8 @@ const test_window2 = {
 };
 
 const app1 = {
+    _id: Random.id(),
+
     name: 'Application 1',
     package: 'First.Package',
     windows: [
@@ -34,6 +41,8 @@ const app1 = {
 };
 
 const test_window3 = {
+    _id: Random.id(),
+
     position: {
         top: 100,
         left: 200,
@@ -47,6 +56,8 @@ const test_window3 = {
 };
 
 const app2 = {
+    _id: Random.id(),
+
     name: 'Application 2',
     package: 'Second.Package',
     windows: [

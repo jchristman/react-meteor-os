@@ -1,8 +1,8 @@
 const formatPath = (path) => 'applications.' + path;
 
-const updateWindowPosition = (context, path, top, left) => {
+const updateWindowPosition = (context, path, top, left, width, height) => {
     path = formatPath(path);
-    Meteor.call('updateWindowPosition', path, top, left, (err) => {
+    Meteor.call('updateWindowPosition', path, top, left, width, height, (err) => {
         if (err) console.log(err);
     });
 }

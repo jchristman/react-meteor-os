@@ -1,16 +1,13 @@
+import {composeAll, composeWithTracker} from 'react-komposer';
 import {DragSource} from 'react-dnd';
 import Window from '../components/window.jsx';
+import {windowType} from '../configs/dragTypes.js';
 
 const layerType = (props) => props.parent_id;
 
 const dragSourceSpec = {
     beginDrag: (props) => {
-        return {
-            _id: props._id,
-            index: props.index,
-            top: props.position.top,
-            left: props.position.left
-        };
+        return {...props, dragType: windowType};
     }
 }
 
@@ -22,4 +19,11 @@ const collect = (connect, monitor) => {
     }
 }
 
-export default DragSource(layerType, dragSourceSpec, collect)(Window);
+const composer = (props, onData) => {
+    onData(null, {});
+}
+
+export default composeAll(
+    composeWithTracker(composer),
+    DragSource(layerType, dragSourceSpec, collect)
+)(Window);

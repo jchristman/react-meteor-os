@@ -1,16 +1,20 @@
 import React from 'react';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
+import WindowResizer from '../containers/window-resizer.js';
 import WindowContentPaned from './window.content.paned.jsx';
 
 const getClasses = function(props) {
     let classes = "window";
-    for (let _class of props.classes) classes += " " + _class;
+    if (props.classes)
+        for (let _class of props.classes) classes += " " + _class;
     return classes;
 }
 
 const getPosition = function(props) {
     let position = { position: "absolute" };
-    for (let key in props.position) position[key] = props.position[key];
+    if (props.position)
+        for (let key in props.position) position[key] = props.position[key];
     return position;
 }
 
@@ -29,16 +33,20 @@ const windowContent = function(props) {
 }
 
 class Window extends React.Component {
+    componentDidMount() {
+        this.props.connectDragPreview(getEmptyImage(), {});
+    }
+
     render () {
-        let {
+        const {
             connectDragSource,
             connectDragPreview,
             isDragging
         } = this.props;
 
         if (isDragging) return null;
-        
-        return connectDragPreview(
+
+        return (
             <div 
                 className={getClasses(this.props)}
                 style={getStyle(this.props)}
@@ -63,21 +71,27 @@ class Window extends React.Component {
                                 <div className="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
                             </div>
                         </div>
-                    )
+                        )
                 }
 
                 <div className="windowcontent panel with-nav-tabs panel-default">
                     {windowContent(this.props)}
                 </div>
 
-                <div className="resizer-tl"></div>
-                <div className="resizer-t"></div>
-                <div className="resizer-tr"></div>
-                <div className="resizer-r"></div>
-                <div className="resizer-br"></div>
-                <div className="resizer-b"></div>
-                <div className="resizer-bl"></div>
-                <div className="resizer-l"></div>
+                {
+                    ['tl', 't', 'tr', 'l', 'r', 'bl', 'b', 'br'].map((which, index) => (
+                        <WindowResizer
+                            key={index}
+                            which={which}
+                            _id={this.props._id}
+                            index={this.props.index}
+                            LocalState={this.props.LocalState}
+                            parent_id={this.props.parent_id}
+                            position={this.props.position}
+                            zIndex={this.props.zIndex}
+                        />
+                    ))
+                }
 
                 <div className="dest-pane-outline-1"></div>
                 <div className="dest-pane-outline-2"></div>

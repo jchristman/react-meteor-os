@@ -41,7 +41,7 @@
   height: 24px;
   overflow: hidden;
   background-color: #AAB;
-  cursor: default;
+  cursor: move;
   border-bottom: 1px solid #002c57;
 }
 

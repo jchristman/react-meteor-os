@@ -12,7 +12,7 @@ class WindowLayer extends React.Component {
                 style={
                     { 
                         zIndex: this.props.index*WindowLayerDepth+1,
-                        pointerEvents: this.props.LocalState.get(layerHiddenStateVar(this.props._id)) ? 'none': ''
+                        pointerEvents: this.props.hiddenLayer ? 'none': ''
                     }
                 } 
                 >
@@ -21,6 +21,7 @@ class WindowLayer extends React.Component {
                         <Window
                             key={index}
                             index={index}
+                            LocalState={this.props.LocalState}
                             parent_id={this.props._id}
                             hideLayer={this.hideLayer.bind(this)}
                             unhideLayer={this.unhideLayer.bind(this)}

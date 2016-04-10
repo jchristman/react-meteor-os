@@ -1,6 +1,6 @@
 import React from 'react';
 
-const getStyle = (props) => {
+let getStyle = (props) => {
     return {
         position: 'absolute',
         ...props.position,

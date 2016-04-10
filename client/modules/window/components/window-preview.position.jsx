@@ -1,5 +1,5 @@
 import React from 'react';
-import WindowPreview from './window-preview.jsx';
+import WindowPreview from './window.jsx';
 
 const WindowPositionPreview = (props) => {
     const passOn = _.omit(props, 'position');

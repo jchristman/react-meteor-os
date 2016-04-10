@@ -6,7 +6,7 @@ const composer = (context, onData) => {
         context.ApplicationManager
             .applications.last()
             .windows.last()
-            .classes.push('focused');
+            .focused = true;
     }
 
     onData(null, {});

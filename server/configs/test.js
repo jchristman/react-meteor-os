@@ -2,31 +2,24 @@ import {Random} from 'meteor/random';
 
 const test_window1 = {
     _id: Random.id(),
-
+    title: 'Application 1 Window 1',
     position: {
         top: 10,
         left: 10,
         height: 400,
         width: 500,
-    },
-
-    classes: [
-    ]
+    }
 };
 
 const test_window2 = {
     _id: Random.id(),
-
+    title: 'Application 1 Window 2',
     position: {
         top: 10,
         left: 600,
         height: 400,
         width: 500
-    },
-
-    classes: [
-
-    ]
+    }
 };
 
 const app1 = {
@@ -42,17 +35,13 @@ const app1 = {
 
 const test_window3 = {
     _id: Random.id(),
-
+    title: 'Application 2 Window 1',
     position: {
         top: 100,
         left: 200,
         height: 400,
         width: 500
-    },
-
-    classes: [
-
-    ]
+    }
 };
 
 const app2 = {

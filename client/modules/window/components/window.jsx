@@ -1,28 +1,35 @@
 import React from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
+import WindowTitleBar from './window-titlebar.jsx';
 import WindowResizer from '../containers/window-resizer.js';
-import WindowContentPaned from './window.content.paned.jsx';
+import WindowContentPaned from './window-content.paned.jsx';
+
+const style = (props) => {
+    return {
+        position:       'fixed',
+        top:            props.position.top,
+        left:           props.position.left,
+        width:          props.position.height,
+        height:         props.position.width,
+        zIndex:         props.zIndex,
+
+        backgroundColor:'#1d4266',
+        borderWidth:    1,
+        borderColor:    '#1d4266',
+        borderStyle:    'outset',
+        borderRadius:   6,
+
+        overflow:       'hidden',
+        pointerEvents:  'auto'
+    };
+}
 
 const getClasses = function(props) {
-    let classes = "window";
+    let classes = '';
     if (props.classes)
         for (let _class of props.classes) classes += " " + _class;
     return classes;
-}
-
-const getPosition = function(props) {
-    let position = { position: "absolute" };
-    if (props.position)
-        for (let key in props.position) position[key] = props.position[key];
-    return position;
-}
-
-const getStyle = function(props) {
-    let style = {};
-    _.extend(style, getPosition(props));
-    _.extend(style, { zIndex: props.zIndex });
-    return style;
 }
 
 const windowContent = function(props) {
@@ -38,41 +45,20 @@ class Window extends React.Component {
     }
 
     render () {
-        const {
-            connectDragSource,
-            connectDragPreview,
-            isDragging
-        } = this.props;
-
-        if (isDragging) return null;
+        if (this.props.isDragging) return null;
 
         return (
             <div 
-                className={getClasses(this.props)}
-                style={getStyle(this.props)}
+                style={style(this.props)}
                 onMouseEnter={this.props.unhideLayer}
                 onMouseLeave={this.props.hideLayer}
                 onMouseDown={this.grabFocus.bind(this)}
                 >
 
-                {
-                    connectDragSource(
-                        <div className="windowtitlebar">
-                            <img src="/favicon.ico" width="16" height="16" className="titlebaricon" />
-                            <div className="titlebartext">{this.props.title}</div>
-                            <div className="horizbuts">
-                                <div 
-                                    className="closebut glyphicon glyphicon-remove" 
-                                    title="close" 
-                                    onClick={this.closeWindow.bind(this)}>
-                                </div>
-                                <div className="maximizebut glyphicon glyphicon-plus" title="maximize"></div>
-                                <div className="restorebut glyphicon glyphicon-share-alt" title="restore"></div>
-                                <div className="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
-                            </div>
-                        </div>
-                        )
-                }
+                <WindowTitleBar
+                    {...this.props}
+                    closeWindow={this.closeWindow.bind(this)}
+                />
 
                 <div className="windowcontent panel with-nav-tabs panel-default">
                     {windowContent(this.props)}

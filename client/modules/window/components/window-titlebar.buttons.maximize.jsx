@@ -10,9 +10,11 @@ const style = (props) => {
 const WindowTitleBarButtonsMaximize = (props) => (
     <div 
         className="glyphicon glyphicon-plus" 
-        title="maximize" 
         onClick={props.maximizeWindow}
-        style={style(props)}>
+        style={style(props)}
+        onMouseEnter={() => props.onHover.start(props)}
+        onMouseLeave={() => props.onHover.end(props)}
+        >
     </div>
 );
 

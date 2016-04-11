@@ -4,10 +4,12 @@ import windowTitleBarButtonsMaximize from '../components/window-titlebar.buttons
 import windowTitleBarButtonsRestore from '../components/window-titlebar.buttons.restore.jsx';
 import windowTitleBarButtonsMinimize from '../components/window-titlebar.buttons.minimize.jsx';
 
+export const hoverVarId = (_id, hoverVar) => _id + hoverVar;
+
 const composer = (props, onData) => {
-    const {LocalState} = props;
-    LocalState.setDefault(props.hoverVar, false);
-    onData(null, { hover: LocalState.get(props.hoverVar) });
+    const {LocalState, hoverVar, _id} = props;
+    LocalState.setDefault(hoverVarId(_id, hoverVar), false);
+    onData(null, { hover: LocalState.get(hoverVarId(_id, hoverVar)) });
 }
 
 export const WindowTitleBarButtonsClose = composeWithTracker(composer)(windowTitleBarButtonsClose);

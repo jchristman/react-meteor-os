@@ -10,9 +10,11 @@ const style = (props) => {
 const WindowTitleBarButtonsMinimize = (props) => (
     <div 
         className="glyphicon glyphicon-minus" 
-        title="minimize" 
         onClick={props.minimizeWindow}
-        style={style(props)}>
+        style={style(props)}
+        onMouseEnter={() => props.onHover.start(props)}
+        onMouseLeave={() => props.onHover.end(props)}
+        >
     </div>
 );
 

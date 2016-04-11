@@ -10,9 +10,11 @@ const style = (props) => {
 const WindowTitleBarButtonsClose = (props) => (
     <div 
         className="glyphicon glyphicon-remove" 
-        title="close" 
         onClick={props.closeWindow}
-        style={style(props)}>
+        style={style(props)}
+        onMouseEnter={() => props.onHover.start(props)}
+        onMouseLeave={() => props.onHover.end(props)}
+        >
     </div>
 );
 

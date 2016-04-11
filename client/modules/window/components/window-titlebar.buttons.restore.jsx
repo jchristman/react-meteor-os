@@ -10,9 +10,11 @@ const style = (props) => {
 const WindowTitleBarButtonsRestore = (props) => (
     <div 
         className="glyphicon glyphicon-share-alt" 
-        title="restore" 
         onClick={props.restoreWindow}
-        style={style(props)}>
+        style={style(props)}
+        onMouseEnter={() => props.onHover.start(props)}
+        onMouseLeave={() => props.onHover.end(props)}
+        >
     </div>
 );
 

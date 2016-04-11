@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { WindowTitleBarButtonsClose, WindowTitleBarButtonsMaximize,
-         WindowTitleBarButtonsRestore, WindowTitleBarButtonsMinimize} from '../containers/window-titlebar.buttons.button.js';
+import {    WindowTitleBarButtonsClose, WindowTitleBarButtonsMaximize,
+            WindowTitleBarButtonsRestore, WindowTitleBarButtonsMinimize,
+            hoverVarId } from '../containers/window-titlebar.buttons.button.js';
 
 const style = {
     position: 'absolute',
@@ -23,16 +24,22 @@ export const buttonStyles = (props) => {
         borderWidth: 1,
         borderStyle: 'outset',
         borderColor: '#9B9DC9',
-        background: props.hover ? '#ddd' : '#ccc'
+        background: props.hover ? '#ddd' : '#ccc',
+        cursor: 'pointer'
     };
+}
+
+const onHover = {
+    start:  (props) => { props.LocalState.set(hoverVarId(props._id, props.hoverVar), true) },
+    end:    (props) => { props.LocalState.set(hoverVarId(props._id, props.hoverVar), false) },
 }
 
 const WindowTitleBarButtons = (props) => (
     <div>
-        <WindowTitleBarButtonsClose hoverVar='_close_button_hover' {...props}/>
-        <WindowTitleBarButtonsMaximize hoverVar='_maximize_button_hover' {...props}/>
-        <WindowTitleBarButtonsRestore hoverVar='_restore_button_hover' {...props}/>
-        <WindowTitleBarButtonsMinimize hoverVar='_minimize_button_hover' {...props}/>
+        <WindowTitleBarButtonsClose hoverVar='_close_button_hover' onHover={onHover} {...props}/>
+        <WindowTitleBarButtonsMaximize hoverVar='_maximize_button_hover' onHover={onHover} {...props}/>
+        <WindowTitleBarButtonsRestore hoverVar='_restore_button_hover' onHover={onHover} {...props}/>
+        <WindowTitleBarButtonsMinimize hoverVar='_minimize_button_hover' onHover={onHover} {...props}/>
     </div>
 );
 

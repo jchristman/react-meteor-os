@@ -12,6 +12,7 @@ const WindowPositionPreview = (props) => {
                 width: props.position.width,
                 height: props.position.height
             }}
+            isPreview={true}
         />
     );
 }

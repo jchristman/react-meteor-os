@@ -10,8 +10,8 @@ const style = (props) => {
         position:       'fixed',
         top:            props.position.top,
         left:           props.position.left,
-        width:          props.position.height,
-        height:         props.position.width,
+        width:          props.position.width,
+        height:         props.position.height,
         zIndex:         props.zIndex,
 
         backgroundColor:'#1d4266',
@@ -21,15 +21,8 @@ const style = (props) => {
         borderRadius:   6,
 
         overflow:       'hidden',
-        pointerEvents:  'auto'
+        pointerEvents:  props.isPreview ? 'none' : 'auto'
     };
-}
-
-const getClasses = function(props) {
-    let classes = '';
-    if (props.classes)
-        for (let _class of props.classes) classes += " " + _class;
-    return classes;
 }
 
 const windowContent = function(props) {
@@ -41,7 +34,8 @@ const windowContent = function(props) {
 
 class Window extends React.Component {
     componentDidMount() {
-        this.props.connectDragPreview(getEmptyImage(), {});
+        this.props.connectDragPreview &&
+            this.props.connectDragPreview(getEmptyImage(), {});
     }
 
     render () {
@@ -64,19 +58,20 @@ class Window extends React.Component {
                     {windowContent(this.props)}
                 </div>
 
-                {
-                    ['tl', 't', 'tr', 'l', 'r', 'bl', 'b', 'br'].map((which, index) => (
-                        <WindowResizer
-                            key={index}
-                            which={which}
-                            _id={this.props._id}
-                            index={this.props.index}
-                            LocalState={this.props.LocalState}
-                            parent_id={this.props.parent_id}
-                            position={this.props.position}
-                            zIndex={this.props.zIndex}
-                        />
-                    ))
+                {   this.props.isPreview !== true ?
+                        ['tl', 't', 'tr', 'l', 'r', 'bl', 'b', 'br'].map((which, index) => (
+                            <WindowResizer
+                                key={index}
+                                which={which}
+                                _id={this.props._id}
+                                index={this.props.index}
+                                LocalState={this.props.LocalState}
+                                parent_id={this.props.parent_id}
+                                position={this.props.position}
+                                zIndex={this.props.zIndex}
+                            />
+                        )) :
+                        null
                 }
 
                 <div className="dest-pane-outline-1"></div>

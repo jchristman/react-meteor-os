@@ -1,2 +1,2 @@
-export const windowType = 1;
-export const windowResizerType = 2;
+export const windowPositionType = 'position_type';
+export const windowResizerType = 'resizer_type';

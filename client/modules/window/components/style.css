@@ -70,15 +70,6 @@
 .window.moving > .windowcontent > .iframecover {
   z-index: 3 !important;
 }
-.resizer-tl { position: absolute; left: -2px; top: -2px; width: 6px; height: 6px; cursor: nw-resize; }
-.resizer-t  { position: absolute; left: 6px; right: 6px; top: -2px; height: 6px; cursor: n-resize;}
-.resizer-tr { position: absolute; right: -2px; top: -2px; width: 6px; height: 6px; cursor: ne-resize;}
-.resizer-r  { position: absolute; top: 6px; bottom: 6px; right: -2px; width: 6px; cursor: e-resize; }
-.resizer-br { position: absolute; right: -2px; bottom: -2px; width: 6px; height: 6px; cursor: se-resize;}
-.resizer-b  { position: absolute; left: 6px; right: 6px; bottom: -2px; height: 6px; cursor: s-resize; }
-.resizer-bl { position: absolute; left: -2px; bottom: -2px; width: 6px; height: 6px; cursor: sw-resize;}
-.resizer-l  { position: absolute; top: 6px; bottom: 6px; left: -2px; width: 6px; cursor: w-resize;}
-
 .dest-pane-outline-1,.dest-pane-outline-2 { position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; border: 4px solid lime; display: none; z-index: 999999999; pointer-events: none; }
 
 .pane-container { position: absolute; height: 100%; width: 100%; background: #CCC; }

@@ -2,7 +2,7 @@
 //import actions from './actions';
 import routes from './routes.jsx';
 
-actions = [];
+let actions = [];
 
 export default {
     routes,

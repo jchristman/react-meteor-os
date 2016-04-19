@@ -1,19 +1,8 @@
 import React from 'react';
+import WindowTitleBarButton from './window-titlebar.buttons.button.jsx';
 
-import {    WindowTitleBarButtonsClose, WindowTitleBarButtonsMaximize,
-            WindowTitleBarButtonsRestore, WindowTitleBarButtonsMinimize,
-            hoverVarId } from '../containers/window-titlebar.buttons.button.js';
-
-const style = {
-    position: 'absolute',
-    top: 0,
-    right: 2,
-    bottom: 0,
-    width: 59
-}
-
-export const buttonStyles = (props) => {
-    return {
+const buttonStylesheet = cssInJS({
+    default: {
         float: 'right',
         marginTop: 2,
         marginRight: 1,
@@ -21,26 +10,55 @@ export const buttonStyles = (props) => {
         marginLeft: 0,
         width: 17,
         height: 17,
+        background: '#ccc',
         borderWidth: 1,
         borderStyle: 'outset',
         borderColor: '#9B9DC9',
-        background: props.hover ? '#ddd' : '#ccc',
-        cursor: 'pointer'
-    };
-}
+        cursor: 'pointer',
 
-const onHover = {
-    start:  (props) => { props.LocalState.set(hoverVarId(props._id, props.hoverVar), true) },
-    end:    (props) => { props.LocalState.set(hoverVarId(props._id, props.hoverVar), false) },
-}
+        ':hover': {
+            background: '#ddd'
+        }
+    }
+});
 
-const WindowTitleBarButtons = (props) => (
-    <div>
-        <WindowTitleBarButtonsClose hoverVar='_close_button_hover' onHover={onHover} {...props}/>
-        <WindowTitleBarButtonsMaximize hoverVar='_maximize_button_hover' onHover={onHover} {...props}/>
-        <WindowTitleBarButtonsRestore hoverVar='_restore_button_hover' onHover={onHover} {...props}/>
-        <WindowTitleBarButtonsMinimize hoverVar='_minimize_button_hover' onHover={onHover} {...props}/>
-    </div>
-);
+const getButtons = (props) => [
+    {
+        name: 'Close',
+        classes: 'glyphicon glyphicon-remove',
+        onClick: props.closeWindow
+    },
+    {
+        name: 'Restore',
+        classes: 'glyphicon glyphicon-share-alt',
+        onClick: props.restoreWindow
+    },
+    {
+        name: 'Maximize',
+        classes: 'glyphicon glyphicon-plus',
+        onClick: props.maximizeWindow
+    },
+    {
+        name: 'Minimize',
+        classes: 'glyphicon glyphicon-minus',
+        onClick: props.minimizeWindow
+    }
+];
+
+const WindowTitleBarButtons = (props) => {
+    const buttons = getButtons(props);
+    return (
+        <div>
+            {buttons.map((button, index) => (
+                <WindowTitleBarButton
+                    key={index}
+                    classes={[buttonStylesheet.default, button.classes]}
+                    position={button.position}
+                    onClick={button.onClick}
+                />
+            ))}
+        </div>
+    );
+};
 
 export default WindowTitleBarButtons;

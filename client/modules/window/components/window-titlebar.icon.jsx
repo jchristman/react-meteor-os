@@ -1,18 +1,20 @@
 import React from 'react';
 
-const style = {
-    position: 'absolute',
-    top: 4,
-    left: 4,
-    width: 16,
-    height: 16,
-    overflow: 'hidden'
-};
+const stylesheet = cssInJS({
+    default: {
+        position: 'absolute',
+        top: 4,
+        left: 4,
+        width: 16,
+        height: 16,
+        overflow: 'hidden'
+    }
+});
 
 const WindowTitleBarIcon = (props) => (
     <img
+        className={stylesheet.default}
         src="/favicon.ico"
-        style={style}
     />
 );
 

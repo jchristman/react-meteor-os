@@ -1,28 +1,33 @@
 import React from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
+import cx from 'classnames';
 
 import WindowTitleBar from './window-titlebar.jsx';
-import WindowResizer from '../containers/window-resizer.js';
+import WindowResizer from './window-resizer.jsx';
 import WindowContentPaned from './window-content.paned.jsx';
+import windowHandles from '../lib/windowHandles.js';
 
-const style = (props) => {
-    return {
+const stylesheet = cssInJS({
+    default: {
         position:       'fixed',
-        top:            props.position.top,
-        left:           props.position.left,
-        width:          props.position.width,
-        height:         props.position.height,
-        zIndex:         props.zIndex,
-
         backgroundColor:'#1d4266',
         borderWidth:    1,
         borderColor:    '#1d4266',
         borderStyle:    'outset',
         borderRadius:   6,
+        overflow:       'hidden'
+    }
+});
 
-        overflow:       'hidden',
+const style = (props) => {
+    return {
+        top:            props.position.top,
+        left:           props.position.left,
+        width:          props.position.width,
+        height:         props.position.height,
+        zIndex:         props.zIndex,
         pointerEvents:  props.isPreview ? 'none' : 'auto'
-    };
+    }
 }
 
 const windowContent = function(props) {
@@ -34,15 +39,28 @@ const windowContent = function(props) {
 
 class Window extends React.Component {
     componentDidMount() {
-        this.props.connectDragPreview &&
-            this.props.connectDragPreview(getEmptyImage(), {});
+        if (this.props.isPreview !== true) {
+            _.each(windowHandles, (handle) => {
+                let connectDragPreview = this.props[handle + 'connectDragPreview'];
+                connectDragPreview && connectDragPreview(getEmptyImage(), {});
+            });
+        }
     }
 
     render () {
-        if (this.props.isDragging) return null;
+        if (this.props.isPreview !== true) {
+            if (_.reduce(windowHandles, (memo, handle) => {
+                let isDragging = this.props[handle + 'isDragging'];
+                if (isDragging === undefined) return memo || false;
+                return memo || isDragging;
+            }, false)) return null;
+        }
 
+        const classes = cx(stylesheet.default, this.props.classes);
+        
         return (
             <div 
+                className={classes}
                 style={style(this.props)}
                 onMouseEnter={this.props.unhideLayer}
                 onMouseLeave={this.props.hideLayer}
@@ -51,6 +69,7 @@ class Window extends React.Component {
 
                 <WindowTitleBar
                     {...this.props}
+                    connectDragSource={this.props.titlebarconnectDragSource}
                     closeWindow={this.closeWindow.bind(this)}
                 />
 
@@ -59,16 +78,11 @@ class Window extends React.Component {
                 </div>
 
                 {   this.props.isPreview !== true ?
-                        ['tl', 't', 'tr', 'l', 'r', 'bl', 'b', 'br'].map((which, index) => (
+                        windowHandles.slice(1).map((handle, index) => (
                             <WindowResizer
                                 key={index}
-                                which={which}
-                                _id={this.props._id}
-                                index={this.props.index}
-                                LocalState={this.props.LocalState}
-                                parent_id={this.props.parent_id}
-                                position={this.props.position}
-                                zIndex={this.props.zIndex}
+                                which={handle}
+                                connectDragSource={this.props[handle + 'connectDragSource']}
                             />
                         )) :
                         null

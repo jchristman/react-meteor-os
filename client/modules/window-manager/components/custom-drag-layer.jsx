@@ -19,7 +19,7 @@ class CustomDragLayer extends React.Component {
     renderItem() {
         const {item, currentOffset} = this.props;
         switch (item.dragType) {
-            case dragTypes.windowType:
+            case dragTypes.windowPositionType:
                 return ( <WindowPositionPreview {...item} {...currentOffset}/> );
             case dragTypes.windowResizerType:
                 return ( <WindowResizePreview {...item} {...currentOffset}/> );

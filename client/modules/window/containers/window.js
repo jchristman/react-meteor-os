@@ -1,21 +1,29 @@
 import {composeAll, composeWithTracker} from 'react-komposer';
 import {DragSource} from 'react-dnd';
 import Window from '../components/window.jsx';
-import {windowType} from '../configs/dragTypes.js';
+import {windowPositionType, windowResizerType} from '../configs/dragTypes.js';
+import windowHandles from '../lib/windowHandles.js';
 
 const layerType = (props) => props.parent_id;
 
-const dragSourceSpec = {
-    beginDrag: (props) => {
-        return {...props, dragType: windowType};
+// This is a function that will return a DragSource specification based on a passed in handle
+const dragSourceSpec = (handle) => {
+    return {
+        beginDrag: (props) => {
+            return {...props, dragType: handle === 'titlebar' ? windowPositionType : windowResizerType };
+        }
     }
 }
 
-const collect = (connect, monitor) => {
-    return {
-        connectDragSource: connect.dragSource(),
-        connectDragPreview: connect.dragPreview(),
-        isDragging: monitor.isDragging(),
+// This a function that will return a collect function based on a passed in handle
+const collect = (handle) => {
+    return (connect, monitor) => {
+        const spec = {}
+        spec[handle + 'connectDragSource'] = connect.dragSource();
+        spec[handle + 'connectDragPreview'] = connect.dragPreview();
+        spec[handle + 'isDragging'] = monitor.isDragging();
+
+        return spec;
     }
 }
 
@@ -23,7 +31,12 @@ const composer = (props, onData) => {
     onData(null, {});
 }
 
+// Now we need to wrap the window in 9 different drag sources.
+// The first is the window title bar handle.
+// The other 8 are the directional resizing handles.
+const dragSourceContainers = Array.from(windowHandles, handle => DragSource(layerType, dragSourceSpec(handle), collect(handle)))
+
 export default composeAll(
     composeWithTracker(composer),
-    DragSource(layerType, dragSourceSpec, collect)
+    ...dragSourceContainers
 )(Window);

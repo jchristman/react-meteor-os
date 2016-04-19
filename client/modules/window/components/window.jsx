@@ -53,7 +53,10 @@ class Window extends React.Component {
                 let isDragging = this.props[handle + 'isDragging'];
                 if (isDragging === undefined) return memo || false;
                 return memo || isDragging;
-            }, false)) return null;
+            }, false)) {
+                this.props.unhideLayer();
+                return null;
+            }
         }
 
         const classes = cx(stylesheet.default, this.props.classes);
@@ -70,6 +73,9 @@ class Window extends React.Component {
                 <WindowTitleBar
                     {...this.props}
                     connectDragSource={this.props.titlebarconnectDragSource}
+                    minimizeWindow={this.minimizeWindow.bind(this)}
+                    maximizeWindow={this.maximizeWindow.bind(this)}
+                    restoreWindow={this.restoreWindow.bind(this)}
                     closeWindow={this.closeWindow.bind(this)}
                 />
 
@@ -77,15 +83,16 @@ class Window extends React.Component {
                     {windowContent(this.props)}
                 </div>
 
-                {   this.props.isPreview !== true ?
+                {   
+                    this.props.isPreview !== true ? 
                         windowHandles.slice(1).map((handle, index) => (
                             <WindowResizer
                                 key={index}
                                 which={handle}
                                 connectDragSource={this.props[handle + 'connectDragSource']}
                             />
-                        )) :
-                        null
+                        ))
+                        : null
                 }
 
                 <div className="dest-pane-outline-1"></div>
@@ -95,12 +102,24 @@ class Window extends React.Component {
     }
 
     grabFocus() {
-        if (!_.contains(this.props.classes, 'focused'))
+        if (!this.props.focused)
             this.props.grabFocus(this.props.index);
     }
 
+    minimizeWindow(event) {
+        console.log('Minimize window');
+    }
+
+    maximizeWindow(event) {
+        console.log('Maximize window');
+    }
+
+    restoreWindow(event) {
+        console.log('Restore window');
+    }
+
     closeWindow(event) {
-        this.props.actions.del(this.props);
+        console.log('Close window');
     }
 }
 

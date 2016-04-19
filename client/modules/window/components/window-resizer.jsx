@@ -1,59 +1,85 @@
 import React from 'react';
-import { getEmptyImage } from 'react-dnd-html5-backend';
+import cx from 'classnames';
 
-const style = (props) => {
-    let top = undefined,
-        left = undefined,
-        right = undefined,
-        bottom = undefined,
-        width = 'auto',
-        height = 'auto',
-        cursor = 'default';
-    switch(props.which) {
-        case 'nw':
-            top = -2; left = -2; width = 6; height = 6; cursor = 'nesw-resize';
-            break;
-        case 'n':
-            top = -2; left = 6; right = 6; height = 6; cursor = 'ns-resize';
-            break;
-        case 'ne':
-            top = -2; right = -2; width = 6; height = 6; cursor = 'nwse-resize';
-            break;
-        case 'e':
-            top = 6; bottom = 6; right = -2; width = 6; cursor = 'ew-resize';
-            break;
-        case 'se':
-            bottom = -2; right = -2; width = 6; height = 6; cursor = 'nwse-resize';
-            break;
-        case 's':
-            bottom = -2; left = 6; right = 6; height = 6; cursor = 'ns-resize';
-            break;
-        case 'sw':
-            bottom = -2; left = -2; width = 6; height = 6; cursor = 'nesw-resize';
-            break;
-        case 'w':
-            top = 6; bottom = 6; left = -2; width = 6; cursor = 'ew-resize';
-            break;
-    }
-
-    return {
+const stylesheet = cssInJS({
+    default: {
         position: 'absolute',
-        top,
-        bottom,
-        left,
-        right,
-        width,
-        height,
-        cursor
-    }
-}
+        width: 'auto',
+        height: 'auto',
+        cursor: 'default'
+    },
 
-class WindowResizer extends React.Component {
-    render() {
-        return this.props.connectDragSource(
-            <div style={style(this.props)}></div>
-        );
+    nw: {
+        top: -2,
+        left: -2,
+        width: 6,
+        height: 6,
+        cursor: 'nwse-resize'
+    },
+
+    n: {
+        top: -2,
+        left: 6,
+        right: 6,
+        height: 6,
+        cursor: 'ns-resize'
+    },
+
+    ne: {
+        top: -2,
+        right: -2,
+        width: 6,
+        height: 6,
+        cursor: 'nesw-resize'
+    },
+
+    e: {
+        top: 6,
+        bottom: 6,
+        right: -2,
+        width: 6,
+        cursor: 'ew-resize'
+    },
+
+    se: {
+        bottom: -2,
+        right: -2,
+        width: 6,
+        height: 6,
+        cursor: 'nwse-resize'
+    },
+
+    s: {
+        bottom: -2,
+        left: 6,
+        right: 6,
+        height: 6,
+        cursor: 'ns-resize'
+    },
+
+    sw: {
+        bottom: -2,
+        left: -2,
+        width: 6,
+        height: 6,
+        cursor: 'nesw-resize'
+    },
+
+    w: {
+        top: 6,
+        bottom: 6,
+        left: -2,
+        width: 6,
+        cursor: 'ew-resize'
     }
+});
+
+const WindowResizer = (props) => {
+    const classes = cx(stylesheet.default, stylesheet[props.which]);
+
+    return props.connectDragSource(
+        <div className={classes}></div>
+    );
 };
 
 export default WindowResizer;

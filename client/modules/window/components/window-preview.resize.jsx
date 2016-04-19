@@ -1,5 +1,5 @@
 import React from 'react';
-import WindowPreviewOutline from './window-preview.outline.jsx';
+import WindowPreview from './window.jsx';
 import getResizePosition from '../lib/getResizePosition.js';
 
 const WindowResizePreview = (props) => {
@@ -7,10 +7,12 @@ const WindowResizePreview = (props) => {
     if (x === undefined) x = props.position.left;
     if (y === undefined) y = props.position.top;
     const position = getResizePosition(props.which, x, y, props.position);
+    const passOn = _.pick(props, ['focused', 'title', 'zIndex']);
     return (
-        <WindowPreviewOutline
+        <WindowPreview
+            {...passOn}
             position={position}
-            zIndex={props.zIndex}
+            isPreview={true}
         />
     );
 }

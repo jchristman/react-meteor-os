@@ -1,3 +1,65 @@
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-default {
+  position: absolute;
+  width: auto;
+  height: auto;
+  cursor: default;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-nw {
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  cursor: nwse-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-n {
+  top: -2px;
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  cursor: ns-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-ne {
+  top: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  cursor: nesw-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-e {
+  top: 6px;
+  bottom: 6px;
+  right: -2px;
+  width: 6px;
+  cursor: ew-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-se {
+  bottom: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  cursor: nwse-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-s {
+  bottom: -2px;
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  cursor: ns-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-sw {
+  bottom: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  cursor: nesw-resize;
+}
+._______________client_modules_window_components_window-resizer_jsx-stylesheet-w {
+  top: 6px;
+  bottom: 6px;
+  left: -2px;
+  width: 6px;
+  cursor: ew-resize;
+}
 ._______________client_modules_window_components_window-titlebar_buttons_jsx-buttonStylesheet-default {
   float: right;
   margin-top: 2px;
@@ -31,18 +93,13 @@
   height: 24px;
   overflow: hidden;
   cursor: move;
+  background-color: #AAB;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #002c57;
 }
-._______________client_modules_window_components_window_jsx-stylesheet-default {
-  position: fixed;
-  background-color: #1d4266;
-  border-width: 1px;
-  border-color: #1d4266;
-  border-style: outset;
-  border-radius: 6px;
-  overflow: hidden;
+._______________client_modules_window_components_window-titlebar_jsx-stylesheet-focused {
+  background-color: #036;
 }
 ._______________client_modules_window_components_window-titlebar_text_jsx-stylesheet-default {
   position: absolute;
@@ -52,5 +109,14 @@
   bottom: 0px;
   color: white;
   font-weight: bold;
+  overflow: hidden;
+}
+._______________client_modules_window_components_window_jsx-stylesheet-default {
+  position: fixed;
+  background-color: #1d4266;
+  border-width: 1px;
+  border-color: #1d4266;
+  border-style: outset;
+  border-radius: 6px;
   overflow: hidden;
 }

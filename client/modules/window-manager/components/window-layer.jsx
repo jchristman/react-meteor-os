@@ -12,7 +12,7 @@ class WindowLayer extends React.Component {
                 style={
                     { 
                         zIndex: this.props.index*WindowLayerDepth+1,
-                        pointerEvents: this.props.hiddenLayer ? 'none': ''
+                        pointerEvents: this.props.layerHidden ? 'none': ''
                     }
                 } 
                 >

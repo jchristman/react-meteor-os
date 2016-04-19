@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 import WindowTitleBarIcon from './window-titlebar.icon.jsx';
 import WindowTitleBarText from './window-titlebar.text.jsx';
@@ -13,25 +14,27 @@ const stylesheet = cssInJS({
         height: 24,
         overflow: 'hidden',
         cursor: 'move',
+        backgroundColor: '#AAB',
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
         borderBottomColor: '#002c57'
+    },
+
+    focused: {
+        backgroundColor: '#036'
     }
 });
 
-const style = (props) => {
-    return {
-        backgroundColor: props.focused ? '#036' : '#AAB'
-    }
-}
-
-const renderTitleBar = (props) => (
-    <div className={stylesheet.default} style={style(props)}>
-        <WindowTitleBarIcon {...props}/>
-        <WindowTitleBarText title={props.title}/>
-        <WindowTitleBarButtons {...props}/>
-    </div>
-);
+const renderTitleBar = (props) => {
+    const classes = cx(stylesheet.default, props.focused && stylesheet.focused);
+    return (
+        <div className={classes}>
+            <WindowTitleBarIcon {...props}/>
+            <WindowTitleBarText title={props.title}/>
+            <WindowTitleBarButtons {...props}/>
+        </div>
+    );
+};
 
 const WindowTitleBar = (props) => {
     return props.connectDragSource !== undefined ?

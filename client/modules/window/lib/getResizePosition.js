@@ -2,49 +2,49 @@ export default (which, x, y, pos) => {
     const props = { which, x, y, position: pos };
     const position = {};
     switch(props.which) {
-        case 'tl':
+        case 'nw':
             position.width = props.position.width - props.x + props.position.left;
             position.height = props.position.height - props.y + props.position.top;
             position.top = props.y;
             position.left = props.x;
             break;
-        case 't':
+        case 'n':
             position.width = props.position.width;
             position.height = props.position.height - props.y + props.position.top;
             position.top = props.y;
             position.left = props.position.left;
             break;
-        case 'tr':
+        case 'ne':
             position.width = props.x - props.position.left;
             position.height = props.position.height - props.y + props.position.top;
             position.top = props.y;
             position.left = props.position.left;
             break;
-        case 'l':
+        case 'w':
             position.width = props.position.width - props.x + props.position.left;
             position.height = props.position.height;
             position.top = props.position.top;
             position.left = props.x;
             break;
-        case 'r':
+        case 'e':
             position.width = props.x - props.position.left;
             position.height = props.position.height;
             position.top = props.position.top;
             position.left = props.position.left;
             break;
-        case 'bl':
+        case 'sw':
             position.width = props.position.width - props.x + props.position.left;
             position.height = props.y - props.position.top;
             position.top = props.position.top;
             position.left = props.x;
             break;
-        case 'b':
+        case 's':
             position.width = props.position.width;
             position.height = props.y - props.position.top;
             position.top = props.position.top;
             position.left = props.position.left;
             break;
-        case 'br':
+        case 'se':
             position.width = props.x - props.position.left;
             position.height = props.y - props.position.top;
             position.top = props.position.top;
@@ -61,6 +61,6 @@ export default (which, x, y, pos) => {
         position.top = position.top + position.height;
         position.height = Math.abs(position.height);
     }
-    
+
     return position;
 }

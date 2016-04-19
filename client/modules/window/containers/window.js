@@ -10,7 +10,7 @@ const layerType = (props) => props.parent_id;
 const dragSourceSpec = (handle) => {
     return {
         beginDrag: (props) => {
-            return {...props, dragType: handle === 'titlebar' ? windowPositionType : windowResizerType };
+            return {...props, which: handle, dragType: handle === 'titlebar' ? windowPositionType : windowResizerType };
         }
     }
 }
@@ -19,6 +19,7 @@ const dragSourceSpec = (handle) => {
 const collect = (handle) => {
     return (connect, monitor) => {
         const spec = {}
+
         spec[handle + 'connectDragSource'] = connect.dragSource();
         spec[handle + 'connectDragPreview'] = connect.dragPreview();
         spec[handle + 'isDragging'] = monitor.isDragging();

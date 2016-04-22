@@ -4,7 +4,7 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 
 import MainLayout from './components/layouts.main.jsx';
-import ApplicationManager from '../application-manager/containers/collection-wrapper.js';
+import ApplicationManager from '../application_manager/containers/collection_wrapper.js';
 
 export const nav_items = [
     {

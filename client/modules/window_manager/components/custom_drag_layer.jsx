@@ -1,9 +1,9 @@
 import React from 'react';
 import { DragLayer } from 'react-dnd';
 
-import WindowPositionPreview from '../../window/components/window-preview.position.jsx';
-import WindowResizePreview from '../../window/components/window-preview.resize.jsx';
-import * as dragTypes from '../../window/configs/dragTypes.js';
+import WindowPositionPreview from '../../window/components/window_preview_position.jsx';
+import WindowResizePreview from '../../window/components/window_preview_resize.jsx';
+import * as dragTypes from '../../window/configs/drag_types.js';
 
 const layerStyles = {
     position: 'fixed',

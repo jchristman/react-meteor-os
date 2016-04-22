@@ -2,11 +2,11 @@ import React from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import cx from 'classnames';
 
-import WindowTitleBar from './window-titlebar.jsx';
-import WindowResizer from './window-resizer.jsx';
-import WindowContent from '../../window-content/containers/content.js';
+import WindowTitleBar from './window_tb.jsx';
+import WindowResizer from './window_resizer.jsx';
+import WindowContent from './window_content.jsx';
 
-import windowHandles from '../lib/windowHandles.js';
+import windowHandles from '../lib/window_handles.js';
 
 const stylesheet = cssInJS({
     default: {
@@ -14,9 +14,10 @@ const stylesheet = cssInJS({
         backgroundColor:'#D6D2D0',
         borderWidth:    1,
         borderColor:    '#898688',
-        borderStyle:    'outset',
+        //borderStyle:    'outset',
         borderRadius:   6,
-        overflow:       'hidden'
+        overflow:       'hidden',
+        boxShadow:      '0px 0px 6px 1px #555555'
     }
 });
 

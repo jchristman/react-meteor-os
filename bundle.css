@@ -1,66 +1,99 @@
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-default {
+._______________client_modules_window_components_window_jsx-stylesheet-default {
+  position: fixed;
+  background-color: #D6D2D0;
+  border-width: 1px;
+  border-color: #898688;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 0px 6px 1px #555555;
+}
+._______________client_modules_window_components_window_content_jsx-stylesheet-default {
+  position: absolute;
+  top: 25px;
+  right: 1px;
+  left: 1px;
+  bottom: 2px;
+  background-color: white;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #9B9DC9;
+  border-bottom: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-default {
   position: absolute;
   width: auto;
   height: auto;
   cursor: default;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-nw {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-nw {
   top: -2px;
   left: -2px;
   width: 6px;
   height: 6px;
   cursor: nwse-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-n {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-n {
   top: -2px;
   left: 6px;
   right: 6px;
   height: 6px;
   cursor: ns-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-ne {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-ne {
   top: -2px;
   right: -2px;
   width: 6px;
   height: 6px;
   cursor: nesw-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-e {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-e {
   top: 6px;
   bottom: 6px;
   right: -2px;
   width: 6px;
   cursor: ew-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-se {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-se {
   bottom: -2px;
   right: -2px;
   width: 6px;
   height: 6px;
   cursor: nwse-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-s {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-s {
   bottom: -2px;
   left: 6px;
   right: 6px;
   height: 6px;
   cursor: ns-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-sw {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-sw {
   bottom: -2px;
   left: -2px;
   width: 6px;
   height: 6px;
   cursor: nesw-resize;
 }
-._______________client_modules_window_components_window-resizer_jsx-stylesheet-w {
+._______________client_modules_window_components_window_resizer_jsx-stylesheet-w {
   top: 6px;
   bottom: 6px;
   left: -2px;
   width: 6px;
   cursor: ew-resize;
 }
-._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-default {
+._______________client_modules_window_components_window_tb_jsx-stylesheet-default {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  height: 24px;
+  overflow: hidden;
+  cursor: move;
+  background-color: #D6D2D0;
+}
+._______________client_modules_window_components_window_tb_button_jsx-stylesheet-default {
   width: auto;
   height: auto;
   float: right;
@@ -75,14 +108,21 @@
   border-radius: 20px;
   border-color: #898688;
 }
-._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-default:hover {
+._______________client_modules_window_components_window_tb_button_jsx-stylesheet-default:hover {
   background-color: #EEEEEE;
   border-color: #362922;
 }
-._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-focused {
+._______________client_modules_window_components_window_tb_button_jsx-stylesheet-focused {
   color: #362922;
 }
-._______________client_modules_window_components_window-titlebar_icon_jsx-stylesheet-default {
+._______________client_modules_window_components_window_tb_buttons_jsx-stylesheet-default {
+  position: absolute;
+  top: 3px;
+  right: 0px;
+  width: auto;
+  height: auto;
+}
+._______________client_modules_window_components_window_tb_icon_jsx-stylesheet-default {
   position: absolute;
   top: 4px;
   left: 4px;
@@ -90,17 +130,7 @@
   height: 16px;
   overflow: hidden;
 }
-._______________client_modules_window_components_window-titlebar_jsx-stylesheet-default {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  height: 24px;
-  overflow: hidden;
-  cursor: move;
-  background-color: #D6D2D0;
-}
-._______________client_modules_window_components_window-titlebar_text_jsx-stylesheet-default {
+._______________client_modules_window_components_window_tb_title_jsx-stylesheet-default {
   position: absolute;
   top: 2px;
   left: 24px;
@@ -110,37 +140,14 @@
   text-shadow: 1px 1px 1px #AAAAAA;
   overflow: hidden;
 }
-._______________client_modules_window_components_window-titlebar_text_jsx-stylesheet-focused {
+._______________client_modules_window_components_window_tb_title_jsx-stylesheet-focused {
   color: #362922;
   text-shadow: 1px 1px 1px #888888;
 }
-._______________client_modules_window_components_window_jsx-stylesheet-default {
-  position: fixed;
-  background-color: #D6D2D0;
-  border-width: 1px;
-  border-color: #898688;
-  border-style: outset;
-  border-radius: 6px;
-  overflow: hidden;
-}
-._______________client_modules_window-content_components_content_jsx-stylesheet-default {
+._______________client_modules_window_manager_components_window_layer_jsx-stylesheet-default {
   position: absolute;
-  top: 25px;
-  right: 1px;
-  left: 1px;
-  bottom: 2px;
-  background-color: white;
-  border-width: 1px;
-  border-style: inset;
-  border-color: #9B9DC9;
-  border-bottom: 0px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-._______________client_modules_window_components_window-titlebar_buttons_jsx-stylesheet-default {
-  position: absolute;
-  top: 3px;
-  right: 0px;
-  width: auto;
-  height: auto;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }

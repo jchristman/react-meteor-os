@@ -4,8 +4,8 @@ import initContext from './configs/context';
 
 // Load up the modules!
 import windowModule from './modules/window';
-import windowManagerModule from './modules/window-manager';
-import applicationManagerModule from './modules/application-manager';
+import windowManagerModule from './modules/window_manager';
+import applicationManagerModule from './modules/application_manager';
 import testModule from './modules/_test';
 
 // Initialize the context

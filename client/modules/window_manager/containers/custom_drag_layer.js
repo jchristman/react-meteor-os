@@ -1,5 +1,6 @@
 import {DragLayer} from 'react-dnd';
-import CustomDragLayer from '../components/custom-drag-layer.jsx';
+
+import CustomDragLayer from '../components/custom_drag_layer.jsx';
 
 const collect = (monitor) => {
     return {

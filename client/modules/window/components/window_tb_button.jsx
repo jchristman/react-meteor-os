@@ -1,7 +1,8 @@
 import React from 'react';
-import cx from 'classnames';
-import cancelBubble from '../lib/cancelBubble.js';
 import FontAwesome from 'react-fontawesome';
+import cx from 'classnames';
+
+import cancelBubble from '../lib/cancel_bubble.js';
 
 const stylesheet = cssInJS({
     default: {

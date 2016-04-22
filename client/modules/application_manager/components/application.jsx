@@ -1,5 +1,6 @@
 import React from 'react';
-import WindowManager from '../../window-manager/components/window-manager.jsx';
+
+import WindowManager from '../../window_manager/components/window_manager.jsx';
 
 const Application = (props) => (
     <div>

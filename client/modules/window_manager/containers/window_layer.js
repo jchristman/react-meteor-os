@@ -1,13 +1,14 @@
 import {composeAll, composeWithTracker} from 'react-komposer';
 import {DropTarget} from 'react-dnd';
-import WindowLayer from '../components/window-layer.jsx';
 import {Meteor} from 'meteor/meteor';
 
-import layerHiddenStateVar from '../lib/layerHiddenStateVar.js';
-import windowResizing from '../../window/lib/windowResizing.js';
-import updateWindowPosition from '../lib/updateWindowPosition.js';
-import * as dragTypes from '../../window/configs/dragTypes.js';
-import getResizePosition from '../../window/lib/getResizePosition.js';
+import WindowLayer from '../components/window_layer.jsx';
+
+import layerHiddenStateVar from '../lib/layer_hidden_state_var.js';
+import windowResizing from '../../window/lib/window_resizing.js';
+import updateWindowPosition from '../lib/update_window_position.js';
+import * as dragTypes from '../../window/configs/drag_types.js';
+import getResizePosition from '../../window/lib/get_resize_position.js';
 
 // Only allow things to be dropped in this layer that are of type: props._id
 const layerType = (props) => props._id;
@@ -26,8 +27,8 @@ const layerTarget = {
         switch(item.dragType) {
             case dragTypes.windowPositionType:
                 delta = monitor.getDifferenceFromInitialOffset();
-                left = Math.round(item.position.left + delta.x);
-                top = Math.round(item.position.top + delta.y);
+                left = Math.round(item.position.left + delta.x) + 1;
+                top = Math.round(item.position.top + delta.y) + 1;
                 width = item.position.width;
                 height = item.position.height;
 

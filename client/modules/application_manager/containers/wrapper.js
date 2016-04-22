@@ -1,5 +1,6 @@
 import {composeWithTracker} from 'react-komposer';
-import ApplicationManager from '../components/application-manager.jsx';
+
+import ApplicationManager from '../components/application_manager.jsx';
 
 const composer = (context, onData) => {
     if (context.ApplicationManager.applications.length > 0) {

@@ -1,6 +1,8 @@
 import React from 'react';
+
 import WindowPreview from './window.jsx';
-import getResizePosition from '../lib/getResizePosition.js';
+
+import getResizePosition from '../lib/get_resize_position.js';
 
 const WindowResizePreview = (props) => {
     let x = props.x, y = props.y;

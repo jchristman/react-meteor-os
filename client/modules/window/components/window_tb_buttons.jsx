@@ -1,5 +1,6 @@
 import React from 'react';
-import WindowTitleBarButton from './window-titlebar.buttons.button.jsx';
+
+import WindowTitleBarButton from './window_tb_button.jsx';
 
 const stylesheet = cssInJS({
     default: {

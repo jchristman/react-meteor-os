@@ -1,14 +1,26 @@
 import React from 'react';
+
 import Window from '../../window/containers/window.js';
-import {WindowLayerDepth} from '../configs/window-layer.js';
-import layerHiddenStateVar from '../lib/layerHiddenStateVar.js';
+
+import {WindowLayerDepth} from '../configs/window_layer.js';
+import layerHiddenStateVar from '../lib/layer_hidden_state_var.js';
+
+const stylesheet = cssInJS({
+    default: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%'
+    }
+});
 
 class WindowLayer extends React.Component {
     render() {
         const {isOver, canDrop, connectDropTarget, children} = this.props;
         return connectDropTarget(
             <div 
-                className='layer'
+                className={stylesheet.default}
                 style={
                     { 
                         zIndex: this.props.index*WindowLayerDepth+1,

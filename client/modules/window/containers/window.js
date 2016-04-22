@@ -1,8 +1,10 @@
 import {composeAll, composeWithTracker} from 'react-komposer';
 import {DragSource} from 'react-dnd';
+
 import Window from '../components/window.jsx';
-import {windowPositionType, windowResizerType} from '../configs/dragTypes.js';
-import windowHandles from '../lib/windowHandles.js';
+
+import {windowPositionType, windowResizerType} from '../configs/drag_types.js';
+import windowHandles from '../lib/window_handles.js';
 
 const layerType = (props) => props.parent_id;
 

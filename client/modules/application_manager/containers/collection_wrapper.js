@@ -1,7 +1,9 @@
 import {composeWithTracker, composeAll} from 'react-komposer';
 import {useDeps} from 'mantra-core';
+
 import ApplicationManager from './wrapper.js';
-import ApplicationManagerSub from '../lib/application-manager-sub.js';
+
+import ApplicationManagerSub from '../lib/application_manager_sub.js';
 
 const composer = (context, onData) => {
     const {Collections} = context;

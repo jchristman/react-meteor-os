@@ -1,6 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
+import WindowContentPlain from './window_content_plain.jsx';
+import WindowContentTabbed from '../containers/window_content_tabbed.js';
+
+import * as windowTypes from '/lib/windowTypes.js';
+
 const stylesheet = cssInJS({
     default: {
         position: 'absolute',
@@ -18,10 +23,32 @@ const stylesheet = cssInJS({
     }
 });
 
+const typeSwitch = (props) => {
+    switch(props.type) {
+        case windowTypes.tabbed:
+            return (
+                <WindowContentTabbed
+                    LocalState={props.LocalState}
+                    grabFocus={props.grabFocus}
+                    windowIndex={props.index}
+                    parent_id={props.parent_id}
+                    content={props.content}
+                /> );
+        default:
+            return (
+                <WindowContentPlain
+                    content={props.content}
+                /> );
+    }
+}
+
 const WindowContent = (props) => {
     const classes = cx(stylesheet.default);
+    const windowType = typeSwitch(props);
     return (
-        <div className={classes}>Content</div>
+        <div className={classes}>
+            {windowType}
+        </div>
     );
 }
 

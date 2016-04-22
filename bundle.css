@@ -21,6 +21,59 @@
   border-radius: 4px;
   overflow: hidden;
 }
+._______________client_modules_window_components_window_content_tabbed_jsx-stylesheet-tabs {
+  position: relative;
+  min-height: 200px;
+  clear: both;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab {
+  float: left;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-radio {
+  display: none;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label {
+  position: relative;
+  top: 5px;
+  left: 1px;
+  margin-left: -1px;
+  padding: 5px;
+  background-color: #eeeeee;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cccccc;
+  cursor: pointer;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label:hover {
+  background-color: #dddddd;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label_checked {
+  background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  z-index: 2;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label_checked:hover {
+  background-color: white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-content {
+  position: absolute;
+  top: 28px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: 10px;
+  background-color: white;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #cccccc;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-content_checked {
+  z-index: 1;
+}
 ._______________client_modules_window_components_window_resizer_jsx-stylesheet-default {
   position: absolute;
   width: auto;
@@ -94,15 +147,15 @@
   background-color: #D6D2D0;
 }
 ._______________client_modules_window_components_window_tb_button_jsx-stylesheet-default {
+  float: right;
   width: auto;
   height: auto;
-  float: right;
   margin-right: 2px;
+  padding: 1px;
   background-color: #D6D2D0;
   color: #898688;
   cursor: pointer;
   font-size: 10px;
-  padding: 1px;
   border-width: 1px;
   border-style: solid;
   border-radius: 20px;

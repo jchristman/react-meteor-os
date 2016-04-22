@@ -11,7 +11,8 @@ const test_window1 = {
         width: 500,
     },
     content: {
-        type: windowTypes.plain
+        type: windowTypes.plain,
+        content: 'This is a plain window'
     }
 };
 
@@ -25,7 +26,18 @@ const test_window2 = {
         width: 500
     },
     content: {
-        type: windowTypes.paned
+        type: windowTypes.tabbed,
+        content: [
+            {
+                label: 'Tab 1',
+                checked: true,
+                content: 'Application 1, Window 2, Tab 1'
+            },
+            {
+                label: 'Tab 2',
+                content: 'Application 1, Window 2, Tab 2'
+            }
+        ]
     }
 };
 
@@ -50,7 +62,14 @@ const test_window3 = {
         width: 500
     },
     content: {
-        type: windowTypes.paned
+        type: windowTypes.tabbed,
+        content: [
+            {
+                label: 'Tab 1',
+                checked: true,
+                content: 'This window has only one tab'
+            }
+        ]
     }
 };
 

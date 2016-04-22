@@ -6,12 +6,12 @@ import cancelBubble from '../lib/cancel_bubble.js';
 
 const stylesheet = cssInJS({
     default: {
-        width: 'auto',
-        height: 'auto',
-
         float: 'right',
 
+        width: 'auto',
+        height: 'auto',
         marginRight: 2,
+        padding: 1,
 
         backgroundColor: '#D6D2D0',
         color: '#898688',
@@ -19,7 +19,6 @@ const stylesheet = cssInJS({
 
         fontSize: 10,
 
-        padding: 1,
         borderWidth: 1,
         borderStyle: 'solid',
         borderRadius: 20,

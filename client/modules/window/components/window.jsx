@@ -81,7 +81,13 @@ class Window extends React.Component {
                     closeWindow={this.closeWindow.bind(this)}
                 />
 
-                <WindowContent {...this.props.content}/>
+                <WindowContent
+                    LocalState={this.props.LocalState}
+                    grabFocus={this.grabFocus.bind(this)}
+                    index={this.props.index}
+                    parent_id={this.props.parent_id}
+                    {...this.props.content}
+                />
 
                 {   
                     this.props.isPreview !== true ? 

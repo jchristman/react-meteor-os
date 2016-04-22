@@ -1,4 +1,5 @@
 import {Random} from 'meteor/random';
+import * as windowTypes from '/lib/windowTypes.js';
 
 const test_window1 = {
     _id: Random.id(),
@@ -8,6 +9,9 @@ const test_window1 = {
         left: 10,
         height: 400,
         width: 500,
+    },
+    content: {
+        type: windowTypes.plain
     }
 };
 
@@ -19,6 +23,9 @@ const test_window2 = {
         left: 600,
         height: 400,
         width: 500
+    },
+    content: {
+        type: windowTypes.paned
     }
 };
 
@@ -41,6 +48,9 @@ const test_window3 = {
         left: 200,
         height: 400,
         width: 500
+    },
+    content: {
+        type: windowTypes.paned
     }
 };
 

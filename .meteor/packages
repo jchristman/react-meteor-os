@@ -19,6 +19,6 @@ audit-argument-checks
 check
 random
 
-twbs:bootstrap
+fortawesome:fontawesome
 standard-minifier-css
 standard-minifier-js

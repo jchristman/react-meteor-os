@@ -1,5 +1,5 @@
 {
-  "name": "Meteor OS",
+  "name": "MeteorOS",
   "version": "0.0.0",
   "options": {
     "mocha": "--require .scripts/mocha_runner client/**/tests/**/*.js"
@@ -35,12 +35,14 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "domready": "^1.0.8",
+    "fontawesome": "^4.5.0",
     "mantra-core": "^1.2.0",
     "meteor-node-stubs": "^0.2.1",
     "react": "0.14.x",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "0.14.x",
+    "react-fontawesome": "^0.3.3",
     "react-komposer": "1.x.x",
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x"

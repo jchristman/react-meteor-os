@@ -14,23 +14,16 @@ const stylesheet = cssInJS({
         height: 24,
         overflow: 'hidden',
         cursor: 'move',
-        backgroundColor: '#AAB',
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        borderBottomColor: '#002c57'
-    },
-
-    focused: {
-        backgroundColor: '#036'
+        backgroundColor: '#D6D2D0'
     }
 });
 
 const renderTitleBar = (props) => {
-    const classes = cx(stylesheet.default, props.focused && stylesheet.focused);
+    const classes = cx(stylesheet.default);
     return (
         <div className={classes}>
             <WindowTitleBarIcon {...props}/>
-            <WindowTitleBarText title={props.title}/>
+            <WindowTitleBarText title={props.title} focused={props.focused}/>
             <WindowTitleBarButtons {...props}/>
         </div>
     );

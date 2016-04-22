@@ -60,22 +60,27 @@
   width: 6px;
   cursor: ew-resize;
 }
-._______________client_modules_window_components_window-titlebar_buttons_jsx-buttonStylesheet-default {
+._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-default {
+  width: auto;
+  height: auto;
   float: right;
-  margin-top: 2px;
-  margin-right: 1px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  width: 17px;
-  height: 17px;
-  background: #ccc;
-  border-width: 1px;
-  border-style: outset;
-  border-color: #9B9DC9;
+  margin-right: 2px;
+  background-color: #D6D2D0;
+  color: #898688;
   cursor: pointer;
+  font-size: 10px;
+  padding: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #898688;
 }
-._______________client_modules_window_components_window-titlebar_buttons_jsx-buttonStylesheet-default:hover {
-  background: #ddd;
+._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-default:hover {
+  background-color: #EEEEEE;
+  border-color: #362922;
+}
+._______________client_modules_window_components_window-titlebar_buttons_button_jsx-stylesheet-focused {
+  color: #362922;
 }
 ._______________client_modules_window_components_window-titlebar_icon_jsx-stylesheet-default {
   position: absolute;
@@ -93,13 +98,7 @@
   height: 24px;
   overflow: hidden;
   cursor: move;
-  background-color: #AAB;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #002c57;
-}
-._______________client_modules_window_components_window-titlebar_jsx-stylesheet-focused {
-  background-color: #036;
+  background-color: #D6D2D0;
 }
 ._______________client_modules_window_components_window-titlebar_text_jsx-stylesheet-default {
   position: absolute;
@@ -107,16 +106,41 @@
   left: 24px;
   right: 0px;
   bottom: 0px;
-  color: white;
-  font-weight: bold;
+  color: #898688;
+  text-shadow: 1px 1px 1px #AAAAAA;
   overflow: hidden;
+}
+._______________client_modules_window_components_window-titlebar_text_jsx-stylesheet-focused {
+  color: #362922;
+  text-shadow: 1px 1px 1px #888888;
 }
 ._______________client_modules_window_components_window_jsx-stylesheet-default {
   position: fixed;
-  background-color: #1d4266;
+  background-color: #D6D2D0;
   border-width: 1px;
-  border-color: #1d4266;
+  border-color: #898688;
   border-style: outset;
   border-radius: 6px;
   overflow: hidden;
+}
+._______________client_modules_window-content_components_content_jsx-stylesheet-default {
+  position: absolute;
+  top: 25px;
+  right: 1px;
+  left: 1px;
+  bottom: 2px;
+  background-color: white;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #9B9DC9;
+  border-bottom: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+._______________client_modules_window_components_window-titlebar_buttons_jsx-stylesheet-default {
+  position: absolute;
+  top: 3px;
+  right: 0px;
+  width: auto;
+  height: auto;
 }

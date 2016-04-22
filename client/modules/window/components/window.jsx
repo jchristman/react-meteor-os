@@ -4,15 +4,16 @@ import cx from 'classnames';
 
 import WindowTitleBar from './window-titlebar.jsx';
 import WindowResizer from './window-resizer.jsx';
-import WindowContentPaned from './window-content.paned.jsx';
+import WindowContent from '../../window-content/containers/content.js';
+
 import windowHandles from '../lib/windowHandles.js';
 
 const stylesheet = cssInJS({
     default: {
         position:       'fixed',
-        backgroundColor:'#1d4266',
+        backgroundColor:'#D6D2D0',
         borderWidth:    1,
-        borderColor:    '#1d4266',
+        borderColor:    '#898688',
         borderStyle:    'outset',
         borderRadius:   6,
         overflow:       'hidden'
@@ -79,9 +80,7 @@ class Window extends React.Component {
                     closeWindow={this.closeWindow.bind(this)}
                 />
 
-                <div className="windowcontent panel with-nav-tabs panel-default">
-                    {windowContent(this.props)}
-                </div>
+                <WindowContent {...this.props.content}/>
 
                 {   
                     this.props.isPreview !== true ? 

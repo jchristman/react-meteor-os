@@ -9,6 +9,8 @@ import windowResizing from '../../window/lib/window_resizing.js';
 import updateWindowPosition from '../lib/update_window_position.js';
 import * as dragTypes from '../../window/configs/drag_types.js';
 import getResizePosition from '../../window/lib/get_resize_position.js';
+import * as snap_limits from '../configs/snap_limits.js';
+import snap from '../lib/snap.js';
 
 // Only allow things to be dropped in this layer that are of type: props._id
 const layerType = (props) => props._id;
@@ -23,14 +25,25 @@ const layerTarget = {
             height = 0,
             x = 0,
             y = 0,
-            position = {};
+            position = {},
+            pointer = {};
         switch(item.dragType) {
             case dragTypes.windowPositionType:
-                delta = monitor.getDifferenceFromInitialOffset();
-                left = Math.round(item.position.left + delta.x) + 1;
-                top = Math.round(item.position.top + delta.y) + 1;
-                width = item.position.width;
-                height = item.position.height;
+                pointer = monitor.getClientOffset();
+                if (pointer.x <= snap_limits.limit || pointer.x >= window.innerWidth - snap_limits.limit) {
+                    let tmp = { pointer, ...props, position: { width: 0, height: 0 } };
+                    tmp = snap(tmp);
+                    top = tmp.top;
+                    left = tmp.left;
+                    width = tmp.width;
+                    height = tmp.height;
+                } else {
+                    delta = monitor.getDifferenceFromInitialOffset();
+                    left = Math.round(item.position.left + delta.x) + 1;
+                    top = Math.round(item.position.top + delta.y) + 1;
+                    width = item.position.width;
+                    height = item.position.height;
+                }
 
                 updateWindowPosition(props, item, top, left, width, height);
                 break;

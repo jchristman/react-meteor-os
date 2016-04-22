@@ -5,22 +5,24 @@ import WindowPositionPreview from '../../window/components/window_preview_positi
 import WindowResizePreview from '../../window/components/window_preview_resize.jsx';
 import * as dragTypes from '../../window/configs/drag_types.js';
 
-const layerStyles = {
-    position: 'fixed',
-    pointerEvents: 'none',
-    zIndex: 999999,
-    left: 0,
-    top: 0,
-    width: '100%',
-    height: '100%'
-};
+const stylesheet = cssInJS({
+    default: {
+        position: 'fixed',
+        pointerEvents: 'none',
+        zIndex: 999999,
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%'
+    }
+});
 
 class CustomDragLayer extends React.Component {
     renderItem() {
-        const {item, currentOffset} = this.props;
+        const {item, currentOffset, currentPointer} = this.props;
         switch (item.dragType) {
             case dragTypes.windowPositionType:
-                return ( <WindowPositionPreview {...item} {...currentOffset}/> );
+                return ( <WindowPositionPreview {...item} {...currentOffset} pointer={currentPointer}/> );
             case dragTypes.windowResizerType:
                 return ( <WindowResizePreview {...item} {...currentOffset}/> );
             default:
@@ -33,7 +35,7 @@ class CustomDragLayer extends React.Component {
         if (!this.props.isDragging || this.props.itemType !== this.props._id) return null;
 
         return (
-            <div style={layerStyles}>
+            <div className={stylesheet.default}>
                 {this.renderItem()}
             </div>
         );

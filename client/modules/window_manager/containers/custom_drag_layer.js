@@ -8,6 +8,7 @@ const collect = (monitor) => {
         itemType: monitor.getItemType(),
         initialOffset: monitor.getInitialSourceClientOffset(),
         currentOffset: monitor.getSourceClientOffset(),
+        currentPointer: monitor.getClientOffset(),
         isDragging: monitor.isDragging()
     }
 }

@@ -1,7 +1,7 @@
 Meteor OS
 =========
 
-This project is an adaptation of the original (MeteorOS)[https://github.com/jchristman/meteor-os], changed from Blaze to React. This **should** make things much much better.
+This project is an adaptation of the original [MeteorOS](https://github.com/jchristman/meteor-os), changed from Blaze to React. This **should** make things much much better.
 
 Installation
 ============

@@ -30,46 +30,105 @@
 }
 ._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab {
   float: left;
+  height: auto;
+  width: auto;
+  margin-top: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #898688;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-color: #D6D2D0;
+  color: #362922;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab:hover {
+  background-color: #EEEEEE;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_checked {
+  background-color: white;
+  z-index: 2;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_checked:hover {
+  background-color: white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label {
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label:before {
+  position: absolute;
+  bottom: 0px;
+  left: -7px;
+  width: 6px;
+  height: 6px;
+  content: ' ';
+  border-top-width: 0px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-style: solid;
+  border-color: #898688;
+  border-bottom-right-radius: 6px;
+  box-shadow: 2px 2px 0 #D6D2D0;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label:after {
+  position: absolute;
+  bottom: 0px;
+  right: -7px;
+  width: 6px;
+  height: 6px;
+  content: ' ';
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-style: solid;
+  border-color: #898688;
+  border-bottom-left-radius: 6px;
+  box-shadow: -2px 2px 0 #D6D2D0;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label:hover:before {
+  box-shadow: 2px 2px 0 #EEEEEE;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label:hover:after {
+  box-shadow: -2px 2px 0 #EEEEEE;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label_checked {
+  z-index: 2;
+  background-color: white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label_checked:before {
+  box-shadow: 2px 2px 0 white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label_checked:after {
+  box-shadow: -2px 2px 0 white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label_checked:hover:before {
+  box-shadow: 2px 2px 0 white;
+}
+._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-label_checked:hover:after {
+  box-shadow: -2px 2px 0 white;
 }
 ._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-radio {
   display: none;
 }
-._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label {
-  position: relative;
-  top: 5px;
-  left: 1px;
-  margin-left: -1px;
-  padding: 5px;
-  background-color: #eeeeee;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #cccccc;
-  cursor: pointer;
-}
-._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label:hover {
-  background-color: #dddddd;
-}
-._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label_checked {
-  background-color: white;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: white;
-  z-index: 2;
-}
-._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-tab_label_checked:hover {
-  background-color: white;
-}
 ._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-content {
   position: absolute;
-  top: 28px;
+  top: 32px;
   left: 0px;
   bottom: 0px;
   right: 0px;
   padding: 10px;
   background-color: white;
+  cursor: default;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: #cccccc;
+  border-top-color: #898688;
 }
 ._______________client_modules_window_components_window_content_tabbed_tab_jsx-stylesheet-content_checked {
   z-index: 1;

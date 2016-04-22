@@ -8,7 +8,7 @@ const composer = (props, onData) => {
     const {LocalState} = props;
 
     LocalState.setDefault(getWindowTabCheckedKey(props), 0);
-   
+
     _.each(props.content, (tab) => { tab.checked = false }); 
     props.content[LocalState.get(getWindowTabCheckedKey(props))].checked = true;
 

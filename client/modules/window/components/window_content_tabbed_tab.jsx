@@ -3,37 +3,47 @@ import cx from 'classnames';
 
 import cancelBubble from '../lib/cancel_bubble.js';
 
+const WindowContentTabbedTab = (props) => {
+    const tab_classes = cx(stylesheet.tab, props.checked && stylesheet.tab_checked);
+    const label_classes = cx(stylesheet.label, props.checked && stylesheet.label_checked);
+    const content_classes = cx(stylesheet.content, props.checked && stylesheet.content_checked);
+    
+    return (
+        <div className={tab_classes}
+            onMouseDown={cancelBubble}
+            onClick={props.changeChecked}>
+            <div className={label_classes}>{props.label}</div>
+
+            <div className={content_classes}>{props.content}</div>
+        </div>
+    );
+}
+
 const stylesheet = cssInJS({
     tab: {
-        float: 'left'
-    },
-
-    radio: {
-        display: 'none'
-    },
-
-    tab_label: {
-        position: 'relative',
-        top: 5,
-        left: 1,
-        marginLeft: -1,
-        padding: 5,
-        backgroundColor: '#eeeeee',
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#cccccc',
+        float: 'left',
+        height: 'auto',
+        width: 'auto',
+        marginTop: 4,
+        marginLeft: 4,
         cursor: 'pointer',
 
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#898688',
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
+        
+        backgroundColor: '#D6D2D0',
+        color: '#362922',
+
         ':hover': {
-            backgroundColor: '#dddddd'
+            backgroundColor: '#EEEEEE',
         }
     },
 
-    tab_label_checked: {
+    tab_checked: {
         backgroundColor: 'white',
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        borderBottomColor: 'white',
         zIndex: 2,
 
         ':hover': {
@@ -41,40 +51,107 @@ const stylesheet = cssInJS({
         }
     },
 
+    label: {
+        position: 'relative',
+        padding: 5,
+        cursor: 'pointer',
+        borderTopRightRadius: 6,
+        borderTopLeftRadius: 6,
+
+        ':before': {
+            position: 'absolute',
+            bottom: 0,
+            left: -7,
+            width: 6,
+            height: 6,
+            content: " ",
+
+            borderTopWidth: 0,
+            borderRightWidth: 1,
+            borderBottomWidth: 1,
+            borderLeftWidth: 0,
+            borderStyle: 'solid',
+            borderColor: '#898688',
+
+            borderBottomRightRadius: 6,
+            boxShadow: '2px 2px 0 #D6D2D0'
+        },
+
+        ':after': {
+            position: 'absolute',
+            bottom: 0,
+            right: -7,
+            width: 6,
+            height: 6,
+            content: " ",
+
+            borderTopWidth: 0,
+            borderRightWidth: 0,
+            borderBottomWidth: 1,
+            borderLeftWidth: 1,
+            borderStyle: 'solid',
+            borderColor: '#898688',
+            
+            borderBottomLeftRadius: 6,
+            boxShadow: '-2px 2px 0 #D6D2D0'
+        },
+
+        ':hover': {
+            ':before': {
+                boxShadow: '2px 2px 0 #EEEEEE'
+            },
+
+            ':after': {
+                boxShadow: '-2px 2px 0 #EEEEEE'
+            }
+        }
+    },
+
+    label_checked: {
+        zIndex: 2,
+        backgroundColor: 'white',
+
+        ':before': {
+            boxShadow: '2px 2px 0 white'
+        },
+
+        ':after': {
+            boxShadow: '-2px 2px 0 white'
+        },
+
+        ':hover': {
+            ':before': {
+                boxShadow: '2px 2px 0 white'
+            },
+
+            ':after': {
+                boxShadow: '-2px 2px 0 white'
+            }
+        }
+    },
+
+    radio: {
+        display: 'none'
+    },
+
     content: {
         position: 'absolute',
-        top: 28,
+        top: 32,
         left: 0,
         bottom: 0,
         right: 0,
         padding: 10,
         backgroundColor: 'white',
+        cursor: 'default',
+
         borderTopWidth: 1,
         borderTopStyle: 'solid',
-        borderTopColor: '#cccccc'
+        borderTopColor: '#898688'
     },
 
     content_checked: {
         zIndex: 1
     }
 });
-
-const WindowContentTabbedTab = (props) => {
-    const label_classes = cx(stylesheet.tab_label, props.checked && stylesheet.tab_label_checked);
-    const content_classes = cx(stylesheet.content, props.checked && stylesheet.content_checked);
-    
-    return (
-        <div className={stylesheet.tab}>
-            <label
-                className={label_classes}
-                onMouseDown={cancelBubble}
-                onClick={props.changeChecked}>
-                    {props.label}
-            </label>
-
-            <div className={content_classes}>{props.content}</div>
-        </div>
-    );
-}
 
 export default WindowContentTabbedTab;

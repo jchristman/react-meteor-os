@@ -30,8 +30,8 @@ const typeSwitch = (props) => {
                 <WindowContentTabbed
                     LocalState={props.LocalState}
                     grabFocus={props.grabFocus}
-                    windowIndex={props.index}
-                    parent_id={props.parent_id}
+                    window_id={props.window_id}
+                    layer_id={props.layer_id}
                     content={props.content}
                 /> );
         default:

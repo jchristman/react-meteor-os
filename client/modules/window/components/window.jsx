@@ -84,8 +84,8 @@ class Window extends React.Component {
                 <WindowContent
                     LocalState={this.props.LocalState}
                     grabFocus={this.grabFocus.bind(this)}
-                    index={this.props.index}
-                    parent_id={this.props.parent_id}
+                    window_id={this.props._id}
+                    layer_id={this.props.parent_id}
                     {...this.props.content}
                 />
 

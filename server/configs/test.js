@@ -36,7 +36,12 @@ const test_window2 = {
             {
                 label: 'Tab 2',
                 content: 'Application 1, Window 2, Tab 2'
+            },
+            {
+                label: 'Tab 3',
+                content: 'Application 1, Window 2, Tab 3'
             }
+
         ]
     }
 };

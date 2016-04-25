@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 import WindowContentTabbedTabbar from './window_content_tabbed_tabbar.jsx';
-import WindowContentTabbedTabcontent from './window_content_tabbed_tabcontent.jsx';
+import WindowContentTabbedTabcontent from '../containers/window_content_tabbed_tabcontent.js';
 
 import getWindowTabCheckedKey from '../lib/get_window_tab_checked_key.js';
 
@@ -29,6 +29,7 @@ class WindowContentTabbed extends React.Component {
                     content={props.content}
                 />
                 <WindowContentTabbedTabcontent
+                    layer_id={props.layer_id}
                     content={props.content}
                 />
             </div>

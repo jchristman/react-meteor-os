@@ -11,8 +11,14 @@ const test_window1 = {
         width: 500,
     },
     content: {
-        type: windowTypes.plain,
-        content: 'This is a plain window'
+        type: windowTypes.tabbed,
+        content: [
+            {
+                label: 'Tab 1',
+                checked: true,
+                content: 'This window has only one tab'
+            }
+        ]
     }
 };
 
@@ -67,14 +73,8 @@ const test_window3 = {
         width: 500
     },
     content: {
-        type: windowTypes.tabbed,
-        content: [
-            {
-                label: 'Tab 1',
-                checked: true,
-                content: 'This window has only one tab'
-            }
-        ]
+        type: windowTypes.plain,
+        content: 'This is a plain window'
     }
 };
 

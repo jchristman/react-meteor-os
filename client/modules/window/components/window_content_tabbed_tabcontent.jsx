@@ -33,7 +33,6 @@ const stylesheet = cssInJS({
         position: 'absolute',
         height: '100%',
         width: '100%',
-        padding: 10,
         backgroundColor: 'white',
         cursor: 'default',
 

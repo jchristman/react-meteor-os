@@ -1,9 +1,14 @@
+// ----- External Imports ----- //
 import React from 'react';
 import cx from 'classnames';
 
+// ----- Component Imports ----- //
 import WindowTitleBarIcon from './window_tb_icon.jsx';
 import WindowTitleBarTitle from './window_tb_title.jsx';
 import WindowTitleBarButtons from './window_tb_buttons.jsx';
+
+// ----- Config Imports ----- //
+import Themes from '../../../configs/themes';
 
 const stylesheet = cssInJS({
     default: {
@@ -13,13 +18,12 @@ const stylesheet = cssInJS({
         right: 1,
         height: 24,
         overflow: 'hidden',
-        cursor: 'move',
-        backgroundColor: '#D6D2D0'
+        cursor: 'move'
     }
 });
 
 const renderTitleBar = (props) => {
-    const classes = cx(stylesheet.default);
+    const classes = cx(stylesheet.default, Themes.Default.primary_colors);
     return (
         <div className={classes}>
             <WindowTitleBarIcon {...props}/>

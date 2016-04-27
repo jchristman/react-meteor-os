@@ -1,20 +1,24 @@
+// ----- External Imports ----- //
 import React from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import cx from 'classnames';
 
+// ----- Component Imports ----- //
 import WindowTitleBar from './window_tb.jsx';
 import WindowResizer from './window_resizer.jsx';
 import WindowContent from './window_content.jsx';
 
+// ----- Library Imports ----- //
 import windowHandles from '../lib/window_handles.js';
+
+// ----- Config Imports ----- //
+import Themes from '../../../configs/themes';
 
 const stylesheet = cssInJS({
     default: {
         position:       'fixed',
-        backgroundColor:'#D6D2D0',
         borderWidth:    1,
-        borderColor:    '#898688',
-        //borderStyle:    'outset',
+        borderStyle:    'solid',
         borderRadius:   6,
         overflow:       'hidden',
         boxShadow:      '0px 0px 6px 1px #555555'
@@ -61,7 +65,7 @@ class Window extends React.Component {
             }
         }
 
-        const classes = cx(stylesheet.default, this.props.classes);
+        const classes = cx(stylesheet.default, Themes.Default.primary_colors, this.props.classes);
         
         return (
             <div 

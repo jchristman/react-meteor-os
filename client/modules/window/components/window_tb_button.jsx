@@ -1,8 +1,13 @@
+// ----- External Imports ----- //
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
 
+// ----- Library Imports ----- //
 import cancelBubble from '../lib/cancel_bubble.js';
+
+// ----- Config Imports ----- //
+import Themes from '../../../configs/themes';
 
 const stylesheet = cssInJS({
     default: {
@@ -13,31 +18,21 @@ const stylesheet = cssInJS({
         marginRight: 2,
         padding: 1,
 
-        backgroundColor: '#D6D2D0',
-        color: '#898688',
         cursor: 'pointer',
 
         fontSize: 10,
 
         borderWidth: 1,
         borderStyle: 'solid',
-        borderRadius: 20,
-        borderColor: '#898688',
-
-        ':hover': {
-            backgroundColor: '#EEEEEE',
-            borderColor: '#362922'
-        }
-    },
-        
-    focused: {
-        color: '#362922',
+        borderRadius: 20
     }
 });
 
 const WindowTitleBarButton = (props) => {
     const classes = cx(stylesheet.default,
-                       props.focused && stylesheet.focused);
+                       Themes.Default.primary_colors,
+                       Themes.Default.primary_colors_hover,
+                       props.focused && Themes.Default.primary_colors_focus);
 
    return (
         <div

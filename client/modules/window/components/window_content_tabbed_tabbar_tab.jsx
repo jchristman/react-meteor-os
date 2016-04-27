@@ -1,13 +1,28 @@
+// ----- External Imports ----- //
 import React from 'react';
 import cx from 'classnames';
 
+// ----- Library Imports ----- //
 import cancelBubble from '../lib/cancel_bubble.js';
 
+// ----- Config Imports ----- //
+import Themes from '../../../configs/themes';
+
 const WindowContentTabbedTabbarTab = (props) => {
-    console.log(props);
-    const tab_classes = cx(stylesheet.tab, props.checked && stylesheet.tab_checked);
-    const label_classes = cx(stylesheet.label, props.checked && stylesheet.label_checked);
-    return (
+    const {connectDragSource} = props;
+
+    const tab_classes = cx(stylesheet.tab,
+                           Themes.Default.primary_colors,
+                           Themes.Default.primary_colors_focus,
+                           props.checked && stylesheet.tab_checked);
+
+    const label_classes = cx(stylesheet.label,
+                             Themes.Default.primary_colors_pseudo,
+                             !props.checked && Themes.Default.primary_box_shadow_pseudo,
+                             !props.checked && Themes.Default.primary_colors_hover,
+                             props.checked && stylesheet.label_checked);
+
+    return connectDragSource(
         <div 
             className={tab_classes}>
             <div
@@ -30,13 +45,9 @@ const stylesheet = cssInJS({
 
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: '#898688',
         borderBottom: 'none',
         borderTopLeftRadius: 6,
         borderTopRightRadius: 6,
-        
-        backgroundColor: '#D6D2D0',
-        color: '#362922',
     },
 
     tab_checked: {
@@ -50,7 +61,6 @@ const stylesheet = cssInJS({
         cursor: 'pointer',
         borderTopRightRadius: 6,
         borderTopLeftRadius: 6,
-        cursor: 'pointer',
 
         ':before': {
             position: 'absolute',
@@ -65,41 +75,25 @@ const stylesheet = cssInJS({
             borderBottomWidth: 1,
             borderLeftWidth: 0,
             borderStyle: 'solid',
-            borderColor: '#898688',
 
             borderBottomRightRadius: 6,
-            boxShadow: '2px 2px 0 #D6D2D0'
         },
 
         ':after': {
+            content: ' ',
             position: 'absolute',
             bottom: 0,
             right: -7,
             width: 6,
             height: 6,
-            content: " ",
 
             borderTopWidth: 0,
             borderRightWidth: 0,
             borderBottomWidth: 1,
             borderLeftWidth: 1,
             borderStyle: 'solid',
-            borderColor: '#898688',
             
             borderBottomLeftRadius: 6,
-            boxShadow: '-2px 2px 0 #D6D2D0'
-        },
-
-        ':hover': {
-            backgroundColor: '#EEEEEE',
-
-            ':before': {
-                boxShadow: '2px 2px 0 #EEEEEE'
-            },
-
-            ':after': {
-                boxShadow: '-2px 2px 0 #EEEEEE'
-            }
         }
     },
 
@@ -113,18 +107,6 @@ const stylesheet = cssInJS({
 
         ':after': {
             boxShadow: '-2px 2px 0 white'
-        },
-
-        ':hover': {
-            backgroundColor: 'white',
-
-            ':before': {
-                boxShadow: '2px 2px 0 white'
-            },
-
-            ':after': {
-                boxShadow: '-2px 2px 0 white'
-            }
         }
     }
 });

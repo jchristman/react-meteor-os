@@ -1,10 +1,16 @@
+// ----- External Imports ----- //
 import React from 'react';
 import cx from 'classnames';
 
+// ----- Component Imports ----- //
 import WindowContentPlain from './window_content_plain.jsx';
 import WindowContentTabbed from '../containers/window_content_tabbed.js';
 
+// ----- Library Imports ----- //
 import * as windowTypes from '/lib/windowTypes.js';
+
+// ----- Config Imports ----- //
+import Themes from '../../../configs/themes';
 
 const stylesheet = cssInJS({
     default: {
@@ -13,12 +19,12 @@ const stylesheet = cssInJS({
         right: 1,
         left: 1,
         bottom: 2,
-        backgroundColor: 'white',
+        
         borderWidth: 1,
         borderStyle: 'inset',
-        borderColor: '#9B9DC9',
         borderBottom: 0,
         borderRadius: 4,
+
         overflow: 'hidden'
     }
 });
@@ -43,7 +49,8 @@ const typeSwitch = (props) => {
 }
 
 const WindowContent = (props) => {
-    const classes = cx(stylesheet.default);
+    const classes = cx(stylesheet.default,
+                       Themes.Default.secondary_colors);
     const windowType = typeSwitch(props);
     return (
         <div className={classes}>

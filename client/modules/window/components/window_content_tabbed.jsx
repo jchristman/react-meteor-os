@@ -1,9 +1,12 @@
+// ----- External Imports ----- //
 import React from 'react';
 import cx from 'classnames';
 
+// ----- Component Imports ----- //
 import WindowContentTabbedTabbar from './window_content_tabbed_tabbar.jsx';
-import WindowContentTabbedTabcontent from '../containers/window_content_tabbed_tabcontent.js';
+import WindowContentTabbedTabcontent from './window_content_tabbed_tabcontent.jsx';
 
+// ----- Library Imports ----- //
 import getWindowTabCheckedKey from '../lib/get_window_tab_checked_key.js';
 
 const stylesheet = cssInJS({
@@ -25,11 +28,25 @@ class WindowContentTabbed extends React.Component {
         return (
             <div className={stylesheet.tabs}>
                 <WindowContentTabbedTabbar
+                    connectDropTarget={props.connectDropTargetTabbar}
+                    isOver={props.isOverTabbar}
+                    canDrop={props.canDropContentArea}
+                    layer_id={props.layer_id}
                     changeChecked={this.updateSelectedTab.bind(this)}
                     content={props.content}
                 />
                 <WindowContentTabbedTabcontent
+                    connectDropTargetMiddle={props.connectDropTargetContentAreaMiddle}
+                    connectDropTargetRight={props.connectDropTargetContentAreaRight}
+                    connectDropTargetLeft={props.connectDropTargetContentAreaLeft}
+                    connectDropTargetBottom={props.connectDropTargetContentAreaBottom}
+                    isOverMiddle={props.isOverContentAreaMiddle}
+                    isOverRight={props.isOverContentAreaRight}
+                    isOverLeft={props.isOverContentAreaLeft}
+                    isOverBottom={props.isOverContentAreaBottom}
+                    canDrop={props.canDropContentArea}
                     layer_id={props.layer_id}
+                    window_id={props.window_id}
                     content={props.content}
                 />
             </div>

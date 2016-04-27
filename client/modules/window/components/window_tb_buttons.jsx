@@ -1,5 +1,7 @@
+// ----- External Imports ----- //
 import React from 'react';
 
+// ----- Component Imports ----- //
 import WindowTitleBarButton from './window_tb_button.jsx';
 
 const stylesheet = cssInJS({

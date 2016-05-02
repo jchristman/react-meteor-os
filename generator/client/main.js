@@ -1,22 +1,14 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+// This is the main entry point for the application.
+import {createApp} from 'mantra-core';
+import initContext from './configs/context';
 
-import './main.html';
+// Load up the modules!
+import coreModule from './modules/core';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+// Initialize the context
+const context = initContext();
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+// Create the app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.init();

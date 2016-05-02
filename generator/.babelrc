@@ -1,0 +1,11 @@
+{
+
+  "presets": [
+    "meteor"
+  ],
+
+  "plugins": [
+    "css-in-js"
+  ]
+
+}

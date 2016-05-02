@@ -16,5 +16,7 @@ The current process to set this up is quite convoluted. You need to basically do
 ~/meteor-os $ cd ../test-app
 ~/test-app $ npm install
 ~/test-app $ npm link meteor-os
+~/test-app $ npm compile
+~/test-app $ ln -s node_modules/meteor-os/bundle.css bundle.css
 ~/test-app $ meteor reset && meteor
 ```

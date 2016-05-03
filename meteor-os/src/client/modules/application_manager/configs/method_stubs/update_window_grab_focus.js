@@ -1,7 +1,7 @@
 import {check, Match} from 'meteor/check';
-import {ApplicationManager} from '/lib/collections.js';
 
-export default () => {
+export default (context) => {
+    const {ApplicationManager} = context.Collections;
     Meteor.methods({
         updateWindowGrabFocus(path, index) {
             check(path, String);

@@ -16,6 +16,7 @@
   border-color: black;
   border-width: 2px;
   border-style: solid;
+  z-index: 999999;
 }
 ._______________client_modules_code_components_code_jsx-stylesheet-textarea {
   position: absolute;
@@ -31,6 +32,13 @@
   bottom: 10px;
   right: 10px;
 }
+._______________client_modules_toolbar_components_partlist_jsx-stylesheet-default {
+  margin-top: 10px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: black;
+  text-align: left;
+}
 ._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-default {
   position: absolute;
   top: -2px;
@@ -42,6 +50,7 @@
   border-color: black;
   border-style: solid;
   text-align: center;
+  z-index: 999999;
 }
 ._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_buttons {
   position: relative;

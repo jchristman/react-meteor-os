@@ -15,7 +15,15 @@ var _wrapper2 = _interopRequireDefault(_wrapper);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var composer = function composer(props, onData) {
-    onData(null, {});
+    var LocalState = props.LocalState;
+    var stateVar = props.stateVar;
+
+
+    var ApplicationManager = {
+        applications: LocalState.get(stateVar)
+    };
+
+    onData(null, { ApplicationManager: ApplicationManager });
 };
 
 var depsMapper = function depsMapper(props, actions) {

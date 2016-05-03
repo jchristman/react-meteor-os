@@ -5,6 +5,8 @@ import cx from 'classnames';
 import default_window from '../../../configs/default_window.js';
 import global_styles from '../../../configs/global-css.js';
 
+import Partlist from '../containers/partlist.js';
+
 const stylesheet = cssInJS({
     default: {
         position: 'absolute',
@@ -20,6 +22,8 @@ const stylesheet = cssInJS({
         borderStyle: 'solid',
 
         textAlign: 'center',
+
+        zIndex: 999999
     },
 
     toolbar_buttons: {
@@ -39,6 +43,7 @@ class Toolbar extends React.Component {
                     onClick={this.addWindow.bind(this)}>
                         Add Window&nbsp;&nbsp;<FontAwesome name='plus'/>
                 </button>
+                <Partlist {...this.props}/>
             </div>
         );
     }
@@ -47,7 +52,13 @@ class Toolbar extends React.Component {
         const {LocalState, CurrentApp} = this.props;
         const _app = LocalState.get(CurrentApp);
         if (_app.windows === undefined) _app.windows = [];
-        _app.windows.push(default_window);
+
+        const new_window = JSON.parse(JSON.stringify(default_window));
+        new_window.position.top += 20 * _app.windows.length;
+        new_window.position.left += 20 * _app.windows.length;
+
+        _app.windows.push(new_window);
+
         LocalState.set(CurrentApp, _app);
     }
 }

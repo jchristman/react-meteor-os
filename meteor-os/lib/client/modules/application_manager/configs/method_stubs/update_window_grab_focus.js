@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _check = require('meteor/check');
 
-var _collections = require('/lib/collections.js');
+exports.default = function (context) {
+    var ApplicationManager = context.Collections.ApplicationManager;
 
-exports.default = function () {
     Meteor.methods({
         updateWindowGrabFocus: function updateWindowGrabFocus(path, index) {
             (0, _check.check)(path, String);
             (0, _check.check)(index, _check.Match.Integer);
 
-            var current = _collections.ApplicationManager.findOne({ userId: 'asdf' }); // Replace with this.userId
+            var current = ApplicationManager.findOne({ userId: 'asdf' }); // Replace with this.userId
             if (current) {
                 var tmp = current;
                 var _iteratorNormalCompletion = true;
@@ -53,7 +53,7 @@ exports.default = function () {
                 current.applications.push(_layer);
 
                 var update = { applications: current.applications };
-                return _collections.ApplicationManager.update({ userId: current.userId }, { '$set': update });
+                return ApplicationManager.update({ userId: current.userId }, { '$set': update });
             } else {
                 throw new Meteor.Error('User not found!');
             }

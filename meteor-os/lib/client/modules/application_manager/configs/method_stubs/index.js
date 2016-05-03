@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (context) {
-    (0, _update_window_grab_focus2.default)();
-    (0, _update_window_position2.default)();
+    (0, _update_window_grab_focus2.default)(context);
+    (0, _update_window_position2.default)(context);
 };
 
 var _update_window_position = require('./update_window_position.js');

@@ -4,10 +4,10 @@ import ApplicationManager from '../components/application_manager.jsx';
 
 const composer = (props, onData) => {
     if (props.ApplicationManager.applications.length > 0) {
-        props.ApplicationManager
-            .applications.last()
-            .windows.last()
-            .focused = true;
+        const last = props.ApplicationManager
+                     .applications.last()
+                     .windows.last();
+        if (last !== undefined) last.focused = true;
     }
 
     onData(null, {});

@@ -4,7 +4,13 @@ import {useDeps} from 'mantra-core';
 import ApplicationManager from './wrapper.js';
 
 const composer = (props, onData) => {
-    onData(null, {});
+    const {LocalState, stateVar} = props;
+
+    const ApplicationManager = {
+        applications: LocalState.get(stateVar)
+    }
+
+    onData(null, { ApplicationManager });
 }
 
 const depsMapper = (props, actions) => actions.localStateActions;

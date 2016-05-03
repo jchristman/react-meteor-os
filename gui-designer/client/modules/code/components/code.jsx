@@ -17,7 +17,8 @@ const stylesheet = cssInJS({
 
         borderColor: 'black',
         borderWidth: 2,
-        borderStyle: 'solid'
+        borderStyle: 'solid',
+        zIndex: 999999
     },
 
     textarea: {
@@ -45,7 +46,7 @@ class Code extends React.Component {
         textarea.select();
         try {
             document.execCommand('copy');
-            node.setSelectionRange(selection, selection)
+            //node.setSelectionRange(selection, selection)
             alert('Copied!')
         } catch (err) {
             alert('Failed! Use keyboard to copy/paste');

@@ -14,7 +14,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var composer = function composer(props, onData) {
     if (props.ApplicationManager.applications.length > 0) {
-        props.ApplicationManager.applications.last().windows.last().focused = true;
+        var last = props.ApplicationManager.applications.last().windows.last();
+        if (last !== undefined) last.focused = true;
     }
 
     onData(null, {});

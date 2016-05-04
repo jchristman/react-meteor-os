@@ -23,13 +23,16 @@ function syntaxHighlight(json) {
 
 const composer = (props, onData) => {
     const {LocalState, CurrentApp, LastGoodCode} = props;
+    const CopyModal = '_gui_designer_copy_modal';
+    LocalState.setDefault(CopyModal, false);
 
     let code = LocalState.get(CurrentApp);
     let lastGoodCode = LocalState.get(LastGoodCode);
+    let copyModalIsOpen = LocalState.get(CopyModal);
     
     if (typeof code === 'object') code = JSON.stringify(LocalState.get(CurrentApp), undefined, 4);
     
-    onData(null, { code, lastGoodCode });
+    onData(null, { code, lastGoodCode, CopyModal, copyModalIsOpen });
 }
 
 export default composeWithTracker(composer)(Code);

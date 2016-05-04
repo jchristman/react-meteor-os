@@ -46,6 +46,7 @@
     "react-fontawesome": "^0.3.3",
     "react-json-tree": "^0.7.3",
     "react-komposer": "1.x.x",
+    "react-modal": "^1.2.1",
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x"
   },

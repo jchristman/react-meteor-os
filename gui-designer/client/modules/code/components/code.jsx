@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
+import Modal from 'react-modal';
 import cx from 'classnames';
 
 import global_styles from '../../../configs/global-css.js';
@@ -39,18 +40,57 @@ const stylesheet = cssInJS({
     }
 });
 
+const copyModalStyle = {
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        zIndex: 9999999
+    },
+
+    content: {
+        position: 'absolute',
+        top: 'calc(50% - 50px)',
+        left: 'calc(50% - 50px)',
+        right: 'calc(50% - 50px)',
+        bottom: 'calc(50% - 50px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        borderRadius: 10,
+        padding: 20,
+        zIndex: 10000000,
+
+        textAlign: 'center',
+        fontSize: 50,
+
+        color: 'white'
+    }
+}
+
 class Code extends React.Component {
     copyToClipboard(e) {
+        const {LocalState, CopyModal} = this.props;
+
         const textarea = this.refs._gui_designer_textarea;
         const selection = textarea.selectionEnd;
         textarea.select();
         try {
             document.execCommand('copy');
-            //node.setSelectionRange(selection, selection)
-            alert('Copied!')
+            LocalState.set(CopyModal, true);
         } catch (err) {
             alert('Failed! Use keyboard to copy/paste');
         }   
+    }
+
+    closeCopyModal() {
+        const {LocalState, CopyModal} = this.props;
+        LocalState.set(CopyModal, false);
+    }
+
+    afterCopyModalOpen() {
+        setTimeout(() => this.closeCopyModal(), 1500);
     }
 
     render() {
@@ -69,6 +109,13 @@ class Code extends React.Component {
                     onClick={this.copyToClipboard.bind(this)}>
                         Copy to Clipboard&nbsp;&nbsp;<FontAwesome name='clipboard'/>
                 </button>
+                <Modal
+                    isOpen={this.props.copyModalIsOpen}
+                    onAfterOpen={this.afterCopyModalOpen.bind(this)}
+                    onRequestClose={this.closeCopyModal.bind(this)}
+                    style={copyModalStyle}>
+                        <FontAwesome name='check-circle-o'/>
+                </Modal>
             </div>
         )
     }

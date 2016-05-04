@@ -9,6 +9,11 @@ import Partlist from '../containers/partlist.js';
 
 const stylesheet = cssInJS({
     default: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignContent: 'stretch',
+
         position: 'absolute',
         top: -2,
         right: -2,
@@ -21,28 +26,34 @@ const stylesheet = cssInJS({
         borderColor: 'black',
         borderStyle: 'solid',
 
-        textAlign: 'center',
-
         zIndex: 999999
     },
 
     toolbar_buttons: {
         position: 'relative',
-        width: '80%',
-        marginTop: 10
+        width: '100%',
+        marginTop: 10,
+        textAlign: 'center'
+    },
+
+    toolbar_button: {
+        width: '80%'
     }
 });
 
 class Toolbar extends React.Component {
     render() {
-        const add_window_classes = cx(stylesheet.toolbar_buttons, global_styles.button, global_styles.button_success);
+        const add_window_classes = cx(stylesheet.toolbar_button, global_styles.button, global_styles.button_success);
         return (
             <div className={stylesheet.default}>
-                <button
-                    className={add_window_classes}
-                    onClick={this.addWindow.bind(this)}>
-                        Add Window&nbsp;&nbsp;<FontAwesome name='plus'/>
-                </button>
+                <div className={stylesheet.toolbar_buttons}>
+                    <button
+                        className={add_window_classes}
+                        onClick={this.addWindow.bind(this)}>
+                            Add Window&nbsp;&nbsp;<FontAwesome name='plus'/>
+                    </button>
+                </div>
+        
                 <Partlist {...this.props}/>
             </div>
         );

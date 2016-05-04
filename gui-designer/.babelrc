@@ -5,7 +5,7 @@
   ],
 
   "plugins": [
-    "css-in-js"
+    ["css-in-js", { "vendorPrefixes": true }]
   ]
 
 }

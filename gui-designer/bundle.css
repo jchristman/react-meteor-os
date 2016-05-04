@@ -32,6 +32,15 @@
   bottom: 10px;
   right: 10px;
 }
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-noneditable {
+  color: black;
+}
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable {
+  cursor: pointer;
+}
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
 ._______________client_modules_toolbar_components_partlist_jsx-stylesheet-default {
   -webkit-box-flex: 1;
   -webkit-flex: 1;

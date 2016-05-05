@@ -23,7 +23,7 @@ const stylesheet = cssInJS({
 
 const editValueModalStyle = (props) => { 
     const height = 40,
-          width = 400;
+          width = 'auto';
     return {
         overlay: {
             position: 'fixed',
@@ -37,7 +37,10 @@ const editValueModalStyle = (props) => {
 
         content: {
             position: 'absolute',
-            padding: 0,
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 5,
+            paddingRight: 5,
             top: props.clickY - (height / 2),
             right: window.innerWidth - props.clickX + 50,
             left: 'auto',
@@ -57,6 +60,9 @@ class PartLabel extends React.Component {
         LocalState.set(EditValueModal, true);
         LocalState.set(EditValueModalX, event.clientX);
         LocalState.set(EditValueModalY, event.clientY);
+
+        event.preventDefault();
+        event.stopPropagation();
     }
 
     closeEditValueModal() {
@@ -66,8 +72,10 @@ class PartLabel extends React.Component {
 
     onAfterOpen() {
         const input = ReactDOM.findDOMNode(this.refs._gui_designer_edit_value).getElementsByTagName('input')[0];
-        input.select();
-        input.focus();
+        if (input) {
+            input.select();
+            input.focus();
+        }
     }
 
     render() {
@@ -89,6 +97,7 @@ class PartLabel extends React.Component {
                         style={editValueModalStyle(props)}>
                         <EditValue
                             ref='_gui_designer_edit_value'
+                            closeModal={this.closeEditValueModal.bind(this)}
                             {...props}/>
                     </Modal> :
                     null }

@@ -27,7 +27,12 @@ class Partlist extends React.Component {
                     data={this.props.app}
                     labelRenderer={(...fullPath) => {
                         fullPath.reverse();
-                        return ( <PartLabel path={fullPath.join('.')} node={fullPath[fullPath.length - 1]} LocalState={this.props.LocalState}/> )
+                        return ( <PartLabel
+                                    path={fullPath.join('.')}
+                                    node={fullPath[fullPath.length - 1]}
+                                    LocalState={this.props.LocalState}
+                                    CurrentApp={this.props.CurrentApp}
+                                /> )
                     }}
                     hideRoot={true}
                 />

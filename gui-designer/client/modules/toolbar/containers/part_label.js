@@ -2,8 +2,10 @@ import {composeWithTracker} from 'react-komposer';
 
 import PartLabel from '../components/part_label.jsx';
 
+import get_node from '../lib/get_node.js';
+
 const composer = (props, onData) => {
-    const {LocalState, path} = props;
+    const {LocalState, CurrentApp, path} = props;
 
     const EditValueModal = '_gui_designer_edit_value_modal_' + path;
     const EditValueModalX = '_gui_designer_edit_value_modal_' + path + 'X';
@@ -15,7 +17,9 @@ const composer = (props, onData) => {
     const editValueModalIsOpen = LocalState.get(EditValueModal);
     const clickX = LocalState.get(EditValueModalX);
     const clickY = LocalState.get(EditValueModalY);
-    onData(null, { editValueModalIsOpen, EditValueModal, EditValueModalX, EditValueModalY, clickX, clickY });
+    const value = get_node(props.path, LocalState.get(CurrentApp));
+
+    onData(null, { editValueModalIsOpen, EditValueModal, EditValueModalX, EditValueModalY, clickX, clickY, value });
 }
 
 export default composeWithTracker(composer)(PartLabel);

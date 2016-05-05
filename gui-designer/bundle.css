@@ -1,118 +1,25 @@
-._______________client_modules_canvas_components_canvas_jsx-stylesheet-default {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 300px;
-  bottom: 300px;
-  background-color: #DDDDDD;
-}
-._______________client_modules_code_components_code_jsx-stylesheet-default {
-  position: absolute;
-  top: calc(100% - 300px);
-  bottom: -2px;
-  left: -2px;
-  right: calc(300px - 2px);
-  background-color: white;
-  border-color: black;
-  border-width: 2px;
-  border-style: solid;
-  z-index: 999999;
-}
-._______________client_modules_code_components_code_jsx-stylesheet-textarea {
-  position: absolute;
-  height: calc(100% - 12px);
-  width: calc(100% - 12px);
-  padding: 5px;
-  font-size: large;
-}
-._______________client_modules_code_components_code_jsx-stylesheet-copy_to_clipboard {
-  position: absolute;
-  top: auto;
-  left: auto;
-  bottom: 10px;
-  right: 10px;
-}
-._______________client_modules_toolbar_components_part_label_jsx-stylesheet-noneditable {
-  color: black;
-}
-._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable {
-  cursor: pointer;
-}
-._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable:hover {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-._______________client_modules_toolbar_components_partlist_jsx-stylesheet-default {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  width: 100%;
-  margin-top: 10px;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: black;
-  text-align: left;
-  overflow-y: scroll;
-}
-._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-default {
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-default {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-align-content: stretch;
-      -ms-flex-line-pack: stretch;
-          align-content: stretch;
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  left: calc(100% - 300px);
-  bottom: -2px;
-  background-color: white;
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
-  z-index: 999999;
-}
-._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_buttons {
-  position: relative;
+  -webkit-box-pack: left;
+  -webkit-justify-content: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   width: 100%;
-  margin-top: 10px;
-  text-align: center;
+  height: 100%;
 }
-._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_button {
-  width: 80%;
-}
-._______________client_configs_global-css_js-stylesheet-button {
-  padding: 10px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: black;
-  border-radius: 7px;
-  cursor: pointer;
-  text-align: center;
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-input {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   font-size: large;
-  color: black;
-}
-._______________client_configs_global-css_js-stylesheet-button_success {
-  background-color: #5CB85C;
-  color: #EEEEEE;
-}
-._______________client_configs_global-css_js-stylesheet-button_success:hover {
-  background-color: #4CA84C;
-}
-._______________client_configs_global-css_js-stylesheet-button_info {
-  background-color: #428BCA;
-  color: #EEEEEE;
-}
-._______________client_configs_global-css_js-stylesheet-button_info:hover {
-  background-color: #327BBA;
+  margin-right: 5px;
+  margin-left: 5px;
 }

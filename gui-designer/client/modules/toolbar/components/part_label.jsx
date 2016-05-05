@@ -1,6 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import cx from 'classnames';
+
+import EditValue from './edit_value.jsx';
 
 import validate_editable from '../lib/validate_if_editable_key.js';
 
@@ -61,6 +64,12 @@ class PartLabel extends React.Component {
         LocalState.set(EditValueModal, false);
     }
 
+    onAfterOpen() {
+        const input = ReactDOM.findDOMNode(this.refs._gui_designer_edit_value).getElementsByTagName('input')[0];
+        input.select();
+        input.focus();
+    }
+
     render() {
         const {props} = this;
         const editable = validate_editable(props.path);
@@ -75,9 +84,12 @@ class PartLabel extends React.Component {
                 { editable ?
                     <Modal
                         isOpen={props.editValueModalIsOpen}
+                        onAfterOpen={this.onAfterOpen.bind(this)}
                         onRequestClose={this.closeEditValueModal.bind(this)}
                         style={editValueModalStyle(props)}>
-                            Test
+                        <EditValue
+                            ref='_gui_designer_edit_value'
+                            {...props}/>
                     </Modal> :
                     null }
             </strong>

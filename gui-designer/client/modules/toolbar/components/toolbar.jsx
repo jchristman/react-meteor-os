@@ -64,7 +64,7 @@ class Toolbar extends React.Component {
         const _app = LocalState.get(CurrentApp);
         if (_app.windows === undefined) _app.windows = [];
 
-        const new_window = JSON.parse(JSON.stringify(default_window));
+        const new_window = default_window();
         new_window.position.top += 20 * _app.windows.length;
         new_window.position.left += 20 * _app.windows.length;
 

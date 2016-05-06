@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
+import {Random} from 'meteor/random';
 
 import get_node from '../lib/get_node.js';
 import set_node from '../lib/set_node.js';
+
+import default_tab from '../../../configs/default_tab.js';
 
 const stylesheet = cssInJS({
     default: {
@@ -33,19 +36,19 @@ const stylesheet = cssInJS({
 class EditValue extends React.Component {
     inputChanged(event) {
         const {LocalState, CurrentApp} = this.props;
+        const current = LocalState.get(CurrentApp);
 
         let value = event.target.value;
         if (event.target.type === 'number') value = parseInt(event.target.value);
 
-        const current = LocalState.get(CurrentApp);
         set_node(this.props.path, current, value);
         LocalState.set(CurrentApp, current);
     }
 
     shiftLeft() {
         const {LocalState, CurrentApp} = this.props;
-
         const current = LocalState.get(CurrentApp);
+
         let parentArray = get_node(this.props.path.split('.').slice(0,-1), current);
         let cur_node = parentArray.splice(this.props.node, 1)[0];
         parentArray.splice(this.props.node - 1, 0, cur_node);
@@ -56,8 +59,8 @@ class EditValue extends React.Component {
 
     shiftRight() {
         const {LocalState, CurrentApp} = this.props;
-
         const current = LocalState.get(CurrentApp);
+
         let parentArray = get_node(this.props.path.split('.').slice(0,-1), current);
         let cur_node = parentArray.splice(this.props.node, 1)[0];
         parentArray.splice(this.props.node + 1, 0, cur_node);
@@ -66,17 +69,66 @@ class EditValue extends React.Component {
         this.props.closeModal();
     }
 
+    addTab() {
+        const {LocalState, CurrentApp} = this.props;
+        const current = LocalState.get(CurrentApp);
+
+        let tabsArray = get_node(this.props.path, current);
+        tabsArray.push(default_tab());
+        LocalState.set(CurrentApp, current);
+    }
+
+    splitV() {
+        this.split('vertical');
+    }
+
+    splitH() {
+        this.split('horizontal');
+    }
+
+    split(orientation) {
+        const {LocalState, CurrentApp} = this.props;
+        const current = LocalState.get(CurrentApp);
+
+        let layoutNode = get_node(this.props.path, current);
+        layoutNode.panes = {
+            orientation,
+            percentage: 50,
+            pane1: {
+                _id: Random.id()
+            },
+            pane2: {
+                _id: Random.id()
+            }
+        }
+        LocalState.set(CurrentApp, current);
+    }
+
     render() {
         const {LocalState, CurrentApp} = this.props;
+        const current = LocalState.get(CurrentApp);
 
         let type = null;
         if (typeof this.props.value === 'string') type = 'text';
         if (typeof this.props.value === 'number') type = 'number';
 
-        let parentArray = get_node(this.props.path.split('.').slice(0,-1), LocalState.get(CurrentApp));
+        let parentArray = get_node(this.props.path.split('.').slice(0,-1), current);
         let parentIsArray = Array.isArray(parentArray);
         let isFirst = parentIsArray && this.props.node === 0;
         let isLast = parentIsArray && this.props.node === parentArray.length - 1;
+
+        let addTabButton = false;
+        let layoutSplitButton = false;
+        let layoutSplitButtonDisabled = false;
+        if (typeof this.props.value === 'object') {
+            if (this.props.node === 'tabs') addTabButton = true;
+            if (this.props.node === 'layout' || this.props.node === 'pane1' || this.props.node === 'pane2') {
+                let layoutNode = get_node(this.props.path, current);
+                layoutSplitButton = true;
+                if (layoutNode.panes !== undefined)
+                    layoutSplitButtonDisabled = true;
+            }
+        }
 
         return (
             <div className={stylesheet.default}>
@@ -100,6 +152,26 @@ class EditValue extends React.Component {
                         disabled={isLast}
                         onClick={this.shiftRight.bind(this)}>
                             <FontAwesome name='caret-square-o-down'/>
+                    </button> : null }
+                { addTabButton ?
+                    <button
+                        className={stylesheet.button}
+                        onClick={this.addTab.bind(this)}>
+                            Create New Tab <FontAwesome name='plus'/>
+                    </button> : null }
+                { layoutSplitButton ?
+                    <button
+                        className={stylesheet.button}
+                        disabled={layoutSplitButtonDisabled}
+                        onClick={this.splitV.bind(this)}>
+                            Split Vertical <FontAwesome name='arrows-v'/>
+                    </button> : null }
+                { layoutSplitButton ?
+                    <button
+                        className={stylesheet.button}
+                        disabled={layoutSplitButtonDisabled}
+                        onClick={this.splitH.bind(this)}>
+                            Split Horizontal <FontAwesome name='arrows-h'/>
                     </button> : null }
             </div>
         );

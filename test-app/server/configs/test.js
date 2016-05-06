@@ -4,21 +4,34 @@ import * as windowTypes from '/lib/windowTypes.js';
 const test_window1 = {
     _id: Random.id(),
     title: 'Application 1 Window 1',
+    type: windowTypes.tabbed,
     position: {
         top: 10,
         left: 10,
         height: 400,
         width: 500,
     },
-    content: {
-        type: windowTypes.tabbed,
-        content: [
-            {
-                label: 'Tab 1',
-                checked: true,
-                content: 'This window has only one tab'
+    tabs: [
+        {
+            label: 'Tab 1',
+            checked: true,
+            content: 'This window has only one tab'
+        }
+    ],
+    layout: {
+        split: 0.5,
+        direction: 'v',
+        pane1: {
+            tabs: [
+                '_id'
+            ]          
+        },
+        pane2: {
+            layout: {
+                split: 0.5,
+                direction: 'h'
             }
-        ]
+        }
     }
 };
 

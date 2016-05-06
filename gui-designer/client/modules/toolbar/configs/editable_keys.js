@@ -1,7 +1,15 @@
 export default [
-    /^name$/i,
-    /^package$/i,
+    /^name$/,
+    /^package$/,
     /^windows\.[0-9]+$/,
-    /^windows\.[0-9]+\.title$/i,
-    /^windows\.[0-9]+\.position\.\w+$/i
+    /^windows\.[0-9]+\.title$/,
+    /^windows\.[0-9]+\.position\.\w+$/,
+    /^windows\.[0-9]+\.tabs$/,
+    /^windows\.[0-9]+\.tabs\.[0-9]+\.label$/,
+    /^windows\.[0-9]+\.tabs\.[0-9]+\.content$/,
+    /^windows\.[0-9]+\.tabs\.[0-9]+\.pane$/,
+    /^windows\.[0-9]+\.layout$/,
+    /^windows\.[0-9]+\.layout\.panes\.orientation$/,
+    /^windows\.[0-9]+\.layout\.panes\.percentage$/,
+    /^windows\.[0-9]+\.layout(\.panes\.pane[12])+$/,
 ]

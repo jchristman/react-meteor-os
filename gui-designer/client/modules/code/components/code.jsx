@@ -36,7 +36,7 @@ const stylesheet = cssInJS({
         top: 'auto',
         left: 'auto',
         bottom: 10,
-        right: 10,
+        right: 20
     }
 });
 

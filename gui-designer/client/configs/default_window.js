@@ -1,6 +1,8 @@
 import {Random} from 'meteor/random';
 
-export default {
+import default_tab from './default_tab.js';
+
+export default () => ( {
     _id: Random.id(),
     title: 'Window Title',
     position: {
@@ -9,9 +11,10 @@ export default {
         height: 400,
         width: 500
     },
-    content: {
-        type: 'tmp',
-        content: [
-        ]
+    tabs: [
+        default_tab()
+    ],
+    layout: {
+        _id: Random.id()
     }
-}
+} );

@@ -1,7 +1,8 @@
 import {check, Match} from 'meteor/check';
 
 export default (context) => {
-    const {ApplicationManager} = context.Collections;
+    let ApplicationManager = undefined;
+    if (context.Collections) ApplicationManager = context.Collections.ApplicationManager;
     Meteor.methods({
         updateWindowPosition(path, top, left, width, height) {
             check(path, String);

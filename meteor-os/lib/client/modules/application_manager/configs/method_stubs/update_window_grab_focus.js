@@ -7,8 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 var _check = require('meteor/check');
 
 exports.default = function (context) {
-    var ApplicationManager = context.Collections.ApplicationManager;
-
+    var ApplicationManager = undefined;
+    if (context.Collections) ApplicationManager = context.Collections.ApplicationManager;
     Meteor.methods({
         updateWindowGrabFocus: function updateWindowGrabFocus(path, index) {
             (0, _check.check)(path, String);

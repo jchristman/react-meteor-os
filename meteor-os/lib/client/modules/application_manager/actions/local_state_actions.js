@@ -50,7 +50,40 @@ var updateWindowGrabFocus = function updateWindowGrabFocus(context, layerIndex, 
     LocalState.set(stateVar, current);
 };
 
+var updateWindowSplitPaneVertical = function updateWindowSplitPaneVertical(context, layerIndex, windowIndex, path) {
+    return updateWindowSplitPane(context, layerIndex, windowIndex, path, 'vertical');
+};
+var updateWindowSplitPaneHorizontal = function updateWindowSplitPaneHorizontal(context, layerIndex, windowIndex, path) {
+    return updateWindowSplitPane(context, layerIndex, windowIndex, path, 'horizontal');
+};
+
+var updateWindowSplitPane = function updateWindowSplitPane(context, layerIndex, windowIndex, path, orientation) {
+    var LocalState = context.LocalState;
+
+    var stateVar = LocalState.get(_local_state_var2.default);
+    var current = LocalState.get(stateVar);
+
+    if (path === undefined) path = 'layout';
+    path = layerIndex + '.windows.' + windowIndex + '.' + path;
+
+    console.log(path, current);
+    var layoutNode = get_node(path, current);
+    layoutNode.panes = {
+        orientation: orientation,
+        percentage: 50,
+        pane1: {
+            _id: Random.id()
+        },
+        pane2: {
+            _id: Random.id()
+        }
+    };
+    LocalState.set(stateVar, current);
+};
+
 exports.default = {
     updateWindowPosition: updateWindowPosition,
-    updateWindowGrabFocus: updateWindowGrabFocus
+    updateWindowGrabFocus: updateWindowGrabFocus,
+    updateWindowSplitPaneVertical: updateWindowSplitPaneVertical,
+    updateWindowSplitPaneHorizontal: updateWindowSplitPaneHorizontal
 };

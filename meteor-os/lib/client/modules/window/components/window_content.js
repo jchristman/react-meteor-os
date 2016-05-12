@@ -16,9 +16,9 @@ var _window_content_plain = require('./window_content_plain.js');
 
 var _window_content_plain2 = _interopRequireDefault(_window_content_plain);
 
-var _window_content_tabbed = require('../containers/window_content_tabbed.js');
+var _window_content_layout = require('./window_content_layout.js');
 
-var _window_content_tabbed2 = _interopRequireDefault(_window_content_tabbed);
+var _window_content_layout2 = _interopRequireDefault(_window_content_layout);
 
 var _windowTypes = require('/lib/windowTypes.js');
 
@@ -47,24 +47,25 @@ var stylesheet = {
 
 
 var typeSwitch = function typeSwitch(props) {
-    switch (props.type) {
-        case windowTypes.tabbed:
-            return _react2.default.createElement(_window_content_tabbed2.default, {
-                LocalState: props.LocalState,
-                grabFocus: props.grabFocus,
-                window_id: props.window_id,
-                layer_id: props.layer_id,
-                content: props.content
-            });
-        default:
-            return _react2.default.createElement(_window_content_plain2.default, {
-                content: props.content
-            });
+    if (props.tabs !== undefined && props.layout !== undefined) {
+        return _react2.default.createElement(_window_content_layout2.default, {
+            LocalState: props.LocalState,
+            grabFocus: props.grabFocus,
+            splitV: props.splitV,
+            splitH: props.splitH,
+            window_id: props.window_id,
+            layer_id: props.layer_id,
+            layout: props.layout
+        });
+    } else {
+        return _react2.default.createElement(_window_content_plain2.default, {
+            content: props.content
+        });
     }
 };
 
 var WindowContent = function WindowContent(props) {
-    var classes = (0, _classnames2.default)(stylesheet.default, _themes2.default.Default.secondary_colors);
+    var classes = (0, _classnames2.default)(stylesheet.default, _themes2.default.Default.primary_colors);
     var windowType = typeSwitch(props);
     return _react2.default.createElement(
         'div',

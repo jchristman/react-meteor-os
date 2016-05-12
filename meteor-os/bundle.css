@@ -44,7 +44,6 @@
   border-width: 1px;
   border-style: solid;
   border-radius: 6px;
-  overflow: hidden;
   box-shadow: 0px 0px 6px 1px #555555;
 }
 .src_client_modules_window_components_window_content_jsx-stylesheet-default {
@@ -57,7 +56,18 @@
   border-style: inset;
   border-bottom: 0px;
   border-radius: 4px;
-  overflow: hidden;
+}
+.src_client_modules_window_components_window_content_layout_divider_jsx-stylesheet-default {
+  position: absolute;
+  background-color: #898688;
+  border-radius: 2px;
+}
+.src_client_modules_window_components_window_content_layout_leaf_jsx-stylesheet-leaf {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
 }
 .src_client_modules_window_components_window_content_tabbed_jsx-stylesheet-tabs {
   position: relative;

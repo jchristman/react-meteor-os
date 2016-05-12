@@ -36,7 +36,35 @@ const updateWindowGrabFocus = (context, layerIndex, windowIndex) => {
     LocalState.set(stateVar, current);
 }
 
+const updateWindowSplitPaneVertical = (context, layerIndex, windowIndex, path) => updateWindowSplitPane(context, layerIndex, windowIndex, path, 'vertical');
+const updateWindowSplitPaneHorizontal = (context, layerIndex, windowIndex, path) => updateWindowSplitPane(context, layerIndex, windowIndex, path, 'horizontal');
+
+const updateWindowSplitPane = (context, layerIndex, windowIndex, path, orientation) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    if (path === undefined) path = 'layout';
+    path = layerIndex + '.windows.' + windowIndex + '.' + path;
+
+    console.log(path, current);
+    let layoutNode = get_node(path, current);
+    layoutNode.panes = {
+        orientation,
+        percentage: 50,
+        pane1: {
+            _id: Random.id()
+        },
+        pane2: {
+            _id: Random.id()
+        }
+    }
+    LocalState.set(stateVar, current);
+}
+
 export default { 
     updateWindowPosition,
-    updateWindowGrabFocus
+    updateWindowGrabFocus,
+    updateWindowSplitPaneVertical,
+    updateWindowSplitPaneHorizontal
 };

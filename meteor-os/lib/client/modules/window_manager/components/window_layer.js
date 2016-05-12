@@ -110,6 +110,8 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
                         hideLayer: _this2.hideLayer.bind(_this2),
                         unhideLayer: _this2.unhideLayer.bind(_this2),
                         grabFocus: _this2.grabFocus.bind(_this2),
+                        splitV: _this2.splitV.bind(_this2),
+                        splitH: _this2.splitH.bind(_this2),
                         actions: _this2.props.actions,
                         zIndex: _this2.props.index * _window_layer.WindowLayerDepth + index + 2 }, _window));
                 })
@@ -132,6 +134,16 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
         key: 'grabFocus',
         value: function grabFocus(index) {
             this.props.actions.updateWindowGrabFocus(this.props.index, index);
+        }
+    }, {
+        key: 'splitV',
+        value: function splitV(index, path) {
+            this.props.actions.updateWindowSplitPaneVertical(this.props.index, index, path);
+        }
+    }, {
+        key: 'splitH',
+        value: function splitH(index, path) {
+            this.props.actions.updateWindowSplitPaneHorizontal(this.props.index, index, path);
         }
     }]);
 

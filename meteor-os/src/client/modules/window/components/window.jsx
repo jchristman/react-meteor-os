@@ -20,7 +20,6 @@ const stylesheet = cssInJS({
         borderWidth:    1,
         borderStyle:    'solid',
         borderRadius:   6,
-        overflow:       'hidden',
         boxShadow:      '0px 0px 6px 1px #555555'
     }
 });
@@ -71,8 +70,8 @@ class Window extends React.Component {
             <div 
                 className={classes}
                 style={style(this.props)}
-                onMouseEnter={this.props.unhideLayer}
-                onMouseLeave={this.props.hideLayer}
+                onMouseOver={this.props.unhideLayer}
+                onMouseOut={this.props.hideLayer}
                 onMouseDown={this.grabFocus.bind(this)}
                 >
 
@@ -90,7 +89,10 @@ class Window extends React.Component {
                     grabFocus={this.grabFocus.bind(this)}
                     window_id={this.props._id}
                     layer_id={this.props.parent_id}
-                    {...this.props.content}
+                    splitV={this.splitV.bind(this)}
+                    splitH={this.splitH.bind(this)}
+                    tabs={this.props.tabs}
+                    layout={this.props.layout}
                 />
 
                 {   
@@ -104,9 +106,6 @@ class Window extends React.Component {
                         ))
                         : null
                 }
-
-                <div className="dest-pane-outline-1"></div>
-                <div className="dest-pane-outline-2"></div>
             </div>
         );
     }
@@ -114,6 +113,14 @@ class Window extends React.Component {
     grabFocus() {
         if (!this.props.focused)
             this.props.grabFocus(this.props.index);
+    }
+
+    splitV(path) {
+        this.props.splitV(this.props.index, path);
+    }
+
+    splitH(path) {
+        this.props.splitH(this.props.index, path);
     }
 
     minimizeWindow(event) {

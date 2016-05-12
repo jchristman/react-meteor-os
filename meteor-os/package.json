@@ -8,6 +8,7 @@
   "scripts": {
     "clean": "rm -rf lib/*",
     "compile": "npm run clean && babel --modules commonStrict -d lib/ src/",
+    "watch": "babel -w -d lib/ src/",
     "lint": "cd src && eslint ./libs ./client ./server --ext .js --ext .jsx",
     "lintfix": "npm run lint -- --fix",
     "testonly": "cd src && mocha $npm_package_options_mocha",
@@ -47,6 +48,8 @@
     "react-dom": "0.14.x",
     "react-fontawesome": "^0.3.3",
     "react-komposer": "1.x.x",
+    "react-menus": "2.x.x",
+    "react-modal": "^1.2.1",
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x"
   },

@@ -26,7 +26,7 @@ var WindowResizePreview = function WindowResizePreview(props) {
     if (x === undefined) x = props.position.left;
     if (y === undefined) y = props.position.top;
     var position = (0, _get_resize_position2.default)(props.which, x, y, props.position);
-    var passOn = _.pick(props, ['_id', 'parent_id', 'LocalState', 'focused', 'title', 'zIndex', 'content']);
+    var passOn = _.pick(props, ['_id', 'parent_id', 'LocalState', 'focused', 'title', 'zIndex', 'tabs', 'layout']);
     return _react2.default.createElement(_window2.default, _extends({}, passOn, {
         position: position,
         isPreview: true

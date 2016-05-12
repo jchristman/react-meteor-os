@@ -1,11 +1,11 @@
 {
-  "name": "meteor-os-generator",
+  "name": "meteor-os-gui-designer",
   "version": "0.0.0",
   "options": {
     "mocha": "--require .scripts/mocha_runner client/**/tests/**/*.js"
   },
   "scripts": {
-    "compile": "cd node_modules/meteor-os && npm run clean && npm run compile",
+    "watchMeteorOS": "cd node_modules/meteor-os && npm run clean && npm run watch",
     "lint": "eslint ./libs ./client ./server --ext .js --ext .jsx",
     "lintfix": "npm run lint -- --fix",
     "testonly": "mocha $npm_package_options_mocha",
@@ -46,6 +46,7 @@
     "react-fontawesome": "^0.3.3",
     "react-json-tree": "^0.7.3",
     "react-komposer": "1.x.x",
+    "react-menus": "^2.0.4",
     "react-modal": "^1.2.1",
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x"

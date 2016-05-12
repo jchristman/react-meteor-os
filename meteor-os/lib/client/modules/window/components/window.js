@@ -160,8 +160,8 @@ var Window = _wrapComponent('Window')(function (_React$Component) {
                 {
                     className: classes,
                     style: style(this.props),
-                    onMouseEnter: this.props.unhideLayer,
-                    onMouseLeave: this.props.hideLayer,
+                    onMouseOver: this.props.unhideLayer,
+                    onMouseOut: this.props.hideLayer,
                     onMouseDown: this.grabFocus.bind(this)
                 },
                 _react3.default.createElement(_window_tb2.default, _extends({}, this.props, {
@@ -171,27 +171,39 @@ var Window = _wrapComponent('Window')(function (_React$Component) {
                     restoreWindow: this.restoreWindow.bind(this),
                     closeWindow: this.closeWindow.bind(this)
                 })),
-                _react3.default.createElement(_window_content2.default, _extends({
+                _react3.default.createElement(_window_content2.default, {
                     LocalState: this.props.LocalState,
                     grabFocus: this.grabFocus.bind(this),
                     window_id: this.props._id,
-                    layer_id: this.props.parent_id
-                }, this.props.content)),
+                    layer_id: this.props.parent_id,
+                    splitV: this.splitV.bind(this),
+                    splitH: this.splitH.bind(this),
+                    tabs: this.props.tabs,
+                    layout: this.props.layout
+                }),
                 this.props.isPreview !== true ? _window_handles2.default.slice(1).map(function (handle, index) {
                     return _react3.default.createElement(_window_resizer2.default, {
                         key: index,
                         which: handle,
                         connectDragSource: _this3.props[handle + 'connectDragSource']
                     });
-                }) : null,
-                _react3.default.createElement('div', { className: 'dest-pane-outline-1' }),
-                _react3.default.createElement('div', { className: 'dest-pane-outline-2' })
+                }) : null
             );
         }
     }, {
         key: 'grabFocus',
         value: function grabFocus() {
             if (!this.props.focused) this.props.grabFocus(this.props.index);
+        }
+    }, {
+        key: 'splitV',
+        value: function splitV(path) {
+            this.props.splitV(this.props.index, path);
+        }
+    }, {
+        key: 'splitH',
+        value: function splitH(path) {
+            this.props.splitH(this.props.index, path);
         }
     }, {
         key: 'minimizeWindow',

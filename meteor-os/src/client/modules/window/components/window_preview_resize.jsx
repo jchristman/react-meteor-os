@@ -10,7 +10,7 @@ const WindowResizePreview = (props) => {
     if (y === undefined) y = props.position.top;
     const position = getResizePosition(props.which, x, y, props.position);
     const passOn = _.pick(props, ['_id', 'parent_id', 'LocalState', 
-                          'focused', 'title', 'zIndex', 'content']);
+                          'focused', 'title', 'zIndex', 'tabs', 'layout']);
     return (
         <WindowPreview
             {...passOn}

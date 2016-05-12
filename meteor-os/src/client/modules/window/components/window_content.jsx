@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 // ----- Component Imports ----- //
 import WindowContentPlain from './window_content_plain.jsx';
-import WindowContentTabbed from '../containers/window_content_tabbed.js';
+import WindowContentLayout from './window_content_layout.jsx';
 
 // ----- Library Imports ----- //
 import * as windowTypes from '/lib/windowTypes.js';
@@ -24,33 +24,32 @@ const stylesheet = cssInJS({
         borderStyle: 'inset',
         borderBottom: 0,
         borderRadius: 4,
-
-        overflow: 'hidden'
     }
 });
 
 const typeSwitch = (props) => {
-    switch(props.type) {
-        case windowTypes.tabbed:
-            return (
-                <WindowContentTabbed
-                    LocalState={props.LocalState}
-                    grabFocus={props.grabFocus}
-                    window_id={props.window_id}
-                    layer_id={props.layer_id}
-                    content={props.content}
+    if (props.tabs !== undefined && props.layout !== undefined) {
+        return (
+            <WindowContentLayout
+                LocalState={props.LocalState}
+                grabFocus={props.grabFocus}
+                splitV={props.splitV}
+                splitH={props.splitH}
+                window_id={props.window_id}
+                layer_id={props.layer_id}
+                layout={props.layout}
                 /> );
-        default:
-            return (
-                <WindowContentPlain
-                    content={props.content}
-                /> );
+    } else {
+        return (
+            <WindowContentPlain
+                content={props.content}
+            /> );
     }
 }
 
 const WindowContent = (props) => {
     const classes = cx(stylesheet.default,
-                       Themes.Default.secondary_colors);
+                       Themes.Default.primary_colors);
     const windowType = typeSwitch(props);
     return (
         <div className={classes}>

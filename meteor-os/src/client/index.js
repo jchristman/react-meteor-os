@@ -10,8 +10,10 @@ export const Modules = {
 
 import ApplicationManager from './modules/application_manager/components/application_manager_wrapper.jsx';
 import Window from './modules/window/components/window.jsx';
+import ContextMenu from './modules/context_menu/context_menu.jsx';
 
 export const Components = {
     ApplicationManager,
-    Window
+    Window,
+    ContextMenu
 }

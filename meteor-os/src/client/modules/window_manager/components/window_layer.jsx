@@ -38,6 +38,8 @@ class WindowLayer extends React.Component {
                             hideLayer={this.hideLayer.bind(this)}
                             unhideLayer={this.unhideLayer.bind(this)}
                             grabFocus={this.grabFocus.bind(this)}
+                            splitV={this.splitV.bind(this)}
+                            splitH={this.splitH.bind(this)}
                             actions={this.props.actions}
                             zIndex={this.props.index*WindowLayerDepth+index+2} {..._window}
                         />
@@ -58,6 +60,14 @@ class WindowLayer extends React.Component {
 
     grabFocus(index) {
         this.props.actions.updateWindowGrabFocus(this.props.index, index);
+    }
+
+    splitV(index, path) {
+        this.props.actions.updateWindowSplitPaneVertical(this.props.index, index, path);
+    }
+    
+    splitH(index, path) {
+        this.props.actions.updateWindowSplitPaneHorizontal(this.props.index, index, path);
     }
 }
 

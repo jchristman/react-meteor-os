@@ -66,7 +66,6 @@ var updateWindowSplitPane = function updateWindowSplitPane(context, layerIndex, 
     if (path === undefined) path = 'layout';
     path = layerIndex + '.windows.' + windowIndex + '.' + path;
 
-    console.log(path, current);
     var layoutNode = get_node(path, current);
     layoutNode.panes = {
         orientation: orientation,
@@ -81,9 +80,27 @@ var updateWindowSplitPane = function updateWindowSplitPane(context, layerIndex, 
     LocalState.set(stateVar, current);
 };
 
+var updateWindowMoveDivider = function updateWindowMoveDivider(context, layerIndex, windowIndex, path, percentage) {
+    var LocalState = context.LocalState;
+
+    var stateVar = LocalState.get(_local_state_var2.default);
+    var current = LocalState.get(stateVar);
+
+    console.log(layerIndex, windowIndex, path, percentage);
+
+    if (path === undefined) path = 'layout';
+    path = layerIndex + '.windows.' + windowIndex + '.' + path;
+
+    var layoutNode = get_node(path, current);
+    layoutNode.panes.percentage = percentage;
+
+    LocalState.set(stateVar, current);
+};
+
 exports.default = {
     updateWindowPosition: updateWindowPosition,
     updateWindowGrabFocus: updateWindowGrabFocus,
     updateWindowSplitPaneVertical: updateWindowSplitPaneVertical,
-    updateWindowSplitPaneHorizontal: updateWindowSplitPaneHorizontal
+    updateWindowSplitPaneHorizontal: updateWindowSplitPaneHorizontal,
+    updateWindowMoveDivider: updateWindowMoveDivider
 };

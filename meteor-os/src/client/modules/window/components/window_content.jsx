@@ -35,6 +35,7 @@ const typeSwitch = (props) => {
                 grabFocus={props.grabFocus}
                 splitV={props.splitV}
                 splitH={props.splitH}
+                moveDivider={props.moveDivider}
                 window_id={props.window_id}
                 layer_id={props.layer_id}
                 layout={props.layout}

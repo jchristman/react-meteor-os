@@ -91,6 +91,7 @@ class Window extends React.Component {
                     layer_id={this.props.parent_id}
                     splitV={this.splitV.bind(this)}
                     splitH={this.splitH.bind(this)}
+                    moveDivider={this.moveDivider.bind(this)}
                     tabs={this.props.tabs}
                     layout={this.props.layout}
                 />
@@ -121,6 +122,10 @@ class Window extends React.Component {
 
     splitH(path) {
         this.props.splitH(this.props.index, path);
+    }
+
+    moveDivider(path, percentage) {
+        this.props.moveDivider(this.props.index, path, percentage);
     }
 
     minimizeWindow(event) {

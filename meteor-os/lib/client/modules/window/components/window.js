@@ -178,6 +178,7 @@ var Window = _wrapComponent('Window')(function (_React$Component) {
                     layer_id: this.props.parent_id,
                     splitV: this.splitV.bind(this),
                     splitH: this.splitH.bind(this),
+                    moveDivider: this.moveDivider.bind(this),
                     tabs: this.props.tabs,
                     layout: this.props.layout
                 }),
@@ -204,6 +205,11 @@ var Window = _wrapComponent('Window')(function (_React$Component) {
         key: 'splitH',
         value: function splitH(path) {
             this.props.splitH(this.props.index, path);
+        }
+    }, {
+        key: 'moveDivider',
+        value: function moveDivider(path, percentage) {
+            this.props.moveDivider(this.props.index, path, percentage);
         }
     }, {
         key: 'minimizeWindow',

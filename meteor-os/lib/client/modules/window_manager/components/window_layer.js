@@ -112,6 +112,7 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
                         grabFocus: _this2.grabFocus.bind(_this2),
                         splitV: _this2.splitV.bind(_this2),
                         splitH: _this2.splitH.bind(_this2),
+                        moveDivider: _this2.moveDivider.bind(_this2),
                         actions: _this2.props.actions,
                         zIndex: _this2.props.index * _window_layer.WindowLayerDepth + index + 2 }, _window));
                 })
@@ -144,6 +145,11 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
         key: 'splitH',
         value: function splitH(index, path) {
             this.props.actions.updateWindowSplitPaneHorizontal(this.props.index, index, path);
+        }
+    }, {
+        key: 'moveDivider',
+        value: function moveDivider(index, path, percentage) {
+            this.props.actions.updateWindowMoveDivider(this.props.index, index, path, percentage);
         }
     }]);
 

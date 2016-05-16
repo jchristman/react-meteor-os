@@ -2,11 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Menu from 'react-menus';
 
-const theme = {
-    style: {
-        zIndex: 10
-    }
-}
+const theme = {};
 
 const id = '_meteor_os_context_menu_container';
 
@@ -69,13 +65,18 @@ const ContextMenu = (menu_items, options = {}) => {
 
             _renderLayer() {
                 if (this.state.showContextMenu) {
-                    // First let's correct the menu_items to fix their onClick methods to be useful
+                    // If the menu_items var is a function, let's call it with the props.
+                    menu_items = typeof(menu_items) === 'function' ? menu_items(this.props) : menu_items;
+
+                    // Then correct the items to fix their onClick methods to be useful and have the props of the clicked element
                     let wrapped_menu_items = menu_items.map((item) => {
                         // Copy the item
                         let new_item = typeof item === 'object' ? _.extend({}, item) : item;
                         if (new_item.onClick !== undefined) new_item.onClick = (event, item_props, index) => { item.onClick(event, this.props, index) };
                         return new_item;
                     });
+
+                    // Finally, render it to the container
                     ReactDOM.render(<Menu theme={theme} items={wrapped_menu_items} at={[this.state.x, this.state.y]}/>, this.container);
                 } else {
                     ReactDOM.unmountComponentAtNode(this.container);

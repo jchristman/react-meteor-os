@@ -55,7 +55,7 @@ class WindowContentLayoutLeaf extends React.Component {
         const tabs = _.filter(props.tabs, (tab) => tab._id === props._id);
         const leaf_classes = cx(stylesheet.leaf, Themes.Default.secondary_colors);
 
-        return (
+        return this.props.connectDropTarget(
             <div
                 className={leaf_classes}
                 onContextMenu={this.props.show_context_menu}

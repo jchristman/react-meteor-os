@@ -1,7 +1,17 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {DropTarget} from 'react-dnd';
 
 import WindowContentLayoutLeaf from '../containers/window_content_layout_leaf.js';
-import WindowContentLayoutDivider from './window_content_layout_divider.jsx';
+import WindowContentLayoutDivider from '../containers/window_content_layout_divider.js';
+
+const stylesheet = cssInJS({
+    default: {
+        position: 'absolute',
+        height: '100%',
+        width: '100%'
+    }
+});
 
 const get_pane1_style = (orientation, percentage) => {
     if (orientation === 'vertical') {
@@ -47,40 +57,52 @@ const get_pane2_style = (orientation, percentage) => {
     }
 }
 
-const WindowContentLayout = (props) => {
-    const panes = props.panes || (props.layout && props.layout.panes);
-    const path = props.path || (props.layout && 'layout');
+class WindowContentLayout extends React.Component {
+    getDOMNode() {
+        return ReactDOM.findDOMNode(this);
+    }
 
-    if (panes === undefined) { // Then we are a leaf!
-        return ( <WindowContentLayoutLeaf {...props}/> );
-    } else {
-        const {orientation, percentage} = panes;
-        return (
-            <div>
-                <div
-                    style={get_pane1_style(orientation, percentage)}>
-                        <WindowContentLayout
-                            {...panes.pane1}
-                            splitV={props.splitV}
-                            splitH={props.splitH}
-                            path={path + '.panes.pane1'}
-                            LocalState={props.LocalState}/>
+    render() {
+        const {props} = this;
+        const panes = props.panes || (props.layout && props.layout.panes);
+        const path = props.path || (props.layout && 'layout');
+
+        if (panes === undefined) { // Then we are a leaf!
+            return ( <WindowContentLayoutLeaf {...props}/> );
+        } else {
+            const {orientation, percentage} = panes;
+            return (
+                <div className={stylesheet.default}>
+                    <div
+                        style={get_pane1_style(orientation, percentage)}>
+                            <WindowContentLayout
+                                {...panes.pane1}
+                                splitV={props.splitV}
+                                splitH={props.splitH}
+                                moveDivider={props.moveDivider}
+                                path={path + '.panes.pane1'}
+                                dropTargetPath={path}
+                                LocalState={props.LocalState}/>
+                    </div>
+                    <WindowContentLayoutDivider
+                        orientation={orientation}
+                        percentage={percentage}
+                        getParentDOMNode={this.getDOMNode.bind(this)}
+                        path={path}/>
+                    <div
+                        style={get_pane2_style(orientation, percentage)}>
+                            <WindowContentLayout
+                                {...panes.pane2}
+                                splitV={props.splitV}
+                                splitH={props.splitH}
+                                moveDivider={props.moveDivider}
+                                path={path + '.panes.pane2'}
+                                LocalState={props.LocalState}/>
+                    </div>
                 </div>
-                <WindowContentLayoutDivider
-                    orientation={orientation}
-                    percentage={percentage}/>
-                <div
-                    style={get_pane2_style(orientation, percentage)}>
-                        <WindowContentLayout
-                            {...panes.pane2}
-                            splitV={props.splitV}
-                            splitH={props.splitH}
-                            path={path + '.panes.pane2'}
-                            LocalState={props.LocalState}/>
-                </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
-export default WindowContentLayout
+export default WindowContentLayout;

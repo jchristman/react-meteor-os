@@ -126,10 +126,10 @@ var WindowContentLayoutLeaf = _wrapComponent('WindowContentLayoutLeaf')(function
             });
             var leaf_classes = (0, _classnames2.default)(stylesheet.leaf, _themes2.default.Default.secondary_colors);
 
-            return _react3.default.createElement('div', {
+            return this.props.connectDropTarget(_react3.default.createElement('div', {
                 className: leaf_classes,
                 onContextMenu: this.props.show_context_menu
-            });
+            }));
         }
     }]);
 

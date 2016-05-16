@@ -37,9 +37,10 @@ var get_divider_position = function get_divider_position(props) {
 };
 
 var WindowContentLayoutDivider = function WindowContentLayoutDivider(props) {
-    return _react2.default.createElement('div', {
+    return props.connectDragSource(_react2.default.createElement('div', {
         className: stylesheet.default,
-        style: get_divider_position(props) });
+        style: get_divider_position(props)
+    }));
 };
 
 exports.default = WindowContentLayoutDivider;

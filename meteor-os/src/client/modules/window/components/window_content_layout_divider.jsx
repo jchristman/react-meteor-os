@@ -31,10 +31,11 @@ const get_divider_position = (props) => {
 }
 
 const WindowContentLayoutDivider = (props) => {
-    return (
+    return props.connectDragSource(
         <div
             className={stylesheet.default}
-            style={get_divider_position(props)}>
+            style={get_divider_position(props)}
+            >
         </div>
     );
 }

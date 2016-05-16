@@ -49,13 +49,16 @@
 .src_client_modules_window_components_window_content_jsx-stylesheet-default {
   position: absolute;
   top: 25px;
-  right: 1px;
-  left: 1px;
-  bottom: 2px;
+  right: 2px;
+  left: 2px;
+  bottom: 3px;
   border-width: 1px;
   border-style: inset;
-  border-bottom: 0px;
-  border-radius: 4px;
+}
+.src_client_modules_window_components_window_content_layout_jsx-stylesheet-default {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 .src_client_modules_window_components_window_content_layout_divider_jsx-stylesheet-default {
   position: absolute;
@@ -381,9 +384,4 @@
   left: 0px;
   width: 100%;
   height: 100%;
-}
-.src_client_modules_window_components_window_content_layout_jsx-stylesheet-default {
-  position: absolute;
-  height: 100%;
-  width: 100%;
 }

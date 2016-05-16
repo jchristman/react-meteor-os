@@ -30,13 +30,17 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactDnd = require('react-dnd');
 
+var _reactDndHtml5Backend = require('react-dnd-html5-backend');
+
+var _window_content_layout_divider = require('./window_content_layout_divider.js');
+
+var _window_content_layout_divider2 = _interopRequireDefault(_window_content_layout_divider);
+
 var _window_content_layout_leaf = require('../containers/window_content_layout_leaf.js');
 
 var _window_content_layout_leaf2 = _interopRequireDefault(_window_content_layout_leaf);
 
-var _window_content_layout_divider = require('../containers/window_content_layout_divider.js');
-
-var _window_content_layout_divider2 = _interopRequireDefault(_window_content_layout_divider);
+var _drag_types = require('../configs/drag_types.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -130,14 +134,15 @@ var WindowContentLayout = _wrapComponent('WindowContentLayout')(function (_React
     }
 
     _createClass(WindowContentLayout, [{
-        key: 'getDOMNode',
-        value: function getDOMNode() {
-            return _reactDom2.default.findDOMNode(this);
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.connectDragPreview && this.props.connectDragPreview((0, _reactDndHtml5Backend.getEmptyImage)(), {});
         }
     }, {
         key: 'render',
         value: function render() {
             var props = this.props;
+
 
             var panes = props.panes || props.layout && props.layout.panes;
             var path = props.path || props.layout && 'layout';
@@ -156,24 +161,23 @@ var WindowContentLayout = _wrapComponent('WindowContentLayout')(function (_React
                         'div',
                         {
                             style: get_pane1_style(orientation, percentage) },
-                        _react3.default.createElement(WindowContentLayout, _extends({}, panes.pane1, {
+                        _react3.default.createElement(WindowContentLayoutWrapper, _extends({}, panes.pane1, {
                             splitV: props.splitV,
                             splitH: props.splitH,
                             moveDivider: props.moveDivider,
                             path: path + '.panes.pane1',
-                            dropTargetPath: path,
                             LocalState: props.LocalState }))
                     ),
                     _react3.default.createElement(_window_content_layout_divider2.default, {
                         orientation: orientation,
                         percentage: percentage,
-                        getParentDOMNode: this.getDOMNode.bind(this),
+                        connectDragSource: this.props.connectDragSource,
                         path: path }),
                     _react3.default.createElement(
                         'div',
                         {
                             style: get_pane2_style(orientation, percentage) },
-                        _react3.default.createElement(WindowContentLayout, _extends({}, panes.pane2, {
+                        _react3.default.createElement(WindowContentLayoutWrapper, _extends({}, panes.pane2, {
                             splitV: props.splitV,
                             splitH: props.splitH,
                             moveDivider: props.moveDivider,
@@ -188,4 +192,23 @@ var WindowContentLayout = _wrapComponent('WindowContentLayout')(function (_React
     return WindowContentLayout;
 }(_react3.default.Component));
 
-exports.default = WindowContentLayout;
+var type = function type() {
+    return _drag_types.dividerType;
+};
+
+var spec = {
+    beginDrag: function beginDrag(props, monitor, component) {
+        return _extends({}, props, { parent: _reactDom2.default.findDOMNode(component), dragType: _drag_types.dividerType });
+    }
+};
+
+var collect = function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        connectDragPreview: connect.dragPreview(),
+        isDragging: monitor.isDragging()
+    };
+};
+
+var WindowContentLayoutWrapper = (0, _reactDnd.DragSource)(type, spec, collect)(WindowContentLayout);
+exports.default = WindowContentLayoutWrapper;

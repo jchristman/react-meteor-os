@@ -34,6 +34,10 @@ var _window_preview_resize = require('../../window/components/window_preview_res
 
 var _window_preview_resize2 = _interopRequireDefault(_window_preview_resize);
 
+var _window_content_layout_preview = require('../../window/components/window_content_layout_preview.js');
+
+var _window_content_layout_preview2 = _interopRequireDefault(_window_content_layout_preview);
+
 var _drag_types = require('../../window/configs/drag_types.js');
 
 var dragTypes = _interopRequireWildcard(_drag_types);
@@ -100,6 +104,8 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
                     return _react3.default.createElement(_window_preview_position2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 case dragTypes.windowResizerType:
                     return _react3.default.createElement(_window_preview_resize2.default, _extends({}, item, currentOffset));
+                case dragTypes.dividerType:
+                    return _react3.default.createElement(_window_content_layout_preview2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 default:
                     return null;
             }
@@ -107,7 +113,7 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
     }, {
         key: 'render',
         value: function render() {
-            if (!this.props.isDragging || this.props.itemType !== this.props._id) return null;
+            if (!this.props.isDragging || this.props.item.dragType === undefined) return null;
 
             return _react3.default.createElement(
                 'div',

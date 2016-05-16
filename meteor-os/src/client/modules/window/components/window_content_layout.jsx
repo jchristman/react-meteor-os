@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {DropTarget} from 'react-dnd';
+import {DragSource} from 'react-dnd';
+import {getEmptyImage} from 'react-dnd-html5-backend';
 
+import WindowContentLayoutDivider from './window_content_layout_divider.jsx';
 import WindowContentLayoutLeaf from '../containers/window_content_layout_leaf.js';
-import WindowContentLayoutDivider from '../containers/window_content_layout_divider.js';
+
+import {dividerType} from '../configs/drag_types.js';
 
 const stylesheet = cssInJS({
     default: {
@@ -58,12 +61,13 @@ const get_pane2_style = (orientation, percentage) => {
 }
 
 class WindowContentLayout extends React.Component {
-    getDOMNode() {
-        return ReactDOM.findDOMNode(this);
+    componentDidMount() {
+        this.props.connectDragPreview && this.props.connectDragPreview(getEmptyImage(), {});
     }
 
     render() {
         const {props} = this;
+
         const panes = props.panes || (props.layout && props.layout.panes);
         const path = props.path || (props.layout && 'layout');
 
@@ -75,23 +79,22 @@ class WindowContentLayout extends React.Component {
                 <div className={stylesheet.default}>
                     <div
                         style={get_pane1_style(orientation, percentage)}>
-                            <WindowContentLayout
+                            <WindowContentLayoutWrapper
                                 {...panes.pane1}
                                 splitV={props.splitV}
                                 splitH={props.splitH}
                                 moveDivider={props.moveDivider}
                                 path={path + '.panes.pane1'}
-                                dropTargetPath={path}
                                 LocalState={props.LocalState}/>
                     </div>
                     <WindowContentLayoutDivider
                         orientation={orientation}
                         percentage={percentage}
-                        getParentDOMNode={this.getDOMNode.bind(this)}
+                        connectDragSource={this.props.connectDragSource}
                         path={path}/>
                     <div
                         style={get_pane2_style(orientation, percentage)}>
-                            <WindowContentLayout
+                            <WindowContentLayoutWrapper
                                 {...panes.pane2}
                                 splitV={props.splitV}
                                 splitH={props.splitH}
@@ -105,4 +108,21 @@ class WindowContentLayout extends React.Component {
     }
 }
 
-export default WindowContentLayout;
+const type = () => dividerType;
+
+const spec = {
+    beginDrag(props, monitor, component) {
+        return {...props, parent: ReactDOM.findDOMNode(component), dragType: dividerType};
+    }
+}
+
+const collect = (connect, monitor) => {
+    return {
+        connectDragSource: connect.dragSource(),
+        connectDragPreview: connect.dragPreview(),
+        isDragging: monitor.isDragging()
+    };
+}
+
+const WindowContentLayoutWrapper = DragSource(type, spec, collect)(WindowContentLayout);
+export default WindowContentLayoutWrapper;

@@ -59,15 +59,18 @@ var type = function type() {
 };
 
 var spec = {
-    drop: function drop(props, monitor) {
+    drop: function drop(props, monitor, component) {
         var item = monitor.getItem();
         var pointer = monitor.getClientOffset();
-        var parent = item.getParentDOMNode().getBoundingClientRect();
+        var parent = item.parent.getBoundingClientRect();
 
-        if (props.path.indexOf(item.path) > -1) {
-            var percentage = item.orientation === 'horizontal' ? (pointer.x - parent.left) / (parent.right - parent.left) * 100 : (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
+        var path = item.path !== undefined ? item.path : 'layout';
+        var panes = item.panes !== undefined ? item.panes : item.layout.panes;
 
-            props.moveDivider(item.path, percentage);
+        if (props.path.indexOf(path) > -1) {
+            var percentage = panes.orientation === 'horizontal' ? (pointer.x - parent.left) / (parent.right - parent.left) * 100 : (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
+
+            props.moveDivider(path, percentage);
         }
     }
 };

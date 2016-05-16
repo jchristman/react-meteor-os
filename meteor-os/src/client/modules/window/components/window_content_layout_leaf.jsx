@@ -60,6 +60,7 @@ class WindowContentLayoutLeaf extends React.Component {
                 className={leaf_classes}
                 onContextMenu={this.props.show_context_menu}
                 >
+                Text
             </div>
         );
     }

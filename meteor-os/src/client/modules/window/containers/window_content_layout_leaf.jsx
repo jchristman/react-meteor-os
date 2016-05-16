@@ -22,17 +22,20 @@ const items = [
 const type = () => dividerType;
 
 const spec = {
-    drop(props, monitor) {
+    drop(props, monitor, component) {
         const item = monitor.getItem();
         const pointer = monitor.getClientOffset();
-        const parent = item.getParentDOMNode().getBoundingClientRect();
+        const parent = item.parent.getBoundingClientRect();
 
-        if (props.path.indexOf(item.path) > -1) {
-            const percentage = item.orientation === 'horizontal' ?
+        const path = item.path !== undefined ? item.path : 'layout';
+        const panes = item.panes !== undefined ? item.panes : item.layout.panes;
+
+        if (props.path.indexOf(path) > -1) {
+            const percentage = panes.orientation === 'horizontal' ?
                 (pointer.x - parent.left) / (parent.right - parent.left) * 100 :
                 (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
 
-            props.moveDivider(item.path, percentage);
+            props.moveDivider(path, percentage);
         }
     }
 }

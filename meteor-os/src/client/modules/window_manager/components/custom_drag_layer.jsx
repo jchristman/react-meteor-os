@@ -3,6 +3,7 @@ import { DragLayer } from 'react-dnd';
 
 import WindowPositionPreview from '../../window/components/window_preview_position.jsx';
 import WindowResizePreview from '../../window/components/window_preview_resize.jsx';
+import LayoutPreview from '../../window/components/window_content_layout_preview.jsx';
 import * as dragTypes from '../../window/configs/drag_types.js';
 
 const stylesheet = cssInJS({
@@ -25,6 +26,8 @@ class CustomDragLayer extends React.Component {
                 return ( <WindowPositionPreview {...item} {...currentOffset} pointer={currentPointer}/> );
             case dragTypes.windowResizerType:
                 return ( <WindowResizePreview {...item} {...currentOffset}/> );
+            case dragTypes.dividerType:
+                return ( <LayoutPreview {...item} {...currentOffset} pointer={currentPointer}/> );
             default:
                 return null;
         }
@@ -32,7 +35,7 @@ class CustomDragLayer extends React.Component {
     }
 
     render() {
-        if (!this.props.isDragging || this.props.itemType !== this.props._id) return null;
+        if (!this.props.isDragging || this.props.item.dragType === undefined) return null;
 
         return (
             <div className={stylesheet.default}>

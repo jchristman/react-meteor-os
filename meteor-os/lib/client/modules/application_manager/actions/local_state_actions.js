@@ -86,8 +86,6 @@ var updateWindowMoveDivider = function updateWindowMoveDivider(context, layerInd
     var stateVar = LocalState.get(_local_state_var2.default);
     var current = LocalState.get(stateVar);
 
-    console.log(layerIndex, windowIndex, path, percentage);
-
     if (path === undefined) path = 'layout';
     path = layerIndex + '.windows.' + windowIndex + '.' + path;
 

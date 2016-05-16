@@ -16,14 +16,12 @@ const stylesheet = cssInJS({
     default: {
         position: 'absolute',
         top: 25,
-        right: 1,
-        left: 1,
-        bottom: 2,
+        right: 2,
+        left: 2,
+        bottom: 3,
         
         borderWidth: 1,
         borderStyle: 'inset',
-        borderBottom: 0,
-        borderRadius: 4,
     }
 });
 

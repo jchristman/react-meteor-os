@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {cloneElement} from 'react';
 import ReactDOM from 'react-dom';
+//import invariant from 'invariant';
 import Menu from 'react-menus';
 
 const theme = {};
@@ -25,8 +26,10 @@ const ContextMenu = (menu_items, options = {}) => {
                 };
 
                 // needed to add and remove event listeners....
+                this.clickable_element = undefined;
                 this.force_hide = this.force_hide.bind(this);
                 this.hide = this.hide.bind(this);
+                this.show = this.show.bind(this);
             }
 
             componentDidMount() {
@@ -44,9 +47,11 @@ const ContextMenu = (menu_items, options = {}) => {
                 if (document.addEventListener) {
                     document.addEventListener('click', this.force_hide, false);
                     document.addEventListener('contextmenu', this.hide, false);
+                    this.clickable_element.addEventListener('contextmenu', this.show, false);
                 } else {
                     document.attachEvent('onclick', this.force_hide);
                     document.attachEvent('oncontextmenu', this.hide);
+                    this.clickable_element.attachEvent('oncontextmenu', this.show);
                 }
 
                 this._renderLayer();
@@ -64,9 +69,11 @@ const ContextMenu = (menu_items, options = {}) => {
                 if (document.removeEventListener) {
                     document.removeEventListener('click', this.force_hide, false);
                     document.removeEventListener('contextmenu', this.hide, false);
+                    this.clickable_element && this.clickable_element.removeEventListener('contextmenu', this.show, false);
                 } else {
                     document.detachEvent('onclick', this.force_hide);
                     document.detachEvent('oncontextmenu', this.hide);
+                    this.clickable_element && this.clickable_element.detachEvent('oncontextmenu', this.show, false);
                 }
             }
 
@@ -97,14 +104,37 @@ const ContextMenu = (menu_items, options = {}) => {
                         {...this.props}
                         show_context_menu={this.show.bind(this)}
                         hide_context_menu={this.hide.bind(this)}
+                        connectContextMenu={this.connectContextMenu.bind(this)}
                     />
                 );
             }
 
+            cloneWithRef(element, newRef) {
+                const previousRef = element.ref;
+                //invariant(typeof previousRef !== 'string',
+                //    'Cannot connect ContextMenu to an element with an existing string ref.');
+
+                if (!previousRef) {
+                    return cloneElement(element, { ref: newRef });
+                }
+
+                return cloneElement(element, {
+                    ref: (node) => {
+                        newRef(node);
+                        previousRef && previousRef(node);
+                    }
+                });
+            }
+
             // ----- Context Menu Methods ----- //
+            connectContextMenu(react_element) {
+                this.clickable_react_element = react_element;
+                this.clickable_react_element = this.cloneWithRef(this.clickable_react_element, (node) => this.clickable_element = node);
+                return this.clickable_react_element;
+            }
+
             show(event) {
                 event.preventDefault();
-                event.stopPropagation();
                 
                 let bounds = event.target.getBoundingClientRect();
                 let x = event.clientX - bounds.left;
@@ -119,7 +149,7 @@ const ContextMenu = (menu_items, options = {}) => {
             }
 
             hide(event, force) {
-                if (event.target !== ReactDOM.findDOMNode(this) || force) {
+                if (event.target !== this.clickable_element || force) {
                     const state = { showContextMenu: false };
                     this.setState(state);
                 }

@@ -67,6 +67,8 @@ function _wrapComponent(id) {
         return _reactTransformHmr2(_reactTransformCatchErrors2(Component, id), id);
     };
 }
+//import invariant from 'invariant';
+
 
 var theme = {};
 
@@ -98,8 +100,10 @@ var ContextMenu = function ContextMenu(menu_items) {
                 };
 
                 // needed to add and remove event listeners....
+                _this.clickable_element = undefined;
                 _this.force_hide = _this.force_hide.bind(_this);
                 _this.hide = _this.hide.bind(_this);
+                _this.show = _this.show.bind(_this);
                 return _this;
             }
 
@@ -120,9 +124,11 @@ var ContextMenu = function ContextMenu(menu_items) {
                     if (document.addEventListener) {
                         document.addEventListener('click', this.force_hide, false);
                         document.addEventListener('contextmenu', this.hide, false);
+                        this.clickable_element.addEventListener('contextmenu', this.show, false);
                     } else {
                         document.attachEvent('onclick', this.force_hide);
                         document.attachEvent('oncontextmenu', this.hide);
+                        this.clickable_element.attachEvent('oncontextmenu', this.show);
                     }
 
                     this._renderLayer();
@@ -142,9 +148,11 @@ var ContextMenu = function ContextMenu(menu_items) {
                     if (document.removeEventListener) {
                         document.removeEventListener('click', this.force_hide, false);
                         document.removeEventListener('contextmenu', this.hide, false);
+                        this.clickable_element && this.clickable_element.removeEventListener('contextmenu', this.show, false);
                     } else {
                         document.detachEvent('onclick', this.force_hide);
                         document.detachEvent('oncontextmenu', this.hide);
+                        this.clickable_element && this.clickable_element.detachEvent('oncontextmenu', this.show, false);
                     }
                 }
             }, {
@@ -177,17 +185,46 @@ var ContextMenu = function ContextMenu(menu_items) {
                 value: function render() {
                     return _react3.default.createElement(ChildComponent, _extends({}, this.props, {
                         show_context_menu: this.show.bind(this),
-                        hide_context_menu: this.hide.bind(this)
+                        hide_context_menu: this.hide.bind(this),
+                        connectContextMenu: this.connectContextMenu.bind(this)
                     }));
+                }
+            }, {
+                key: 'cloneWithRef',
+                value: function cloneWithRef(element, newRef) {
+                    var previousRef = element.ref;
+                    //invariant(typeof previousRef !== 'string',
+                    //    'Cannot connect ContextMenu to an element with an existing string ref.');
+
+                    if (!previousRef) {
+                        return (0, _react2.cloneElement)(element, { ref: newRef });
+                    }
+
+                    return (0, _react2.cloneElement)(element, {
+                        ref: function ref(node) {
+                            newRef(node);
+                            previousRef && previousRef(node);
+                        }
+                    });
                 }
 
                 // ----- Context Menu Methods ----- //
 
             }, {
+                key: 'connectContextMenu',
+                value: function connectContextMenu(react_element) {
+                    var _this3 = this;
+
+                    this.clickable_react_element = react_element;
+                    this.clickable_react_element = this.cloneWithRef(this.clickable_react_element, function (node) {
+                        return _this3.clickable_element = node;
+                    });
+                    return this.clickable_react_element;
+                }
+            }, {
                 key: 'show',
                 value: function show(event) {
                     event.preventDefault();
-                    event.stopPropagation();
 
                     var bounds = event.target.getBoundingClientRect();
                     var x = event.clientX - bounds.left;
@@ -204,7 +241,7 @@ var ContextMenu = function ContextMenu(menu_items) {
             }, {
                 key: 'hide',
                 value: function hide(event, force) {
-                    if (event.target !== _reactDom2.default.findDOMNode(this) || force) {
+                    if (event.target !== this.clickable_element || force) {
                         var state = { showContextMenu: false };
                         this.setState(state);
                     }

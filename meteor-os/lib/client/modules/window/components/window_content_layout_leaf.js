@@ -69,41 +69,8 @@ function _wrapComponent(id) {
 }
 
 var stylesheet = {
-    leaf: 'src_client_modules_window_components_window_content_layout_leaf_jsx-stylesheet-leaf'
-};
-
-var context_menu_style = function context_menu_style(props) {
-    var height = 'auto',
-        width = 'auto';
-    return {
-        overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'transparent',
-            zIndex: 9999999
-        },
-
-        content: {
-            position: 'absolute',
-            paddingTop: 0,
-            paddingBottom: 0,
-            paddingLeft: 5,
-            paddingRight: 5,
-            top: 0,
-            right: 0,
-            left: 'auto',
-            bottom: 'auto',
-            height: height,
-            width: width,
-            border: '1px solid #ccc',
-            borderRadius: 4,
-            background: 'white',
-            zIndex: 10000000
-        }
-    };
+    leaf: 'src_client_modules_window_components_window_content_layout_leaf_jsx-stylesheet-leaf',
+    container: 'src_client_modules_window_components_window_content_layout_leaf_jsx-stylesheet-container'
 };
 
 var WindowContentLayoutLeaf = _wrapComponent('WindowContentLayoutLeaf')(function (_React$Component) {
@@ -128,11 +95,16 @@ var WindowContentLayoutLeaf = _wrapComponent('WindowContentLayoutLeaf')(function
 
             return this.props.connectDropTarget(_react3.default.createElement(
                 'div',
-                {
-                    className: leaf_classes,
-                    onContextMenu: this.props.show_context_menu
-                },
-                'Text'
+                { className: leaf_classes },
+                props.connectContextMenu(_react3.default.createElement(
+                    'div',
+                    { className: stylesheet.container },
+                    _react3.default.createElement(
+                        'div',
+                        { style: { display: 'inline-block', whiteSpace: 'nowrap' } },
+                        'Text text text text text text'
+                    )
+                ))
             ));
         }
     }]);

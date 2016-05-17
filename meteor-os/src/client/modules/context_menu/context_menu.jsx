@@ -30,7 +30,14 @@ const ContextMenu = (menu_items, options = {}) => {
             }
 
             componentDidMount() {
-                this.container = ReactDOM.findDOMNode(this);
+                this.child = ReactDOM.findDOMNode(this);
+                this.container = document.createElement('div');
+                this.container.style.position = 'absolute';
+                this.container.style.top = 0;
+                this.container.style.left = 0;
+                this.container.style.width = 0;
+                this.container.style.height = 0;
+                this.child.appendChild(this.container);
 
                 // Note that we are not using .bind(this), because we need to remove
                 // the listener later. The bind happens in the constructor

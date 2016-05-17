@@ -22,9 +22,11 @@ const LayoutPreview = (props) => {
     if (pointer === null) return ( <div></div> );
 
     const panes = props.panes !== undefined ? props.panes : props.layout.panes;
-    const percentage = panes.orientation === 'horizontal' ?
+    let percentage = panes.orientation === 'horizontal' ?
         (pointer.x - parent.left) / (parent.right - parent.left) * 100 :
         (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
+
+    percentage = Math.max(Math.min(100, percentage), 0);
 
     const new_props = _.omit(props, ['panes']);
     if (props.panes === undefined) {

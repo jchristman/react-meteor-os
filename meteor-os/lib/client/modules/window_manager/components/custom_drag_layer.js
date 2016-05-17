@@ -26,17 +26,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactDnd = require('react-dnd');
 
-var _window_preview_position = require('../../window/components/window_preview_position.js');
+var _preview_window_position = require('../../window/components/preview_window_position.js');
 
-var _window_preview_position2 = _interopRequireDefault(_window_preview_position);
+var _preview_window_position2 = _interopRequireDefault(_preview_window_position);
 
-var _window_preview_resize = require('../../window/components/window_preview_resize.js');
+var _preview_window_resize = require('../../window/components/preview_window_resize.js');
 
-var _window_preview_resize2 = _interopRequireDefault(_window_preview_resize);
+var _preview_window_resize2 = _interopRequireDefault(_preview_window_resize);
 
-var _window_content_layout_preview = require('../../window/components/window_content_layout_preview.js');
+var _preview_window_content_layout = require('../../window/components/preview_window_content_layout.js');
 
-var _window_content_layout_preview2 = _interopRequireDefault(_window_content_layout_preview);
+var _preview_window_content_layout2 = _interopRequireDefault(_preview_window_content_layout);
 
 var _drag_types = require('../../window/configs/drag_types.js');
 
@@ -101,11 +101,11 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
 
             switch (item.dragType) {
                 case dragTypes.windowPositionType:
-                    return _react3.default.createElement(_window_preview_position2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
+                    return _react3.default.createElement(_preview_window_position2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 case dragTypes.windowResizerType:
-                    return _react3.default.createElement(_window_preview_resize2.default, _extends({}, item, currentOffset));
+                    return _react3.default.createElement(_preview_window_resize2.default, _extends({}, item, currentOffset));
                 case dragTypes.dividerType:
-                    return _react3.default.createElement(_window_content_layout_preview2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
+                    return _react3.default.createElement(_preview_window_content_layout2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 default:
                     return null;
             }

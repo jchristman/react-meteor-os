@@ -1,9 +1,9 @@
 import React from 'react';
 import { DragLayer } from 'react-dnd';
 
-import WindowPositionPreview from '../../window/components/window_preview_position.jsx';
-import WindowResizePreview from '../../window/components/window_preview_resize.jsx';
-import LayoutPreview from '../../window/components/window_content_layout_preview.jsx';
+import WindowPositionPreview from '../../window/components/preview_window_position.jsx';
+import WindowResizePreview from '../../window/components/preview_window_resize.jsx';
+import LayoutPreview from '../../window/components/preview_window_content_layout.jsx';
 import * as dragTypes from '../../window/configs/drag_types.js';
 
 const stylesheet = cssInJS({

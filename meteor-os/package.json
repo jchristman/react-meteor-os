@@ -53,5 +53,8 @@
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "react-context-menus": "^1.0.2"
+  }
 }

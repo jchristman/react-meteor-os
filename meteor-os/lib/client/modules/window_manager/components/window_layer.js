@@ -103,7 +103,7 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
                 },
                 this.props.windows.map(function (_window, index) {
                     return _react3.default.createElement(_window3.default, _extends({
-                        key: index,
+                        key: _window._id,
                         index: index,
                         LocalState: _this2.props.LocalState,
                         parent_id: _this2.props._id,

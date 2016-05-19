@@ -10,9 +10,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactKomposer = require('react-komposer');
 
-var _context_menu = require('../../context_menu/context_menu.js');
+var _reactContextMenus = require('react-context-menus');
 
-var _context_menu2 = _interopRequireDefault(_context_menu);
+var _reactContextMenus2 = _interopRequireDefault(_reactContextMenus);
 
 var _reactFontawesome = require('react-fontawesome');
 
@@ -40,7 +40,7 @@ var items = [{
         '  Split Vertical'
     ),
     onClick: function onClick(event, props, index) {
-        props.splitV(props.path);
+        return props.splitV(props.path);
     }
 }, {
     label: _react2.default.createElement(
@@ -83,4 +83,4 @@ var collect = function collect(connect, monitor) {
     };
 };
 
-exports.default = (0, _reactKomposer.composeAll)((0, _context_menu2.default)(items), (0, _reactDnd.DropTarget)(type, spec, collect))(_window_content_layout_leaf2.default);
+exports.default = (0, _reactKomposer.composeAll)((0, _reactContextMenus2.default)(items), (0, _reactDnd.DropTarget)(type, spec, collect))(_window_content_layout_leaf2.default);

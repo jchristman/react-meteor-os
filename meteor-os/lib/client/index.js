@@ -25,10 +25,6 @@ var _window3 = require('./modules/window/components/window.js');
 
 var _window4 = _interopRequireDefault(_window3);
 
-var _context_menu = require('./modules/context_menu/context_menu.js');
-
-var _context_menu2 = _interopRequireDefault(_context_menu);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Modules = exports.Modules = {
@@ -39,6 +35,5 @@ var Modules = exports.Modules = {
 
 var Components = exports.Components = {
     ApplicationManager: _application_manager_wrapper2.default,
-    Window: _window4.default,
-    ContextMenu: _context_menu2.default
+    Window: _window4.default
 };

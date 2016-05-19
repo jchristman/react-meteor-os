@@ -31,7 +31,7 @@ class WindowLayer extends React.Component {
                 {
                     this.props.windows.map((_window, index) => (
                         <Window
-                            key={index}
+                            key={_window._id}
                             index={index}
                             LocalState={this.props.LocalState}
                             parent_id={this.props._id}

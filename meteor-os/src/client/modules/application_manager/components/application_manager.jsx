@@ -6,7 +6,7 @@ const ApplicationManager = (props) => (
         {
             props.ApplicationManager.applications.map((_application, index) => (
                 <Application 
-                    key={index}
+                    key={_application._id}
                     index={index}
                     actions={props.actions}
                     {...{ LocalState: props.LocalState }}

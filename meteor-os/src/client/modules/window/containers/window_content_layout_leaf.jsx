@@ -1,5 +1,5 @@
 import {composeAll} from 'react-komposer';
-import ContextMenu from '../../context_menu/context_menu.jsx';
+import ContextMenu from 'react-context-menus';
 import FontAwesome from 'react-fontawesome';
 import {DropTarget} from 'react-dnd';
 import ReactDOM from 'react-dom';
@@ -11,7 +11,7 @@ import {dividerType} from '../configs/drag_types.js';
 const items = [
     {
         label: ( <span><FontAwesome name='arrows-v'/>&nbsp;&nbsp;Split Vertical</span> ),
-        onClick: (event, props, index) => { props.splitV(props.path) }
+        onClick: (event, props, index) => props.splitV(props.path)
     },
     {
         label: ( <span><FontAwesome name='arrows-h'/>&nbsp;&nbsp;Split Horizontal</span> ),

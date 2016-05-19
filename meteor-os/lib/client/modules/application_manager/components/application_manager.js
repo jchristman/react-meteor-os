@@ -22,7 +22,7 @@ var ApplicationManager = function ApplicationManager(props) {
         null,
         props.ApplicationManager.applications.map(function (_application, index) {
             return _react2.default.createElement(_application3.default, _extends({
-                key: index,
+                key: _application._id,
                 index: index,
                 actions: props.actions
             }, { LocalState: props.LocalState }, _application));

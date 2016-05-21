@@ -4,25 +4,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redboxReact2 = require('redbox-react');
-
-var _redboxReact3 = _interopRequireDefault(_redboxReact2);
-
-var _reactTransformCatchErrors3 = require('react-transform-catch-errors');
-
-var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErrors3);
-
-var _react2 = require('react');
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _reactTransformHmr3 = require('react-transform-hmr');
-
-var _reactTransformHmr4 = _interopRequireDefault(_reactTransformHmr3);
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
 
 var _reactDnd = require('react-dnd');
 
@@ -52,37 +40,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _components = {
-    CustomDragLayer: {
-        displayName: 'CustomDragLayer'
-    }
-};
-
-var _reactTransformHmr2 = (0, _reactTransformHmr4.default)({
-    filename: 'src/client/modules/window_manager/components/custom_drag_layer.jsx',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-    filename: 'src/client/modules/window_manager/components/custom_drag_layer.jsx',
-    components: _components,
-    locals: [],
-    imports: [_react3.default, _redboxReact3.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _reactTransformHmr2(_reactTransformCatchErrors2(Component, id), id);
-    };
-}
-
 var stylesheet = {
     default: 'src_client_modules_window_manager_components_custom_drag_layer_jsx-stylesheet-default'
 };
 
-var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Component) {
+var CustomDragLayer = function (_React$Component) {
     _inherits(CustomDragLayer, _React$Component);
 
     function CustomDragLayer() {
@@ -101,11 +63,11 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
 
             switch (item.dragType) {
                 case dragTypes.windowPositionType:
-                    return _react3.default.createElement(_preview_window_position2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
+                    return _react2.default.createElement(_preview_window_position2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 case dragTypes.windowResizerType:
-                    return _react3.default.createElement(_preview_window_resize2.default, _extends({}, item, currentOffset));
+                    return _react2.default.createElement(_preview_window_resize2.default, _extends({}, item, currentOffset));
                 case dragTypes.dividerType:
-                    return _react3.default.createElement(_preview_window_content_layout2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
+                    return _react2.default.createElement(_preview_window_content_layout2.default, _extends({}, item, currentOffset, { pointer: currentPointer }));
                 default:
                     return null;
             }
@@ -115,7 +77,7 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
         value: function render() {
             if (!this.props.isDragging || this.props.item.dragType === undefined) return null;
 
-            return _react3.default.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: stylesheet.default },
                 this.renderItem()
@@ -124,6 +86,6 @@ var CustomDragLayer = _wrapComponent('CustomDragLayer')(function (_React$Compone
     }]);
 
     return CustomDragLayer;
-}(_react3.default.Component));
+}(_react2.default.Component);
 
 exports.default = CustomDragLayer;

@@ -4,25 +4,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redboxReact2 = require('redbox-react');
-
-var _redboxReact3 = _interopRequireDefault(_redboxReact2);
-
-var _reactTransformCatchErrors3 = require('react-transform-catch-errors');
-
-var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErrors3);
-
-var _react2 = require('react');
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _reactTransformHmr3 = require('react-transform-hmr');
-
-var _reactTransformHmr4 = _interopRequireDefault(_reactTransformHmr3);
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
 
 var _window2 = require('../../window/containers/window.js');
 
@@ -42,37 +30,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _components = {
-    WindowLayer: {
-        displayName: 'WindowLayer'
-    }
-};
-
-var _reactTransformHmr2 = (0, _reactTransformHmr4.default)({
-    filename: 'src/client/modules/window_manager/components/window_layer.jsx',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-    filename: 'src/client/modules/window_manager/components/window_layer.jsx',
-    components: _components,
-    locals: [],
-    imports: [_react3.default, _redboxReact3.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _reactTransformHmr2(_reactTransformCatchErrors2(Component, id), id);
-    };
-}
-
 var stylesheet = {
     default: 'src_client_modules_window_manager_components_window_layer_jsx-stylesheet-default'
 };
 
-var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
+var WindowLayer = function (_React$Component) {
     _inherits(WindowLayer, _React$Component);
 
     function WindowLayer() {
@@ -92,7 +54,7 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
             var connectDropTarget = _props.connectDropTarget;
             var children = _props.children;
 
-            return connectDropTarget(_react3.default.createElement(
+            return connectDropTarget(_react2.default.createElement(
                 'div',
                 {
                     className: stylesheet.default,
@@ -102,7 +64,7 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
                     }
                 },
                 this.props.windows.map(function (_window, index) {
-                    return _react3.default.createElement(_window3.default, _extends({
+                    return _react2.default.createElement(_window3.default, _extends({
                         key: _window._id,
                         index: index,
                         LocalState: _this2.props.LocalState,
@@ -154,6 +116,6 @@ var WindowLayer = _wrapComponent('WindowLayer')(function (_React$Component) {
     }]);
 
     return WindowLayer;
-}(_react3.default.Component));
+}(_react2.default.Component);
 
 exports.default = WindowLayer;

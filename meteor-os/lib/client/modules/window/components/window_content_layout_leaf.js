@@ -18,6 +18,10 @@ var _reactModal = require('react-modal');
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
+var _window_content_layout_leaf_content = require('./window_content_layout_leaf_content.js');
+
+var _window_content_layout_leaf_content2 = _interopRequireDefault(_window_content_layout_leaf_content);
+
 var _themes = require('../../../configs/themes');
 
 var _themes2 = _interopRequireDefault(_themes);
@@ -55,17 +59,23 @@ var WindowContentLayoutLeaf = function (_React$Component) {
             });
             var leaf_classes = (0, _classnames2.default)(stylesheet.leaf, _themes2.default.Default.secondary_colors);
 
+            var content = {};
+            if (props.layout !== undefined) {
+                content.content = props.layout.content;
+                content.type = props.layout.type;
+            } else {
+                content.content = props.content;
+                content.type = props.type;
+            }
+            console.log(content);
+
             return this.props.connectDropTarget(_react2.default.createElement(
                 'div',
                 { className: leaf_classes },
                 props.connectContextMenu(_react2.default.createElement(
                     'div',
                     { className: stylesheet.container },
-                    _react2.default.createElement(
-                        'div',
-                        { style: { display: 'inline-block', whiteSpace: 'nowrap' } },
-                        'Text text text text text text'
-                    )
+                    _react2.default.createElement(_window_content_layout_leaf_content2.default, content)
                 ))
             ));
         }

@@ -1,3 +1,3 @@
-import {Modules, Components} from './client/index.js';
+import {Modules, Components, Constants} from './client/index.js';
 
-module.exports = { Modules, Components }
+module.exports = { Modules, Components, Constants }

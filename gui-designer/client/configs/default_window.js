@@ -1,4 +1,6 @@
 import {Random} from 'meteor/random';
+import baconipsum from 'baconipsum';
+import {Constants} from 'meteor-os';
 
 import default_tab from './default_tab.js';
 
@@ -15,6 +17,8 @@ export default () => ( {
         default_tab()
     ],
     layout: {
-        _id: Random.id()
+        _id: Random.id(),
+        type: Constants.Types.Text,
+        content: baconipsum(100)
     }
 } );

@@ -15,3 +15,6 @@ export const Components = {
     ApplicationManager,
     Window
 }
+
+import * as Constants from './configs/constants';
+export { Constants };

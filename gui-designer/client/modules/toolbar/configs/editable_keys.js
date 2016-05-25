@@ -12,6 +12,8 @@ export default [
     /^windows\.[0-9]+\.layout\.panes\.orientation$/,
     /^windows\.[0-9]+\.layout\.panes\.percentage$/,
     /^windows\.[0-9]+\.layout(\.panes\.pane[12])+$/,
+    /^windows\.[0-9]+\.layout(\.panes\.pane[12])*\.content$/,
+    /^windows\.[0-9]+\.layout(\.panes\.pane[12])*\.type$/,
     /^windows\.[0-9]+\.layout(\.panes\.pane[12])+\.panes\.orientation$/,
     /^windows\.[0-9]+\.layout(\.panes\.pane[12])+\.panes\.percentage$/,
 ]

@@ -2,6 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import Modal from 'react-modal';
 
+import WindowContentLayoutLeafContent from './window_content_layout_leaf_content.jsx';
+
 import Themes from '../../../configs/themes';
 
 const stylesheet = cssInJS({
@@ -29,12 +31,22 @@ class WindowContentLayoutLeaf extends React.Component {
         const tabs = _.filter(props.tabs, (tab) => tab._id === props._id);
         const leaf_classes = cx(stylesheet.leaf, Themes.Default.secondary_colors);
 
+        const content = {};
+        if (props.layout !== undefined) {
+            content.content = props.layout.content;
+            content.type = props.layout.type;
+        } else {
+            content.content = props.content;
+            content.type = props.type;
+        }
+        console.log(content);
+
         return this.props.connectDropTarget(
             <div className={leaf_classes}>
                 { 
                     props.connectContextMenu(
                         <div className={stylesheet.container}>
-                            <div style={{display: 'inline-block', whiteSpace: 'nowrap'}}>Text text text text text text</div>
+                            <WindowContentLayoutLeafContent {...content}/>
                         </div>
                     )
                 }

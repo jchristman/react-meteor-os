@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FontAwesome from 'react-fontawesome';
 import {Random} from 'meteor/random';
+import {Constants} from 'meteor-os';
+import baconipsum from 'baconipsum';
 
 import get_node from '../lib/get_node.js';
 import set_node from '../lib/set_node.js';
@@ -91,14 +93,23 @@ class EditValue extends React.Component {
         const current = LocalState.get(CurrentApp);
 
         let layoutNode = get_node(this.props.path, current);
+        let _content = layoutNode.content;
+        let _type = layoutNode.type;
+        delete layoutNode.content;
+        delete layoutNode.type;
+
         layoutNode.panes = {
             orientation,
             percentage: 50,
             pane1: {
-                _id: Random.id()
+                _id: Random.id(),
+                content: _content,
+                type: _type
             },
             pane2: {
-                _id: Random.id()
+                _id: Random.id(),
+                content: baconipsum(100),
+                type: Constants.Types.Text
             }
         }
         LocalState.set(CurrentApp, current);

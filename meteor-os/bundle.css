@@ -76,7 +76,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
+}
+.src_client_modules_window_components_window_content_layout_leaf_content_jsx-stylesheet-default {
+  white-space: pre-wrap;
 }
 .src_client_modules_window_components_window_content_tabbed_jsx-stylesheet-tabs {
   position: relative;
@@ -390,7 +393,4 @@
   left: 0px;
   width: 100%;
   height: 100%;
-}
-.src_client_modules_window_components_window_content_layout_leaf_content_jsx-stylesheet-default {
-  white-space: pre-wrap;
 }

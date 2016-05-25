@@ -37,7 +37,6 @@
     "fontawesome": "^4.5.0",
     "mantra-core": "^1.2.0",
     "meteor-node-stubs": "^0.2.1",
-    "meteor-os": "^0.0.0",
     "react": "0.14.x",
     "react-context-menus": "^1.0.2",
     "react-dnd": "^2.1.4",

@@ -28,18 +28,12 @@ class WindowContentLayoutLeaf extends React.Component {
     render() {
         const {props} = this;
 
-        const tabs = _.filter(props.tabs, (tab) => tab._id === props._id);
         const leaf_classes = cx(stylesheet.leaf, Themes.Default.secondary_colors);
 
-        const content = {};
-        if (props.layout !== undefined) {
-            content.content = props.layout.content;
-            content.type = props.layout.type;
-        } else {
-            content.content = props.content;
-            content.type = props.type;
+        const content = {
+            content: props.content,
+            content_type: props.content_type
         }
-        console.log(content);
 
         return this.props.connectDropTarget(
             <div className={leaf_classes}>

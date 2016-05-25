@@ -52,9 +52,11 @@ const updateWindowSplitPane = (context, layerIndex, windowIndex, path, orientati
 
     let layoutNode = get_node(path, current);
     let _content = layoutNode.content;
-    let _type = layoutNode.type;
+    let _content_type = layoutNode.content_type;
+    let _leaf_type = layoutNode.leaf_type;
     delete layoutNode.content;
-    delete layoutNode.type;
+    delete layoutNode.content_type;
+    delete layoutNode.leaf_type;
 
     layoutNode.panes = {
         orientation,
@@ -62,12 +64,14 @@ const updateWindowSplitPane = (context, layerIndex, windowIndex, path, orientati
         pane1: {
             _id: Random.id(),
             content: _content,
-            type: _type
+            content_type: _content_type,
+            leaf_type: _leaf_type
         },
         pane2: {
             _id: Random.id(),
             content: baconipsum(100),
-            type: Constants.Types.Text
+            content_type: Constants.ContentTypes.Text,
+            leaf_type: Constants.LeafTypes.Plain
         }
     }
     LocalState.set(stateVar, current);

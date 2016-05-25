@@ -111,7 +111,18 @@ var WindowContentLayout = function (_React$Component) {
 
             if (panes === undefined) {
                 // Then we are a leaf!
-                return _react2.default.createElement(_window_content_layout_leaf2.default, props);
+                var content = props.content || props.layout && props.layout.content;
+                var content_type = props.content_type || props.layout.content_type;
+                var leaf_type = props.leaf_type || props.layout.leaf_type;
+                return _react2.default.createElement(_window_content_layout_leaf2.default, {
+                    path: path,
+                    content: content,
+                    content_type: content_type,
+                    leaf_type: leaf_type,
+                    splitH: props.splitH,
+                    splitV: props.splitV,
+                    moveDivider: props.moveDivider
+                });
             } else {
                 var orientation = panes.orientation;
                 var percentage = panes.percentage;

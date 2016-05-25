@@ -21,11 +21,11 @@ var stylesheet = {
 };
 
 var type_switch = function type_switch(props) {
-    switch (props.type) {
-        case Constants.Types.Text:
+    switch (props.content_type) {
+        case Constants.ContentTypes.Text:
             return props.content;
             break;
-        case Constants.Types.Component:
+        case Constants.ContentTypes.Component:
             console.log('Component type');
             break;
         default:

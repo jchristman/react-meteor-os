@@ -1,9 +1,18 @@
 const prefix = '_meteor_os_constants';
+const make = (_key, data) => _.object(_.map(data, (val, key) => [key, `${prefix}_${_key}_${val}`]));
 
 
-// Generate an object of Types
-let _Types = {
+// Generate an object of Content Types
+let _ContentTypes = {
     Component: 'component',
     Text: 'text'
 }
-export const Types = _.object(_.map(_Types, (val, key) => [key, prefix + '_types_' + val]));
+export const ContentTypes = make('contenttypes', _ContentTypes)
+
+
+// Generate an object of Window Leaf Pane Types
+let _LeafTypes = {
+    Plain: 'plain',
+    Tabbed: 'tabbed'
+}
+export const LeafTypes = make('leaftypes', _LeafTypes);

@@ -1,23 +1,45 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/nodejs', '/usr/local/bin/npm', 'run', 'compile' ]
-2 info using npm@3.9.2
-3 info using node@v4.3.1
-4 verbose stack Error: missing script: compile
-4 verbose stack     at run (/usr/local/lib/node_modules/npm/lib/run-script.js:150:19)
-4 verbose stack     at /usr/local/lib/node_modules/npm/lib/run-script.js:60:5
-4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:356:5
-4 verbose stack     at checkBinReferences_ (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:320:45)
-4 verbose stack     at final (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:354:3)
-4 verbose stack     at then (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:124:5)
-4 verbose stack     at ReadFileContext.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:295:20)
-4 verbose stack     at ReadFileContext.callback (/usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16)
-4 verbose stack     at FSReqWrap.readFileAfterOpen [as oncomplete] (fs.js:303:13)
-5 verbose cwd /root/meteor-os/gui-designer
-6 error Linux 4.4.0-kali1-amd64
-7 error argv "/usr/bin/nodejs" "/usr/local/bin/npm" "run" "compile"
-8 error node v4.3.1
-9 error npm  v3.9.2
-10 error missing script: compile
-11 error If you need help, you may report this error at:
-11 error     <https://github.com/npm/npm/issues>
-12 verbose exit [ 1, true ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'run', 'watchMeteorOS' ]
+2 info using npm@3.9.0
+3 info using node@v0.12.2
+4 verbose node symlink /usr/local/bin/node
+5 verbose run-script [ 'prewatchMeteorOS', 'watchMeteorOS', 'postwatchMeteorOS' ]
+6 info lifecycle meteor-os-gui-designer@0.0.0~prewatchMeteorOS: meteor-os-gui-designer@0.0.0
+7 silly lifecycle meteor-os-gui-designer@0.0.0~prewatchMeteorOS: no script for prewatchMeteorOS, continuing
+8 info lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: meteor-os-gui-designer@0.0.0
+9 verbose lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: unsafe-perm in lifecycle true
+10 verbose lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/joshua/dev/meteor_os/gui-designer/node_modules/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Commands:/Library/Frameworks/Mono.framework/Libraries:/opt/X11/bin:/Applications/SageMath:/usr/texbin
+11 verbose lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: CWD: /Users/joshua/dev/meteor_os/gui-designer
+12 silly lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: Args: [ '-c',
+12 silly lifecycle   'cd node_modules/meteor-os && npm run clean && npm run watch' ]
+13 silly lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: Returned: code: 1  signal: null
+14 info lifecycle meteor-os-gui-designer@0.0.0~watchMeteorOS: Failed to exec watchMeteorOS script
+15 verbose stack Error: meteor-os-gui-designer@0.0.0 watchMeteorOS: `cd node_modules/meteor-os && npm run clean && npm run watch`
+15 verbose stack Exit status 1
+15 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:245:16)
+15 verbose stack     at EventEmitter.emit (events.js:110:17)
+15 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+15 verbose stack     at ChildProcess.emit (events.js:110:17)
+15 verbose stack     at maybeClose (child_process.js:1015:16)
+15 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+16 verbose pkgid meteor-os-gui-designer@0.0.0
+17 verbose cwd /Users/joshua/dev/meteor_os/gui-designer
+18 error Darwin 15.5.0
+19 error argv "node" "/usr/local/bin/npm" "run" "watchMeteorOS"
+20 error node v0.12.2
+21 error npm  v3.9.0
+22 error code ELIFECYCLE
+23 error meteor-os-gui-designer@0.0.0 watchMeteorOS: `cd node_modules/meteor-os && npm run clean && npm run watch`
+23 error Exit status 1
+24 error Failed at the meteor-os-gui-designer@0.0.0 watchMeteorOS script 'cd node_modules/meteor-os && npm run clean && npm run watch'.
+24 error Make sure you have the latest version of node.js and npm installed.
+24 error If you do, this is most likely a problem with the meteor-os-gui-designer package,
+24 error not with npm itself.
+24 error Tell the author that this fails on your system:
+24 error     cd node_modules/meteor-os && npm run clean && npm run watch
+24 error You can get information on how to open an issue for this project with:
+24 error     npm bugs meteor-os-gui-designer
+24 error Or if that isn't available, you can get their info via:
+24 error     npm owner ls meteor-os-gui-designer
+24 error There is likely additional logging output above.
+25 verbose exit [ 1, true ]

@@ -54,20 +54,12 @@ var WindowContentLayoutLeaf = function (_React$Component) {
             var props = this.props;
 
 
-            var tabs = _.filter(props.tabs, function (tab) {
-                return tab._id === props._id;
-            });
             var leaf_classes = (0, _classnames2.default)(stylesheet.leaf, _themes2.default.Default.secondary_colors);
 
-            var content = {};
-            if (props.layout !== undefined) {
-                content.content = props.layout.content;
-                content.type = props.layout.type;
-            } else {
-                content.content = props.content;
-                content.type = props.type;
-            }
-            console.log(content);
+            var content = {
+                content: props.content,
+                content_type: props.content_type
+            };
 
             return this.props.connectDropTarget(_react2.default.createElement(
                 'div',

@@ -67,12 +67,25 @@ class WindowContentLayout extends React.Component {
 
     render() {
         const {props} = this;
-
+        
         const panes = props.panes || (props.layout && props.layout.panes);
         const path = props.path || (props.layout && 'layout');
 
         if (panes === undefined) { // Then we are a leaf!
-            return ( <WindowContentLayoutLeaf {...props}/> );
+            const content = props.content || (props.layout && props.layout.content);
+            const content_type = props.content_type || (props.layout.content_type);
+            const leaf_type = props.leaf_type || (props.layout.leaf_type);
+            return (
+                <WindowContentLayoutLeaf
+                    path={path}
+                    content={content}
+                    content_type={content_type}
+                    leaf_type={leaf_type}
+                    splitH={props.splitH}
+                    splitV={props.splitV}
+                    moveDivider={props.moveDivider}
+                />
+            );
         } else {
             const {orientation, percentage} = panes;
             return (

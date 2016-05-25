@@ -1,4 +1,4 @@
-._________client_modules_canvas_components_canvas_jsx-stylesheet-default {
+._______________client_modules_canvas_components_canvas_jsx-stylesheet-default {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -6,7 +6,7 @@
   bottom: 300px;
   background-color: #DDDDDD;
 }
-._________client_modules_code_components_code_jsx-stylesheet-default {
+._______________client_modules_code_components_code_jsx-stylesheet-default {
   position: absolute;
   top: calc(100% - 300px);
   bottom: -2px;
@@ -18,21 +18,21 @@
   border-style: solid;
   z-index: 999999;
 }
-._________client_modules_code_components_code_jsx-stylesheet-textarea {
+._______________client_modules_code_components_code_jsx-stylesheet-textarea {
   position: absolute;
   height: calc(100% - 12px);
   width: calc(100% - 12px);
   padding: 5px;
   font-size: large;
 }
-._________client_modules_code_components_code_jsx-stylesheet-copy_to_clipboard {
+._______________client_modules_code_components_code_jsx-stylesheet-copy_to_clipboard {
   position: absolute;
   top: auto;
   left: auto;
   bottom: 10px;
   right: 20px;
 }
-._________client_modules_toolbar_components_edit_value_jsx-stylesheet-default {
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-default {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,29 +44,29 @@
   width: 100%;
   height: 100%;
 }
-._________client_modules_toolbar_components_edit_value_jsx-stylesheet-input {
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-input {
   -webkit-box-flex: 6;
       -ms-flex-positive: 6;
           flex-grow: 6;
   font-size: large;
 }
-._________client_modules_toolbar_components_edit_value_jsx-stylesheet-button {
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-button {
   font-size: large;
   cursor: pointer;
 }
-._________client_modules_toolbar_components_edit_value_jsx-stylesheet-button:disabled {
+._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-button:disabled {
   cursor: default;
 }
-._________client_modules_toolbar_components_part_label_jsx-stylesheet-noneditable {
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-noneditable {
   color: black;
 }
-._________client_modules_toolbar_components_part_label_jsx-stylesheet-editable {
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable {
   cursor: pointer;
 }
-._________client_modules_toolbar_components_part_label_jsx-stylesheet-editable:hover {
+._______________client_modules_toolbar_components_part_label_jsx-stylesheet-editable:hover {
   background-color: rgba(0, 0, 0, 0.15);
 }
-._________client_modules_toolbar_components_partlist_jsx-stylesheet-default {
+._______________client_modules_toolbar_components_partlist_jsx-stylesheet-default {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -78,7 +78,7 @@
   text-align: left;
   overflow-y: scroll;
 }
-._________client_modules_toolbar_components_toolbar_jsx-stylesheet-default {
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-default {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -102,16 +102,16 @@
   border-style: solid;
   z-index: 999999;
 }
-._________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_buttons {
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_buttons {
   position: relative;
   width: 100%;
   margin-top: 10px;
   text-align: center;
 }
-._________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_button {
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_button {
   width: 80%;
 }
-._________client_configs_global-css_js-stylesheet-button {
+._______________client_configs_global-css_js-stylesheet-button {
   padding: 10px;
   border-width: 1px;
   border-style: solid;
@@ -122,17 +122,17 @@
   font-size: large;
   color: black;
 }
-._________client_configs_global-css_js-stylesheet-button_success {
+._______________client_configs_global-css_js-stylesheet-button_success {
   background-color: #5CB85C;
   color: #EEEEEE;
 }
-._________client_configs_global-css_js-stylesheet-button_success:hover {
+._______________client_configs_global-css_js-stylesheet-button_success:hover {
   background-color: #4CA84C;
 }
-._________client_configs_global-css_js-stylesheet-button_info {
+._______________client_configs_global-css_js-stylesheet-button_info {
   background-color: #428BCA;
   color: #EEEEEE;
 }
-._________client_configs_global-css_js-stylesheet-button_info:hover {
+._______________client_configs_global-css_js-stylesheet-button_info:hover {
   background-color: #327BBA;
 }

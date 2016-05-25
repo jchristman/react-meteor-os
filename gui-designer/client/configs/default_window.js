@@ -18,7 +18,8 @@ export default () => ( {
     ],
     layout: {
         _id: Random.id(),
-        type: Constants.Types.Text,
-        content: baconipsum(100)
+        content: baconipsum(100),
+        content_type: Constants.ContentTypes.Text,
+        leaf_type: Constants.LeafTypes.Plain
     }
 } );

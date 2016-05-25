@@ -24,35 +24,64 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _underscore = require('underscore');
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
 var _window_content_layout_leaf = require('../components/window_content_layout_leaf.js');
 
 var _window_content_layout_leaf2 = _interopRequireDefault(_window_content_layout_leaf);
 
 var _drag_types = require('../configs/drag_types.js');
 
+var _constants = require('../../../configs/constants');
+
+var Constants = _interopRequireWildcard(_constants);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var items = [{
-    label: _react2.default.createElement(
-        'span',
-        null,
-        _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-v' }),
-        '  Split Vertical'
-    ),
-    onClick: function onClick(event, props, index) {
-        return props.splitV(props.path);
-    }
-}, {
-    label: _react2.default.createElement(
-        'span',
-        null,
-        _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-h' }),
-        '  Split Horizontal'
-    ),
-    onClick: function onClick(event, props, index) {
-        return props.splitH(props.path);
-    }
-}];
+var items = function items(props) {
+    var types = Object.keys(_underscore2.default.omit(Constants.LeafTypes, function (val) {
+        return val === props.leaf_type;
+    }));
+    return [{
+        label: _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-v' }),
+            '  Split Vertical'
+        ),
+        onClick: function onClick(event, props) {
+            return props.splitV(props.path);
+        }
+    }, {
+        label: _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-h' }),
+            '  Split Horizontal'
+        ),
+        onClick: function onClick(event, props) {
+            return props.splitH(props.path);
+        }
+    }, '-', {
+        label: _react2.default.createElement(
+            'span',
+            null,
+            'Change Type'
+        ),
+        items: types.map(function (type) {
+            return {
+                label: type,
+                onClick: function onClick(event, props) {
+                    return alert(type);
+                }
+            };
+        })
+    }];
+};
 
 var type = function type() {
     return _drag_types.dividerType;

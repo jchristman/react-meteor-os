@@ -16,10 +16,6 @@ var _reactModal = require('react-modal');
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
-var _window_layout_leaf_type = require('./window_layout_leaf_type.js');
-
-var _window_layout_leaf_type2 = _interopRequireDefault(_window_layout_leaf_type);
-
 var _window_content_plain = require('./window_content_plain.js');
 
 var _window_content_plain2 = _interopRequireDefault(_window_content_plain);

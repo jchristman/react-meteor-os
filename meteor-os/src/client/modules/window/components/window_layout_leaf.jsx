@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import Modal from 'react-modal';
 
-import WindowLayoutLeafType from './window_layout_leaf_type.jsx';
 import WindowContentPlain from './window_content_plain.jsx';
 import WindowContentTabbed from './window_content_tabbed.jsx';
 

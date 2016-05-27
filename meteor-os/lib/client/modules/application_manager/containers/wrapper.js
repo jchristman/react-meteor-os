@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _reactKomposer = require('react-komposer');
+var _mantraCore = require('mantra-core');
 
 var _application_manager = require('../components/application_manager.js');
 
@@ -21,4 +21,4 @@ var composer = function composer(props, onData) {
     onData(null, {});
 };
 
-exports.default = (0, _reactKomposer.composeWithTracker)(composer)(_application_manager2.default);
+exports.default = (0, _mantraCore.composeWithTracker)(composer)(_application_manager2.default);

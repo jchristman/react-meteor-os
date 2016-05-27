@@ -13,7 +13,7 @@ const set_node = (path, obj, val) => {
     get_node(path.slice(0,-1), obj)[path.slice(-1)] = val;
 };
 
-const updateWindowPosition = (context, path, top, left, width, height) => {
+const changePosition = (context, path, top, left, width, height) => {
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
@@ -23,7 +23,7 @@ const updateWindowPosition = (context, path, top, left, width, height) => {
     LocalState.set(stateVar, current);
 }
 
-const updateWindowGrabFocus = (context, layerIndex, windowIndex) => {
+const grabFocus = (context, layerIndex, windowIndex) => {
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
@@ -39,16 +39,13 @@ const updateWindowGrabFocus = (context, layerIndex, windowIndex) => {
     LocalState.set(stateVar, current);
 }
 
-const updateWindowSplitPaneVertical = (context, layerIndex, windowIndex, path) => updateWindowSplitPane(context, layerIndex, windowIndex, path, 'vertical');
-const updateWindowSplitPaneHorizontal = (context, layerIndex, windowIndex, path) => updateWindowSplitPane(context, layerIndex, windowIndex, path, 'horizontal');
+const splitPaneVertical = (context, path) => splitPane(context, path, 'vertical');
+const splitPaneHorizontal = (context, path) => splitPane(context, path, 'horizontal');
 
-const updateWindowSplitPane = (context, layerIndex, windowIndex, path, orientation) => {
+const splitPane = (context, path, orientation) => {
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
-
-    if (path === undefined) path = 'layout';
-    path = layerIndex + '.windows.' + windowIndex + '.' + path;
 
     let layoutNode = get_node(path, current);
     let _content = layoutNode.content;
@@ -77,13 +74,10 @@ const updateWindowSplitPane = (context, layerIndex, windowIndex, path, orientati
     LocalState.set(stateVar, current);
 }
 
-const updateWindowMoveDivider = (context, layerIndex, windowIndex, path, percentage) => {
+const movePaneDivider = (context, path, percentage) => {
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
-
-    if (path === undefined) path = 'layout';
-    path = layerIndex + '.windows.' + windowIndex + '.' + path;
 
     let layoutNode = get_node(path, current);
     layoutNode.panes.percentage = percentage;
@@ -91,10 +85,22 @@ const updateWindowMoveDivider = (context, layerIndex, windowIndex, path, percent
     LocalState.set(stateVar, current);
 }
 
+const changeLeafType = (context, path, type) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    let layoutNode = get_node(path, current);
+    layoutNode.leaf_type = type;
+
+    LocalState.set(stateVar, current);
+}
+
 export default { 
-    updateWindowPosition,
-    updateWindowGrabFocus,
-    updateWindowSplitPaneVertical,
-    updateWindowSplitPaneHorizontal,
-    updateWindowMoveDivider
+    changePosition,
+    grabFocus,
+    splitPaneVertical,
+    splitPaneHorizontal,
+    movePaneDivider,
+    changeLeafType
 };

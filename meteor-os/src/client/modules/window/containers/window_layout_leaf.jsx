@@ -5,7 +5,7 @@ import {DropTarget} from 'react-dnd';
 import ReactDOM from 'react-dom';
 import _ from 'underscore';
 
-import WindowContentLayoutLeaf from '../components/window_content_layout_leaf.jsx';
+import WindowLayoutLeaf from '../components/window_layout_leaf.jsx';
 
 import {dividerType} from '../configs/drag_types.js';
 import * as Constants from '../../../configs/constants';
@@ -15,11 +15,11 @@ const items = (props) => {
     return [
         {
             label: ( <span><FontAwesome name='arrows-v'/>&nbsp;&nbsp;Split Vertical</span> ),
-            onClick: (event, props) => props.splitV(props.path)
+            onClick: () => props.actions.splitPaneVertical(props.path)
         },
         {
             label: ( <span><FontAwesome name='arrows-h'/>&nbsp;&nbsp;Split Horizontal</span> ),
-            onClick: (event, props) => props.splitH(props.path)
+            onClick: () => props.actions.splitPaneHorizontal(props.path)
         },
         '-',
         {
@@ -27,7 +27,7 @@ const items = (props) => {
             items: types.map((type) => {
                 return {
                     label: type,
-                    onClick: (event, props) => alert(type)
+                    onClick: () => props.actions.changeLeafType(props.path, Constants.LeafTypes[type])
                 };
             })
         }
@@ -50,7 +50,7 @@ const spec = {
                 (pointer.x - parent.left) / (parent.right - parent.left) * 100 :
                 (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
 
-            props.moveDivider(path, percentage);
+            props.actions.movePaneDivider(path, percentage);
         }
     }
 }
@@ -66,4 +66,4 @@ const collect = (connect, monitor) => {
 export default composeAll(
     ContextMenu(items),
     DropTarget(type, spec, collect)
-)(WindowContentLayoutLeaf);
+)(WindowLayoutLeaf);

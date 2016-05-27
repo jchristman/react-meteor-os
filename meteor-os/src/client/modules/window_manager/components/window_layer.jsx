@@ -23,7 +23,7 @@ class WindowLayer extends React.Component {
                 className={stylesheet.default}
                 style={
                     { 
-                        zIndex: this.props.index*WindowLayerDepth+1,
+                        zIndex: this.props.index,
                         pointerEvents: this.props.layerHidden ? 'none': ''
                     }
                 } 
@@ -32,17 +32,14 @@ class WindowLayer extends React.Component {
                     this.props.windows.map((_window, index) => (
                         <Window
                             key={_window._id}
-                            index={index}
-                            LocalState={this.props.LocalState}
                             parent_id={this.props._id}
-                            hideLayer={this.hideLayer.bind(this)}
-                            unhideLayer={this.unhideLayer.bind(this)}
+                            index={index}
+                            hideLayer={this.props.hideLayer}
+                            unhideLayer={this.props.unhideLayer}
                             grabFocus={this.grabFocus.bind(this)}
-                            splitV={this.splitV.bind(this)}
-                            splitH={this.splitH.bind(this)}
-                            moveDivider={this.moveDivider.bind(this)}
                             actions={this.props.actions}
-                            zIndex={this.props.index*WindowLayerDepth+index+2} {..._window}
+                            path={this.props.index + '.windows.' + index}
+                            {..._window}
                         />
                     ))
                 }
@@ -50,29 +47,8 @@ class WindowLayer extends React.Component {
         )
     }
 
-    // These functions need to exist to click and drag windows that are "lower" layer 
-    hideLayer() {
-        this.props.LocalState.set(layerHiddenStateVar(this.props._id), true);
-    }
-
-    unhideLayer() {
-        this.props.LocalState.set(layerHiddenStateVar(this.props._id), false);
-    }
-
-    grabFocus(index) {
-        this.props.actions.updateWindowGrabFocus(this.props.index, index);
-    }
-
-    splitV(index, path) {
-        this.props.actions.updateWindowSplitPaneVertical(this.props.index, index, path);
-    }
-    
-    splitH(index, path) {
-        this.props.actions.updateWindowSplitPaneHorizontal(this.props.index, index, path);
-    }
-
-    moveDivider(index, path, percentage) {
-        this.props.actions.updateWindowMoveDivider(this.props.index, index, path, percentage);
+    grabFocus(window_index) {
+        this.props.actions.updateWindowGrabFocus(this.props.index, window_index);
     }
 }
 

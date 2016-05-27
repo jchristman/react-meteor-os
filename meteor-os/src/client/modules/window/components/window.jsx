@@ -6,7 +6,8 @@ import cx from 'classnames';
 // ----- Component Imports ----- //
 import WindowTitleBar from './window_tb.jsx';
 import WindowResizer from './window_resizer.jsx';
-import WindowContent from './window_content.jsx';
+import WindowLayout from './window_layout.jsx';
+import WindowLayoutLeaf from '../containers/window_layout_leaf.jsx';
 
 // ----- Library Imports ----- //
 import windowHandles from '../lib/window_handles.js';
@@ -21,6 +22,17 @@ const stylesheet = cssInJS({
         borderStyle:    'solid',
         borderRadius:   6,
         boxShadow:      '0px 0px 6px 1px #555555'
+    },
+
+    layout: {
+        position: 'absolute',
+        top: 25,
+        right: 2,
+        left: 2,
+        bottom: 3,
+        
+        borderWidth: 1,
+        borderStyle: 'inset',
     }
 });
 
@@ -64,11 +76,12 @@ class Window extends React.Component {
             }
         }
 
-        const classes = cx(stylesheet.default, Themes.Default.primary_colors, this.props.classes);
+        const window_classes = cx(stylesheet.default, Themes.Default.primary_colors, this.props.classes);
+        const layout_classes = cx(stylesheet.layout, Themes.Default.primary_colors);
         
         return (
             <div 
-                className={classes}
+                className={window_classes}
                 style={style(this.props)}
                 onMouseOver={this.props.unhideLayer}
                 onMouseOut={this.props.hideLayer}
@@ -76,25 +89,26 @@ class Window extends React.Component {
                 >
 
                 <WindowTitleBar
-                    {...this.props}
+                    actions={this.props.actions}
                     connectDragSource={this.props.titlebarconnectDragSource}
-                    minimizeWindow={this.minimizeWindow.bind(this)}
-                    maximizeWindow={this.maximizeWindow.bind(this)}
-                    restoreWindow={this.restoreWindow.bind(this)}
-                    closeWindow={this.closeWindow.bind(this)}
+                    title={this.props.title}
+                    focused={this.props.focused}
+                    path={this.props.path}
                 />
 
-                <WindowContent
-                    LocalState={this.props.LocalState}
-                    grabFocus={this.grabFocus.bind(this)}
-                    window_id={this.props._id}
-                    layer_id={this.props.parent_id}
-                    splitV={this.splitV.bind(this)}
-                    splitH={this.splitH.bind(this)}
-                    moveDivider={this.moveDivider.bind(this)}
-                    tabs={this.props.tabs}
-                    layout={this.props.layout}
-                />
+                <div className={layout_classes}>
+                    { this.props.layout.panes === undefined ?
+                        <WindowLayoutLeaf
+                            actions={this.props.actions}
+                            {...this.props.layout}
+                            path={this.props.path + '.layout'}/>
+                        :
+                        <WindowLayout
+                            actions={this.props.actions}
+                            {...this.props.layout}
+                            path={this.props.path + '.layout'}/>
+                    }
+                </div>
 
                 {   
                     this.props.isPreview !== true ? 
@@ -114,18 +128,6 @@ class Window extends React.Component {
     grabFocus() {
         if (!this.props.focused)
             this.props.grabFocus(this.props.index);
-    }
-
-    splitV(path) {
-        this.props.splitV(this.props.index, path);
-    }
-
-    splitH(path) {
-        this.props.splitH(this.props.index, path);
-    }
-
-    moveDivider(path, percentage) {
-        this.props.moveDivider(this.props.index, path, percentage);
     }
 
     minimizeWindow(event) {

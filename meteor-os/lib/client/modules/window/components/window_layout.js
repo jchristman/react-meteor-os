@@ -20,13 +20,13 @@ var _reactDnd = require('react-dnd');
 
 var _reactDndHtml5Backend = require('react-dnd-html5-backend');
 
-var _window_content_layout_divider = require('./window_content_layout_divider.js');
+var _window_layout_divider = require('./window_layout_divider.js');
 
-var _window_content_layout_divider2 = _interopRequireDefault(_window_content_layout_divider);
+var _window_layout_divider2 = _interopRequireDefault(_window_layout_divider);
 
-var _window_content_layout_leaf = require('../containers/window_content_layout_leaf.js');
+var _window_layout_leaf = require('../containers/window_layout_leaf.js');
 
-var _window_content_layout_leaf2 = _interopRequireDefault(_window_content_layout_leaf);
+var _window_layout_leaf2 = _interopRequireDefault(_window_layout_leaf);
 
 var _drag_types = require('../configs/drag_types.js');
 
@@ -39,7 +39,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var stylesheet = {
-    default: 'src_client_modules_window_components_window_content_layout_jsx-stylesheet-default'
+    default: 'src_client_modules_window_components_window_layout_jsx-stylesheet-default'
 };
 
 var get_pane1_style = function get_pane1_style(orientation, percentage) {
@@ -86,83 +86,69 @@ var get_pane2_style = function get_pane2_style(orientation, percentage) {
     }
 };
 
-var WindowContentLayout = function (_React$Component) {
-    _inherits(WindowContentLayout, _React$Component);
+var WindowLayout = function (_React$Component) {
+    _inherits(WindowLayout, _React$Component);
 
-    function WindowContentLayout() {
-        _classCallCheck(this, WindowContentLayout);
+    function WindowLayout() {
+        _classCallCheck(this, WindowLayout);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowContentLayout).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowLayout).apply(this, arguments));
     }
 
-    _createClass(WindowContentLayout, [{
+    _createClass(WindowLayout, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.props.connectDragPreview && this.props.connectDragPreview((0, _reactDndHtml5Backend.getEmptyImage)(), {});
         }
     }, {
+        key: 'renderLeafOrLayout',
+        value: function renderLeafOrLayout(pane, actions, path) {
+            if (pane.panes === undefined) {
+                return _react2.default.createElement(_window_layout_leaf2.default, _extends({
+                    actions: actions
+                }, pane, {
+                    path: path }));
+            } else {
+                return _react2.default.createElement(WindowLayoutWrapper, _extends({
+                    actions: actions
+                }, pane, {
+                    path: path }));
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             var props = this.props;
+            var panes = props.panes;
+            var actions = props.actions;
+            var path = props.path;
+            var orientation = panes.orientation;
+            var percentage = panes.percentage;
 
 
-            var panes = props.panes || props.layout && props.layout.panes;
-            var path = props.path || props.layout && 'layout';
-
-            if (panes === undefined) {
-                // Then we are a leaf!
-                var content = props.content || props.layout && props.layout.content;
-                var content_type = props.content_type || props.layout.content_type;
-                var leaf_type = props.leaf_type || props.layout.leaf_type;
-                return _react2.default.createElement(_window_content_layout_leaf2.default, {
-                    path: path,
-                    content: content,
-                    content_type: content_type,
-                    leaf_type: leaf_type,
-                    splitH: props.splitH,
-                    splitV: props.splitV,
-                    moveDivider: props.moveDivider
-                });
-            } else {
-                var orientation = panes.orientation;
-                var percentage = panes.percentage;
-
-                return _react2.default.createElement(
+            return _react2.default.createElement(
+                'div',
+                { className: stylesheet.default },
+                _react2.default.createElement(
                     'div',
-                    { className: stylesheet.default },
-                    _react2.default.createElement(
-                        'div',
-                        {
-                            style: get_pane1_style(orientation, percentage) },
-                        _react2.default.createElement(WindowContentLayoutWrapper, _extends({}, panes.pane1, {
-                            splitV: props.splitV,
-                            splitH: props.splitH,
-                            moveDivider: props.moveDivider,
-                            path: path + '.panes.pane1',
-                            LocalState: props.LocalState }))
-                    ),
-                    _react2.default.createElement(_window_content_layout_divider2.default, {
-                        orientation: orientation,
-                        percentage: percentage,
-                        connectDragSource: this.props.connectDragSource,
-                        path: path }),
-                    _react2.default.createElement(
-                        'div',
-                        {
-                            style: get_pane2_style(orientation, percentage) },
-                        _react2.default.createElement(WindowContentLayoutWrapper, _extends({}, panes.pane2, {
-                            splitV: props.splitV,
-                            splitH: props.splitH,
-                            moveDivider: props.moveDivider,
-                            path: path + '.panes.pane2',
-                            LocalState: props.LocalState }))
-                    )
-                );
-            }
+                    { style: get_pane1_style(orientation, percentage) },
+                    this.renderLeafOrLayout(panes.pane1, actions, path + '.panes.pane1')
+                ),
+                _react2.default.createElement(_window_layout_divider2.default, {
+                    orientation: orientation,
+                    percentage: percentage,
+                    connectDragSource: props.connectDragSource,
+                    path: props.path }),
+                _react2.default.createElement(
+                    'div',
+                    { style: get_pane2_style(orientation, percentage) },
+                    this.renderLeafOrLayout(panes.pane2, actions, path + '.panes.pane2')
+                )
+            );
         }
     }]);
 
-    return WindowContentLayout;
+    return WindowLayout;
 }(_react2.default.Component);
 
 var type = function type() {
@@ -183,5 +169,5 @@ var collect = function collect(connect, monitor) {
     };
 };
 
-var WindowContentLayoutWrapper = (0, _reactDnd.DragSource)(type, spec, collect)(WindowContentLayout);
-exports.default = WindowContentLayoutWrapper;
+var WindowLayoutWrapper = (0, _reactDnd.DragSource)(type, spec, collect)(WindowLayout);
+exports.default = WindowLayoutWrapper;

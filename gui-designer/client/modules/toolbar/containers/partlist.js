@@ -1,11 +1,14 @@
-import {composeWithTracker} from 'react-komposer';
+import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import Partlist from '../components/partlist.jsx';
 
-const composer = (props, onData) => {
-    const {LocalState, CurrentApp} = props;
+const composer = ({context}, onData) => {
+    const {LocalState, CurrentApp} = context();
 
     onData(null, { app: LocalState.get(CurrentApp) });
 }
 
-export default composeWithTracker(composer)(Partlist);
+export default composeAll(
+    composeWithTracker(composer),
+    useDeps()
+)(Partlist);

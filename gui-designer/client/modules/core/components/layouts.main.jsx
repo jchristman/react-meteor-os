@@ -2,24 +2,17 @@ import React from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import Canvas from '../../canvas/components/canvas.jsx';
+import Canvas from '../../canvas/containers/canvas.js';
 import Code from '../../code/containers/code.js';
-import Toolbar from '../../toolbar/components/toolbar.jsx';
-
-import DefaultApp from '../../../configs/default_app.js';
+import Toolbar from '../../toolbar/containers/toolbar.js';
 
 class Layout extends React.Component {
     render() {
-        const {LocalState, CurrentApp, LastGoodCode} = this.props.context;
-        
-        LocalState.setDefault(CurrentApp, DefaultApp);
-        LocalState.setDefault(LastGoodCode, DefaultApp);
-
         return (
             <div className="main">
-                <Canvas {...this.props.context}/>
-                <Code {...this.props.context}/>
-                <Toolbar {...this.props.context}/>
+                <Canvas/>
+                <Code/>
+                <Toolbar/>
             </div>
         );
     };

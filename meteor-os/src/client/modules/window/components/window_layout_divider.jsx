@@ -30,7 +30,7 @@ const get_divider_position = (props) => {
     }
 }
 
-const WindowContentLayoutDivider = (props) => {
+const WindowLayoutDivider = (props) => {
     return props.connectDragSource(
         <div
             className={stylesheet.default}
@@ -40,4 +40,4 @@ const WindowContentLayoutDivider = (props) => {
     );
 }
 
-export default WindowContentLayoutDivider;
+export default WindowLayoutDivider;

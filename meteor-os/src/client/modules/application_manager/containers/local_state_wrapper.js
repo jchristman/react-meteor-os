@@ -1,12 +1,11 @@
-import {composeWithTracker, composeAll} from 'react-komposer';
-import {useDeps} from 'mantra-core';
-
+import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import ApplicationManager from './wrapper.js';
-
 import local_state_var from '../configs/local_state_var.js';
 
-const composer = (props, onData) => {
-    const {LocalState, stateVar} = props;
+const composer = ({context, stateVar}, onData) => {
+    const {LocalState} = context();
+
+    // This is here so that the local state actions know which LocalState var to modify
     LocalState.setDefault(local_state_var, stateVar);
 
     const ApplicationManager = {
@@ -16,8 +15,10 @@ const composer = (props, onData) => {
     onData(null, { ApplicationManager });
 }
 
-const depsMapper = (props, actions) => ({
-    actions: actions.localStateActions
+// Here we inject the application context and local state actions as dependencies into this container
+const depsMapper = (context, actions) => ({
+    actions: actions.localStateActions,
+    context: () => context
 });
 
 export default composeAll(

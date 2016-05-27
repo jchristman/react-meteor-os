@@ -71,26 +71,21 @@ const copyModalStyle = {
 
 class Code extends React.Component {
     copyToClipboard(e) {
-        const {LocalState, CopyModal} = this.props;
+        const {LocalState, copyModalOpen} = this.props;
 
         const textarea = this.refs._gui_designer_textarea;
         const selection = textarea.selectionEnd;
         textarea.select();
         try {
             document.execCommand('copy');
-            LocalState.set(CopyModal, true);
+            copyModalOpen();
         } catch (err) {
             alert('Failed! Use keyboard to copy/paste');
         }   
     }
 
-    closeCopyModal() {
-        const {LocalState, CopyModal} = this.props;
-        LocalState.set(CopyModal, false);
-    }
-
     afterCopyModalOpen() {
-        setTimeout(() => this.closeCopyModal(), 1500);
+        setTimeout(() => this.props.copyModalClose(), 1500);
     }
 
     render() {
@@ -110,9 +105,9 @@ class Code extends React.Component {
                         Copy to Clipboard&nbsp;&nbsp;<FontAwesome name='clipboard'/>
                 </button>
                 <Modal
-                    isOpen={this.props.copyModalIsOpen}
+                    isOpen={this.props.is_copy_modal_open}
                     onAfterOpen={this.afterCopyModalOpen.bind(this)}
-                    onRequestClose={this.closeCopyModal.bind(this)}
+                    onRequestClose={this.props.copyModalClose}
                     style={copyModalStyle}>
                         <FontAwesome name='check-circle-o'/>
                 </Modal>

@@ -37,7 +37,7 @@ const stylesheet = cssInJS({
 
 class EditValue extends React.Component {
     inputChanged(event) {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
 
         let value = event.target.value;
@@ -48,7 +48,7 @@ class EditValue extends React.Component {
     }
 
     shiftLeft() {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
 
         let parentArray = get_node(this.props.path.split('.').slice(0,-1), current);
@@ -60,7 +60,7 @@ class EditValue extends React.Component {
     }
 
     shiftRight() {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
 
         let parentArray = get_node(this.props.path.split('.').slice(0,-1), current);
@@ -72,7 +72,7 @@ class EditValue extends React.Component {
     }
 
     addTab() {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
 
         let tabsArray = get_node(this.props.path, current);
@@ -80,43 +80,8 @@ class EditValue extends React.Component {
         LocalState.set(CurrentApp, current);
     }
 
-    splitV() {
-        this.split('vertical');
-    }
-
-    splitH() {
-        this.split('horizontal');
-    }
-
-    split(orientation) {
-        const {LocalState, CurrentApp} = this.props;
-        const current = LocalState.get(CurrentApp);
-
-        let layoutNode = get_node(this.props.path, current);
-        let _content = layoutNode.content;
-        let _type = layoutNode.type;
-        delete layoutNode.content;
-        delete layoutNode.type;
-
-        layoutNode.panes = {
-            orientation,
-            percentage: 50,
-            pane1: {
-                _id: Random.id(),
-                content: _content,
-                type: _type
-            },
-            pane2: {
-                _id: Random.id(),
-                content: baconipsum(100),
-                type: Constants.Types.Text
-            }
-        }
-        LocalState.set(CurrentApp, current);
-    }
-
     render() {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
 
         let type = null;
@@ -129,16 +94,8 @@ class EditValue extends React.Component {
         let isLast = parentIsArray && this.props.node === parentArray.length - 1;
 
         let addTabButton = false;
-        let layoutSplitButton = false;
-        let layoutSplitButtonDisabled = false;
         if (typeof this.props.value === 'object') {
             if (this.props.node === 'tabs') addTabButton = true;
-            if (this.props.node === 'layout' || this.props.node === 'pane1' || this.props.node === 'pane2') {
-                let layoutNode = get_node(this.props.path, current);
-                layoutSplitButton = true;
-                if (layoutNode.panes !== undefined)
-                    layoutSplitButtonDisabled = true;
-            }
         }
 
         return (
@@ -169,20 +126,6 @@ class EditValue extends React.Component {
                         className={stylesheet.button}
                         onClick={this.addTab.bind(this)}>
                             Create New Tab <FontAwesome name='plus'/>
-                    </button> : null }
-                { layoutSplitButton ?
-                    <button
-                        className={stylesheet.button}
-                        disabled={layoutSplitButtonDisabled}
-                        onClick={this.splitV.bind(this)}>
-                            Split Vertical <FontAwesome name='arrows-v'/>
-                    </button> : null }
-                { layoutSplitButton ?
-                    <button
-                        className={stylesheet.button}
-                        disabled={layoutSplitButtonDisabled}
-                        onClick={this.splitH.bind(this)}>
-                            Split Horizontal <FontAwesome name='arrows-h'/>
                     </button> : null }
             </div>
         );

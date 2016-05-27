@@ -4,13 +4,12 @@ import Application from './application.jsx';
 const ApplicationManager = (props) => (
     <div>
         {
-            props.ApplicationManager.applications.map((_application, index) => (
+            props.ApplicationManager.applications.map((application, index) => (
                 <Application 
-                    key={_application._id}
+                    key={application._id}
                     index={index}
-                    actions={props.actions}
-                    {...{ LocalState: props.LocalState }}
-                    {..._application}
+                    actions={props.actions}     // We are passing actions based on what type of wrapper is used. Dont use context.
+                    {...application}
                 />
             ))
         }

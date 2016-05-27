@@ -46,9 +46,13 @@ var renderTitleBar = function renderTitleBar(props) {
     return _react2.default.createElement(
         'div',
         { className: classes },
-        _react2.default.createElement(_window_tb_icon2.default, props),
-        _react2.default.createElement(_window_tb_title2.default, { title: props.title, focused: props.focused }),
-        _react2.default.createElement(_window_tb_buttons2.default, props)
+        _react2.default.createElement(_window_tb_icon2.default, null),
+        _react2.default.createElement(_window_tb_title2.default, {
+            title: props.title,
+            focused: props.focused }),
+        _react2.default.createElement(_window_tb_buttons2.default, {
+            actions: props.actions,
+            focused: props.focused })
     );
 };
 

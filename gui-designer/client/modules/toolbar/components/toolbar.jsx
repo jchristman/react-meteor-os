@@ -60,7 +60,7 @@ class Toolbar extends React.Component {
     }
 
     addWindow() {
-        const {LocalState, CurrentApp} = this.props;
+        const {LocalState, CurrentApp} = this.props.context();
         const _app = LocalState.get(CurrentApp);
         if (_app.windows === undefined) _app.windows = [];
 

@@ -21,9 +21,10 @@ var stylesheet = {
     default: 'src_client_modules_window_components_window_tb_buttons_jsx-stylesheet-default'
 };
 
+// TODO: Fix these buttons
+
+
 // ----- Component Imports ----- //
-
-
 var getButtons = function getButtons(props) {
     return [{
         name: 'Close',

@@ -1,4 +1,4 @@
-import {composeWithTracker} from 'react-komposer';
+import {composeWithTracker} from 'mantra-core';
 
 import ApplicationManager from '../components/application_manager.jsx';
 

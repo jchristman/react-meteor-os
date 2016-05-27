@@ -18,6 +18,9 @@ var _application_manager_sub2 = _interopRequireDefault(_application_manager_sub)
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// TODO: Make this an actual mantra container
+
+
 var composer = function composer(props, onData) {
     var Collections = props.Collections;
 

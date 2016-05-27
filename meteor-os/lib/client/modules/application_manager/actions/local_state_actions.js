@@ -32,7 +32,7 @@ var set_node = function set_node(path, obj, val) {
     get_node(path.slice(0, -1), obj)[path.slice(-1)] = val;
 };
 
-var updateWindowPosition = function updateWindowPosition(context, path, top, left, width, height) {
+var changePosition = function changePosition(context, path, top, left, width, height) {
     var LocalState = context.LocalState;
 
     var stateVar = LocalState.get(_local_state_var2.default);
@@ -43,7 +43,7 @@ var updateWindowPosition = function updateWindowPosition(context, path, top, lef
     LocalState.set(stateVar, current);
 };
 
-var updateWindowGrabFocus = function updateWindowGrabFocus(context, layerIndex, windowIndex) {
+var grabFocus = function grabFocus(context, layerIndex, windowIndex) {
     var LocalState = context.LocalState;
 
     var stateVar = LocalState.get(_local_state_var2.default);
@@ -60,21 +60,18 @@ var updateWindowGrabFocus = function updateWindowGrabFocus(context, layerIndex, 
     LocalState.set(stateVar, current);
 };
 
-var updateWindowSplitPaneVertical = function updateWindowSplitPaneVertical(context, layerIndex, windowIndex, path) {
-    return updateWindowSplitPane(context, layerIndex, windowIndex, path, 'vertical');
+var splitPaneVertical = function splitPaneVertical(context, path) {
+    return splitPane(context, path, 'vertical');
 };
-var updateWindowSplitPaneHorizontal = function updateWindowSplitPaneHorizontal(context, layerIndex, windowIndex, path) {
-    return updateWindowSplitPane(context, layerIndex, windowIndex, path, 'horizontal');
+var splitPaneHorizontal = function splitPaneHorizontal(context, path) {
+    return splitPane(context, path, 'horizontal');
 };
 
-var updateWindowSplitPane = function updateWindowSplitPane(context, layerIndex, windowIndex, path, orientation) {
+var splitPane = function splitPane(context, path, orientation) {
     var LocalState = context.LocalState;
 
     var stateVar = LocalState.get(_local_state_var2.default);
     var current = LocalState.get(stateVar);
-
-    if (path === undefined) path = 'layout';
-    path = layerIndex + '.windows.' + windowIndex + '.' + path;
 
     var layoutNode = get_node(path, current);
     var _content = layoutNode.content;
@@ -103,14 +100,11 @@ var updateWindowSplitPane = function updateWindowSplitPane(context, layerIndex, 
     LocalState.set(stateVar, current);
 };
 
-var updateWindowMoveDivider = function updateWindowMoveDivider(context, layerIndex, windowIndex, path, percentage) {
+var movePaneDivider = function movePaneDivider(context, path, percentage) {
     var LocalState = context.LocalState;
 
     var stateVar = LocalState.get(_local_state_var2.default);
     var current = LocalState.get(stateVar);
-
-    if (path === undefined) path = 'layout';
-    path = layerIndex + '.windows.' + windowIndex + '.' + path;
 
     var layoutNode = get_node(path, current);
     layoutNode.panes.percentage = percentage;
@@ -118,10 +112,23 @@ var updateWindowMoveDivider = function updateWindowMoveDivider(context, layerInd
     LocalState.set(stateVar, current);
 };
 
+var changeLeafType = function changeLeafType(context, path, type) {
+    var LocalState = context.LocalState;
+
+    var stateVar = LocalState.get(_local_state_var2.default);
+    var current = LocalState.get(stateVar);
+
+    var layoutNode = get_node(path, current);
+    layoutNode.leaf_type = type;
+
+    LocalState.set(stateVar, current);
+};
+
 exports.default = {
-    updateWindowPosition: updateWindowPosition,
-    updateWindowGrabFocus: updateWindowGrabFocus,
-    updateWindowSplitPaneVertical: updateWindowSplitPaneVertical,
-    updateWindowSplitPaneHorizontal: updateWindowSplitPaneHorizontal,
-    updateWindowMoveDivider: updateWindowMoveDivider
+    changePosition: changePosition,
+    grabFocus: grabFocus,
+    splitPaneVertical: splitPaneVertical,
+    splitPaneHorizontal: splitPaneHorizontal,
+    movePaneDivider: movePaneDivider,
+    changeLeafType: changeLeafType
 };

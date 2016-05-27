@@ -23,7 +23,7 @@ const stylesheet = cssInJS({
 
 const editValueModalStyle = (props) => { 
     const height = 40,
-          width = 'auto';
+        width = 'auto';
     return {
         overlay: {
             position: 'fixed',
@@ -41,8 +41,8 @@ const editValueModalStyle = (props) => {
             paddingBottom: 0,
             paddingLeft: 5,
             paddingRight: 5,
-            top: props.clickY - (height / 2),
-            right: window.innerWidth - props.clickX + 50,
+            top: props.click_y - (height / 2),
+            right: window.innerWidth - props.click_x + 50,
             left: 'auto',
             bottom: 'auto',
             height: height,
@@ -56,18 +56,12 @@ const editValueModalStyle = (props) => {
 
 class PartLabel extends React.Component {
     editValueModal(event) {
-        const {LocalState, EditValueModal, EditValueModalX, EditValueModalY} = this.props;
-        LocalState.set(EditValueModal, true);
-        LocalState.set(EditValueModalX, event.clientX);
-        LocalState.set(EditValueModalY, event.clientY);
+        const {click, editValueModalOpen} = this.props;
+        click(event.clientX, event.clientY);
+        editValueModalOpen();
 
         event.preventDefault();
         event.stopPropagation();
-    }
-
-    closeEditValueModal() {
-        const {LocalState, EditValueModal} = this.props;
-        LocalState.set(EditValueModal, false);
     }
 
     onAfterOpen() {
@@ -91,13 +85,13 @@ class PartLabel extends React.Component {
                 
                 { editable ?
                     <Modal
-                        isOpen={props.editValueModalIsOpen}
+                        isOpen={props.is_edit_value_modal_open}
                         onAfterOpen={this.onAfterOpen.bind(this)}
-                        onRequestClose={this.closeEditValueModal.bind(this)}
+                        onRequestClose={this.props.editValueModalClose}
                         style={editValueModalStyle(props)}>
                         <EditValue
                             ref='_gui_designer_edit_value'
-                            closeModal={this.closeEditValueModal.bind(this)}
+                            closeModal={this.props.editValueModalClose}
                             {...props}/>
                     </Modal> :
                     null }

@@ -8,9 +8,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _window_content_layout = require('./window_content_layout.js');
+var _window_layout = require('./window_layout.js');
 
-var _window_content_layout2 = _interopRequireDefault(_window_content_layout);
+var _window_layout2 = _interopRequireDefault(_window_layout);
 
 var _themes = require('../../../configs/themes');
 
@@ -55,7 +55,7 @@ var LayoutPreview = function LayoutPreview(props) {
         {
             style: style(props),
             className: _themes2.default.Default.primary_colors },
-        _react2.default.createElement(_window_content_layout2.default, new_props)
+        _react2.default.createElement(_window_layout2.default, new_props)
     );
 };
 

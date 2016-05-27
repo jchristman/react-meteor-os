@@ -59,59 +59,28 @@ var WindowLayer = function (_React$Component) {
                 {
                     className: stylesheet.default,
                     style: {
-                        zIndex: this.props.index * _window_layer.WindowLayerDepth + 1,
+                        zIndex: this.props.index,
                         pointerEvents: this.props.layerHidden ? 'none' : ''
                     }
                 },
                 this.props.windows.map(function (_window, index) {
                     return _react2.default.createElement(_window3.default, _extends({
                         key: _window._id,
-                        index: index,
-                        LocalState: _this2.props.LocalState,
                         parent_id: _this2.props._id,
-                        hideLayer: _this2.hideLayer.bind(_this2),
-                        unhideLayer: _this2.unhideLayer.bind(_this2),
+                        index: index,
+                        hideLayer: _this2.props.hideLayer,
+                        unhideLayer: _this2.props.unhideLayer,
                         grabFocus: _this2.grabFocus.bind(_this2),
-                        splitV: _this2.splitV.bind(_this2),
-                        splitH: _this2.splitH.bind(_this2),
-                        moveDivider: _this2.moveDivider.bind(_this2),
                         actions: _this2.props.actions,
-                        zIndex: _this2.props.index * _window_layer.WindowLayerDepth + index + 2 }, _window));
+                        path: _this2.props.index + '.windows.' + index
+                    }, _window));
                 })
             ));
         }
-
-        // These functions need to exist to click and drag windows that are "lower" layer
-
-    }, {
-        key: 'hideLayer',
-        value: function hideLayer() {
-            this.props.LocalState.set((0, _layer_hidden_state_var2.default)(this.props._id), true);
-        }
-    }, {
-        key: 'unhideLayer',
-        value: function unhideLayer() {
-            this.props.LocalState.set((0, _layer_hidden_state_var2.default)(this.props._id), false);
-        }
     }, {
         key: 'grabFocus',
-        value: function grabFocus(index) {
-            this.props.actions.updateWindowGrabFocus(this.props.index, index);
-        }
-    }, {
-        key: 'splitV',
-        value: function splitV(index, path) {
-            this.props.actions.updateWindowSplitPaneVertical(this.props.index, index, path);
-        }
-    }, {
-        key: 'splitH',
-        value: function splitH(index, path) {
-            this.props.actions.updateWindowSplitPaneHorizontal(this.props.index, index, path);
-        }
-    }, {
-        key: 'moveDivider',
-        value: function moveDivider(index, path, percentage) {
-            this.props.actions.updateWindowMoveDivider(this.props.index, index, path, percentage);
+        value: function grabFocus(window_index) {
+            this.props.actions.updateWindowGrabFocus(this.props.index, window_index);
         }
     }]);
 

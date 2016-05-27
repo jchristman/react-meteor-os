@@ -11,7 +11,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var stylesheet = {
-    default: 'src_client_modules_window_components_window_content_layout_divider_jsx-stylesheet-default'
+    default: 'src_client_modules_window_components_window_layout_divider_jsx-stylesheet-default'
 };
 
 var get_divider_position = function get_divider_position(props) {
@@ -36,11 +36,11 @@ var get_divider_position = function get_divider_position(props) {
     }
 };
 
-var WindowContentLayoutDivider = function WindowContentLayoutDivider(props) {
+var WindowLayoutDivider = function WindowLayoutDivider(props) {
     return props.connectDragSource(_react2.default.createElement('div', {
         className: stylesheet.default,
         style: get_divider_position(props)
     }));
 };
 
-exports.default = WindowContentLayoutDivider;
+exports.default = WindowLayoutDivider;

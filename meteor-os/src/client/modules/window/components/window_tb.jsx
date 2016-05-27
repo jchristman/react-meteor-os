@@ -26,9 +26,13 @@ const renderTitleBar = (props) => {
     const classes = cx(stylesheet.default, Themes.Default.primary_colors);
     return (
         <div className={classes}>
-            <WindowTitleBarIcon {...props}/>
-            <WindowTitleBarTitle title={props.title} focused={props.focused}/>
-            <WindowTitleBarButtons {...props}/>
+            <WindowTitleBarIcon/>
+            <WindowTitleBarTitle
+                title={props.title}
+                focused={props.focused}/>
+            <WindowTitleBarButtons
+                actions={props.actions}
+                focused={props.focused}/>
         </div>
     );
 };

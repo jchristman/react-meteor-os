@@ -14,6 +14,7 @@ const stylesheet = cssInJS({
     }
 });
 
+// TODO: Fix these buttons
 const getButtons = (props) => [
     {
         name: 'Close',

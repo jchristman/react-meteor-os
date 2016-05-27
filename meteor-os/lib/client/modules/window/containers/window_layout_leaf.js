@@ -28,9 +28,9 @@ var _underscore = require('underscore');
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
-var _window_content_layout_leaf = require('../components/window_content_layout_leaf.js');
+var _window_layout_leaf = require('../components/window_layout_leaf.js');
 
-var _window_content_layout_leaf2 = _interopRequireDefault(_window_content_layout_leaf);
+var _window_layout_leaf2 = _interopRequireDefault(_window_layout_leaf);
 
 var _drag_types = require('../configs/drag_types.js');
 
@@ -53,8 +53,8 @@ var items = function items(props) {
             _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-v' }),
             '  Split Vertical'
         ),
-        onClick: function onClick(event, props) {
-            return props.splitV(props.path);
+        onClick: function onClick() {
+            return props.actions.splitPaneVertical(props.path);
         }
     }, {
         label: _react2.default.createElement(
@@ -63,8 +63,8 @@ var items = function items(props) {
             _react2.default.createElement(_reactFontawesome2.default, { name: 'arrows-h' }),
             '  Split Horizontal'
         ),
-        onClick: function onClick(event, props) {
-            return props.splitH(props.path);
+        onClick: function onClick() {
+            return props.actions.splitPaneHorizontal(props.path);
         }
     }, '-', {
         label: _react2.default.createElement(
@@ -75,8 +75,8 @@ var items = function items(props) {
         items: types.map(function (type) {
             return {
                 label: type,
-                onClick: function onClick(event, props) {
-                    return alert(type);
+                onClick: function onClick() {
+                    return props.actions.changeLeafType(props.path, Constants.LeafTypes[type]);
                 }
             };
         })
@@ -99,7 +99,7 @@ var spec = {
         if (props.path.indexOf(path) > -1) {
             var percentage = panes.orientation === 'horizontal' ? (pointer.x - parent.left) / (parent.right - parent.left) * 100 : (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
 
-            props.moveDivider(path, percentage);
+            props.actions.movePaneDivider(path, percentage);
         }
     }
 };
@@ -112,4 +112,4 @@ var collect = function collect(connect, monitor) {
     };
 };
 
-exports.default = (0, _reactKomposer.composeAll)((0, _reactContextMenus2.default)(items), (0, _reactDnd.DropTarget)(type, spec, collect))(_window_content_layout_leaf2.default);
+exports.default = (0, _reactKomposer.composeAll)((0, _reactContextMenus2.default)(items), (0, _reactDnd.DropTarget)(type, spec, collect))(_window_layout_leaf2.default);

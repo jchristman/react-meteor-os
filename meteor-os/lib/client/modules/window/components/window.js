@@ -26,9 +26,13 @@ var _window_resizer = require('./window_resizer.js');
 
 var _window_resizer2 = _interopRequireDefault(_window_resizer);
 
-var _window_content = require('./window_content.js');
+var _window_layout = require('./window_layout.js');
 
-var _window_content2 = _interopRequireDefault(_window_content);
+var _window_layout2 = _interopRequireDefault(_window_layout);
+
+var _window_layout_leaf = require('../containers/window_layout_leaf.js');
+
+var _window_layout_leaf2 = _interopRequireDefault(_window_layout_leaf);
 
 var _window_handles = require('../lib/window_handles.js');
 
@@ -57,7 +61,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var stylesheet = {
-    default: 'src_client_modules_window_components_window_jsx-stylesheet-default'
+    default: 'src_client_modules_window_components_window_jsx-stylesheet-default',
+    layout: 'src_client_modules_window_components_window_jsx-stylesheet-layout'
 };
 
 var style = function style(props) {
@@ -115,35 +120,36 @@ var Window = function (_React$Component) {
                 }
             }
 
-            var classes = (0, _classnames2.default)(stylesheet.default, _themes2.default.Default.primary_colors, this.props.classes);
+            var window_classes = (0, _classnames2.default)(stylesheet.default, _themes2.default.Default.primary_colors, this.props.classes);
+            var layout_classes = (0, _classnames2.default)(stylesheet.layout, _themes2.default.Default.primary_colors);
 
             return _react2.default.createElement(
                 'div',
                 {
-                    className: classes,
+                    className: window_classes,
                     style: style(this.props),
                     onMouseOver: this.props.unhideLayer,
                     onMouseOut: this.props.hideLayer,
                     onMouseDown: this.grabFocus.bind(this)
                 },
-                _react2.default.createElement(_window_tb2.default, _extends({}, this.props, {
+                _react2.default.createElement(_window_tb2.default, {
+                    actions: this.props.actions,
                     connectDragSource: this.props.titlebarconnectDragSource,
-                    minimizeWindow: this.minimizeWindow.bind(this),
-                    maximizeWindow: this.maximizeWindow.bind(this),
-                    restoreWindow: this.restoreWindow.bind(this),
-                    closeWindow: this.closeWindow.bind(this)
-                })),
-                _react2.default.createElement(_window_content2.default, {
-                    LocalState: this.props.LocalState,
-                    grabFocus: this.grabFocus.bind(this),
-                    window_id: this.props._id,
-                    layer_id: this.props.parent_id,
-                    splitV: this.splitV.bind(this),
-                    splitH: this.splitH.bind(this),
-                    moveDivider: this.moveDivider.bind(this),
-                    tabs: this.props.tabs,
-                    layout: this.props.layout
+                    title: this.props.title,
+                    focused: this.props.focused,
+                    path: this.props.path
                 }),
+                _react2.default.createElement(
+                    'div',
+                    { className: layout_classes },
+                    this.props.layout.panes === undefined ? _react2.default.createElement(_window_layout_leaf2.default, _extends({
+                        actions: this.props.actions
+                    }, this.props.layout, {
+                        path: this.props.path + '.layout' })) : _react2.default.createElement(_window_layout2.default, _extends({
+                        actions: this.props.actions
+                    }, this.props.layout, {
+                        path: this.props.path + '.layout' }))
+                ),
                 this.props.isPreview !== true ? _window_handles2.default.slice(1).map(function (handle, index) {
                     return _react2.default.createElement(_window_resizer2.default, {
                         key: index,
@@ -157,21 +163,6 @@ var Window = function (_React$Component) {
         key: 'grabFocus',
         value: function grabFocus() {
             if (!this.props.focused) this.props.grabFocus(this.props.index);
-        }
-    }, {
-        key: 'splitV',
-        value: function splitV(path) {
-            this.props.splitV(this.props.index, path);
-        }
-    }, {
-        key: 'splitH',
-        value: function splitH(path) {
-            this.props.splitH(this.props.index, path);
-        }
-    }, {
-        key: 'moveDivider',
-        value: function moveDivider(path, percentage) {
-            this.props.moveDivider(this.props.index, path, percentage);
         }
     }, {
         key: 'minimizeWindow',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WindowContentLayout from './window_content_layout.jsx';
+import WindowLayout from './window_layout.jsx';
 
 import Themes from '../../../configs/themes';
 
@@ -41,7 +41,7 @@ const LayoutPreview = (props) => {
         <div
             style={style(props)}
             className={Themes.Default.primary_colors}>
-            <WindowContentLayout {...new_props}/>
+            <WindowLayout {...new_props}/>
         </div>
     );
 }

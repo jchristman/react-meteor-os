@@ -15,11 +15,7 @@ var _window_manager2 = _interopRequireDefault(_window_manager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Application = function Application(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_window_manager2.default, props)
-    );
+    return _react2.default.createElement(_window_manager2.default, props);
 };
 
 exports.default = Application;

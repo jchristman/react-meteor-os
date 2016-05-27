@@ -18,6 +18,8 @@ var _custom_drag_layer2 = _interopRequireDefault(_custom_drag_layer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Each Window Manager needs to define its windows in a layer and define a custom
+// drag layer to render windows in when being dragged
 var WindowManager = function WindowManager(props) {
     return _react2.default.createElement(
         'div',

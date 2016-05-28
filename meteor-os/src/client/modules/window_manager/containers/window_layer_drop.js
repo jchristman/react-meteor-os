@@ -4,7 +4,7 @@ import WindowLayer from '../components/window_layer.jsx';
 
 import layerHiddenStateVar from '../lib/layer_hidden_state_var.js';
 import windowResizing from '../../window/lib/window_resizing.js';
-import updateWindowPosition from '../lib/update_window_position.js';
+import changePosition from '../lib/update_window_position.js';
 import * as dragTypes from '../../window/configs/drag_types.js';
 import getResizePosition from '../../window/lib/get_resize_position.js';
 import * as snap_limits from '../configs/snap_limits.js';
@@ -44,7 +44,7 @@ const layerTarget = {
                     height = item.position.height;
                 }
 
-                updateWindowPosition(props, item, top, left, width, height);
+                changePosition(props, item, top, left, width, height);
                 break;
             case dragTypes.windowResizerType:
                 delta = monitor.getDifferenceFromInitialOffset();
@@ -57,7 +57,7 @@ const layerTarget = {
                                              y,
                                              item.position);
 
-                updateWindowPosition(props, item, position.top, position.left, position.width, position.height);
+                changePosition(props, item, position.top, position.left, position.width, position.height);
                 break;
         }
     }

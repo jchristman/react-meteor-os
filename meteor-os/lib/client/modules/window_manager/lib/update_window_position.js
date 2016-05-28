@@ -5,8 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (props, _window, top, left, width, height) {
-    var updateWindowPosition = props.actions.updateWindowPosition;
+    var changePosition = props.actions.changePosition;
 
     var windowPath = props.index + '.windows.' + _window.index + '.position';
-    updateWindowPosition(windowPath, top, left, width, height);
+    changePosition(windowPath, top, left, width, height);
 };

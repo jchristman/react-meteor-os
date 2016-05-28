@@ -80,7 +80,7 @@ var WindowLayer = function (_React$Component) {
     }, {
         key: 'grabFocus',
         value: function grabFocus(window_index) {
-            this.props.actions.updateWindowGrabFocus(this.props.index, window_index);
+            this.props.actions.grabFocus(this.props.index, window_index);
         }
     }]);
 

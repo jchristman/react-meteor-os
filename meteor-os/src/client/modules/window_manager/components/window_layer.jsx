@@ -48,7 +48,7 @@ class WindowLayer extends React.Component {
     }
 
     grabFocus(window_index) {
-        this.props.actions.updateWindowGrabFocus(this.props.index, window_index);
+        this.props.actions.grabFocus(this.props.index, window_index);
     }
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import Modal from 'react-modal';
 
-import WindowContentPlain from './window_content_plain.jsx';
-import WindowContentTabbed from './window_content_tabbed.jsx';
+import WindowPlain from './window_plain.jsx';
+import WindowTabbed from './window_tabbed.jsx';
 
 import * as Constants from '../../../configs/constants';
 import Themes from '../../../configs/themes';
@@ -19,9 +19,9 @@ const stylesheet = cssInJS({
 const leaf_type_switch = (props) => {
     switch(props.leaf_type) {
         case Constants.LeafTypes.Plain:
-            return ( <WindowContentPlain {...props}/> );
+            return ( <WindowPlain {...props}/> );
         case Constants.LeafTypes.Tabbed:
-            return ( <WindowContentTabbed {...props}/> );
+            return ( <WindowTabbed {...props}/> );
         default:
             return `Unknown leaf type: ${props.leaf_type}`;
     }

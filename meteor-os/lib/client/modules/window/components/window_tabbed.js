@@ -14,13 +14,13 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _window_content_tabbed_tabbar = require('./window_content_tabbed_tabbar.js');
+var _window_tabbed_tabbar = require('./window_tabbed_tabbar.js');
 
-var _window_content_tabbed_tabbar2 = _interopRequireDefault(_window_content_tabbed_tabbar);
+var _window_tabbed_tabbar2 = _interopRequireDefault(_window_tabbed_tabbar);
 
-var _window_content_tabbed_tabcontent = require('./window_content_tabbed_tabcontent.js');
+var _window_tabbed_tabcontent = require('./window_tabbed_tabcontent.js');
 
-var _window_content_tabbed_tabcontent2 = _interopRequireDefault(_window_content_tabbed_tabcontent);
+var _window_tabbed_tabcontent2 = _interopRequireDefault(_window_tabbed_tabcontent);
 
 var _get_window_tab_checked_key = require('../lib/get_window_tab_checked_key.js');
 
@@ -42,19 +42,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var stylesheet = {
-    tabs: 'src_client_modules_window_components_window_content_tabbed_jsx-stylesheet-tabs'
+    tabs: 'src_client_modules_window_components_window_tabbed_jsx-stylesheet-tabs'
 };
 
-var WindowContentTabbed = function (_React$Component) {
-    _inherits(WindowContentTabbed, _React$Component);
+var WindowTabbed = function (_React$Component) {
+    _inherits(WindowTabbed, _React$Component);
 
-    function WindowContentTabbed() {
-        _classCallCheck(this, WindowContentTabbed);
+    function WindowTabbed() {
+        _classCallCheck(this, WindowTabbed);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowContentTabbed).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowTabbed).apply(this, arguments));
     }
 
-    _createClass(WindowContentTabbed, [{
+    _createClass(WindowTabbed, [{
         key: 'render',
         value: function render() {
             var props = this.props;
@@ -62,7 +62,7 @@ var WindowContentTabbed = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: stylesheet.tabs },
-                _react2.default.createElement(_window_content_tabbed_tabbar2.default, {
+                _react2.default.createElement(_window_tabbed_tabbar2.default, {
                     connectDropTarget: props.connectDropTargetTabbar,
                     isOver: props.isOverTabbar,
                     canDrop: props.canDropContentArea,
@@ -70,7 +70,7 @@ var WindowContentTabbed = function (_React$Component) {
                     changeChecked: this.updateSelectedTab.bind(this),
                     content: props.content
                 }),
-                _react2.default.createElement(_window_content_tabbed_tabcontent2.default, {
+                _react2.default.createElement(_window_tabbed_tabcontent2.default, {
                     connectDropTargetMiddle: props.connectDropTargetContentAreaMiddle,
                     connectDropTargetRight: props.connectDropTargetContentAreaRight,
                     connectDropTargetLeft: props.connectDropTargetContentAreaLeft,
@@ -98,7 +98,7 @@ var WindowContentTabbed = function (_React$Component) {
         }
     }]);
 
-    return WindowContentTabbed;
+    return WindowTabbed;
 }(_react2.default.Component);
 
-exports.default = WindowContentTabbed;
+exports.default = WindowTabbed;

@@ -8,7 +8,7 @@ import cancelBubble from '../lib/cancel_bubble.js';
 // ----- Config Imports ----- //
 import Themes from '../../../configs/themes';
 
-const WindowContentTabbedTabbarTab = (props) => {
+const WindowTabbedTabbarTab = (props) => {
     const {connectDragSource} = props;
 
     const tab_classes = cx(stylesheet.tab,
@@ -111,4 +111,4 @@ const stylesheet = cssInJS({
     }
 });
 
-export default WindowContentTabbedTabbarTab;
+export default WindowTabbedTabbarTab;

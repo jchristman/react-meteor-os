@@ -26,16 +26,16 @@ var getRefName = function getRefName(props) {
     return props.layer_id + '_' + props.window_id;
 };
 
-var WindowContentTabbedTabcontent = function (_React$Component) {
-    _inherits(WindowContentTabbedTabcontent, _React$Component);
+var WindowTabbedTabcontent = function (_React$Component) {
+    _inherits(WindowTabbedTabcontent, _React$Component);
 
-    function WindowContentTabbedTabcontent() {
-        _classCallCheck(this, WindowContentTabbedTabcontent);
+    function WindowTabbedTabcontent() {
+        _classCallCheck(this, WindowTabbedTabcontent);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowContentTabbedTabcontent).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(WindowTabbedTabcontent).apply(this, arguments));
     }
 
-    _createClass(WindowContentTabbedTabcontent, [{
+    _createClass(WindowTabbedTabcontent, [{
         key: 'render',
         value: function render() {
             var props = this.props;
@@ -69,22 +69,22 @@ var WindowContentTabbedTabcontent = function (_React$Component) {
         }
     }]);
 
-    return WindowContentTabbedTabcontent;
+    return WindowTabbedTabcontent;
 }(_react2.default.Component);
 
 var stylesheet = {
-    content_area: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_area',
-    content_area_hover: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_area_hover',
-    content_area_hover_side: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_area_hover_side',
-    content_area_hover_middle: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_area_hover_middle',
-    content_area_hover_bottom: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_area_hover_bottom',
-    content: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content',
-    content_checked: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-content_checked',
-    middle_droptarget: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-middle_droptarget',
-    left_droptarget: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-left_droptarget',
-    right_droptarget: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-right_droptarget',
-    bottom_droptarget: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-bottom_droptarget',
-    allowPointerEvents: 'src_client_modules_window_components_window_content_tabbed_tabcontent_jsx-stylesheet-allowPointerEvents'
+    content_area: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_area',
+    content_area_hover: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_area_hover',
+    content_area_hover_side: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_area_hover_side',
+    content_area_hover_middle: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_area_hover_middle',
+    content_area_hover_bottom: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_area_hover_bottom',
+    content: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content',
+    content_checked: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-content_checked',
+    middle_droptarget: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-middle_droptarget',
+    left_droptarget: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-left_droptarget',
+    right_droptarget: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-right_droptarget',
+    bottom_droptarget: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-bottom_droptarget',
+    allowPointerEvents: 'src_client_modules_window_components_window_tabbed_tabcontent_jsx-stylesheet-allowPointerEvents'
 };
 
-exports.default = WindowContentTabbedTabcontent;
+exports.default = WindowTabbedTabcontent;

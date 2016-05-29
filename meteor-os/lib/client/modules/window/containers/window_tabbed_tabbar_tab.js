@@ -8,9 +8,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _reactDnd = require('react-dnd');
 
-var _window_content_tabbed_tabbar_tab = require('../components/window_content_tabbed_tabbar_tab.js');
+var _window_tabbed_tabbar_tab = require('../components/window_tabbed_tabbar_tab.js');
 
-var _window_content_tabbed_tabbar_tab2 = _interopRequireDefault(_window_content_tabbed_tabbar_tab);
+var _window_tabbed_tabbar_tab2 = _interopRequireDefault(_window_tabbed_tabbar_tab);
 
 var _drag_types = require('../configs/drag_types.js');
 
@@ -34,4 +34,4 @@ var dragCollect = function dragCollect(connect, monitor) {
     };
 };
 
-exports.default = (0, _reactDnd.DragSource)(layerType, dragSourceSpec, dragCollect)(_window_content_tabbed_tabbar_tab2.default);
+exports.default = (0, _reactDnd.DragSource)(layerType, dragSourceSpec, dragCollect)(_window_tabbed_tabbar_tab2.default);

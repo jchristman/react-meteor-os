@@ -18,20 +18,20 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _window_content_tabbed_tabbar_tab = require('../containers/window_content_tabbed_tabbar_tab.js');
+var _window_tabbed_tabbar_tab = require('../containers/window_tabbed_tabbar_tab.js');
 
-var _window_content_tabbed_tabbar_tab2 = _interopRequireDefault(_window_content_tabbed_tabbar_tab);
+var _window_tabbed_tabbar_tab2 = _interopRequireDefault(_window_tabbed_tabbar_tab);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var WindowContentTabbedTab = function WindowContentTabbedTab(props) {
+var WindowTabbedTab = function WindowTabbedTab(props) {
     var tabbar_classes = (0, _classnames2.default)(stylesheet.tabbar, props.isOver && stylesheet.tabbar_drop_isover);
 
     return props.connectDropTarget(_react2.default.createElement(
         'div',
         { className: tabbar_classes },
         props.content.map(function (tab, index) {
-            return _react2.default.createElement(_window_content_tabbed_tabbar_tab2.default, _extends({
+            return _react2.default.createElement(_window_tabbed_tabbar_tab2.default, _extends({
                 key: index,
                 index: index,
                 layer_id: props.layer_id,
@@ -42,8 +42,8 @@ var WindowContentTabbedTab = function WindowContentTabbedTab(props) {
 };
 
 var stylesheet = {
-    tabbar: 'src_client_modules_window_components_window_content_tabbed_tabbar_jsx-stylesheet-tabbar',
-    tabbar_drop_isover: 'src_client_modules_window_components_window_content_tabbed_tabbar_jsx-stylesheet-tabbar_drop_isover'
+    tabbar: 'src_client_modules_window_components_window_tabbed_tabbar_jsx-stylesheet-tabbar',
+    tabbar_drop_isover: 'src_client_modules_window_components_window_tabbed_tabbar_jsx-stylesheet-tabbar_drop_isover'
 };
 
-exports.default = WindowContentTabbedTab;
+exports.default = WindowTabbedTab;

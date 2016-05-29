@@ -1,6 +1,6 @@
 import {DragSource} from 'react-dnd';
 
-import WindowContentTabbedTabbarTab from '../components/window_content_tabbed_tabbar_tab.jsx';
+import WindowTabbedTabbarTab from '../components/window_tabbed_tabbar_tab.jsx';
 
 import {tabMoveType} from '../configs/drag_types.js';
 
@@ -18,4 +18,4 @@ const dragCollect = (connect, monitor) => ({
     isDragging: monitor.isDragging()
 });
 
-export default DragSource(layerType, dragSourceSpec, dragCollect)(WindowContentTabbedTabbarTab);
+export default DragSource(layerType, dragSourceSpec, dragCollect)(WindowTabbedTabbarTab);

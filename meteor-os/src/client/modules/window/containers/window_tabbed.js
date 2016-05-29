@@ -1,7 +1,7 @@
 import {composeAll, composeWithTracker} from 'react-komposer';
 import {DropTarget} from 'react-dnd';
 
-import WindowContentTabbed from '../components/window_content_tabbed.jsx';
+import WindowTabbed from '../components/window_tabbed.jsx';
 
 import getWindowTabCheckedKey from '../lib/get_window_tab_checked_key.js';
 import {tabMoveType} from '../configs/drag_types.js';
@@ -64,4 +64,4 @@ export default composeAll(
     ...contentAreaDropTargets,
     DropTarget(layerType, dropTargetSpecTabbar, dropCollectTabbar),
     composeWithTracker(composer)
-)(WindowContentTabbed);
+)(WindowTabbed);

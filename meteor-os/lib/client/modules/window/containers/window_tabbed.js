@@ -8,9 +8,9 @@ var _reactKomposer = require('react-komposer');
 
 var _reactDnd = require('react-dnd');
 
-var _window_content_tabbed = require('../components/window_content_tabbed.js');
+var _window_tabbed = require('../components/window_tabbed.js');
 
-var _window_content_tabbed2 = _interopRequireDefault(_window_content_tabbed);
+var _window_tabbed2 = _interopRequireDefault(_window_tabbed);
 
 var _get_window_tab_checked_key = require('../lib/get_window_tab_checked_key.js');
 
@@ -82,4 +82,4 @@ var composer = function composer(props, onData) {
     onData(null, { checked: LocalState.get((0, _get_window_tab_checked_key2.default)(props)) });
 };
 
-exports.default = _reactKomposer.composeAll.apply(undefined, _toConsumableArray(contentAreaDropTargets).concat([(0, _reactDnd.DropTarget)(layerType, dropTargetSpecTabbar, dropCollectTabbar), (0, _reactKomposer.composeWithTracker)(composer)]))(_window_content_tabbed2.default);
+exports.default = _reactKomposer.composeAll.apply(undefined, _toConsumableArray(contentAreaDropTargets).concat([(0, _reactDnd.DropTarget)(layerType, dropTargetSpecTabbar, dropCollectTabbar), (0, _reactKomposer.composeWithTracker)(composer)]))(_window_tabbed2.default);

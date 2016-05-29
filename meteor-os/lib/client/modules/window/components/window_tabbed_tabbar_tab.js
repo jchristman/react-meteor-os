@@ -26,7 +26,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // ----- External Imports ----- //
 
 
-var WindowContentTabbedTabbarTab = function WindowContentTabbedTabbarTab(props) {
+var WindowTabbedTabbarTab = function WindowTabbedTabbarTab(props) {
     var connectDragSource = props.connectDragSource;
 
 
@@ -55,10 +55,10 @@ var WindowContentTabbedTabbarTab = function WindowContentTabbedTabbarTab(props) 
 
 
 var stylesheet = {
-    tab: 'src_client_modules_window_components_window_content_tabbed_tabbar_tab_jsx-stylesheet-tab',
-    tab_checked: 'src_client_modules_window_components_window_content_tabbed_tabbar_tab_jsx-stylesheet-tab_checked',
-    label: 'src_client_modules_window_components_window_content_tabbed_tabbar_tab_jsx-stylesheet-label',
-    label_checked: 'src_client_modules_window_components_window_content_tabbed_tabbar_tab_jsx-stylesheet-label_checked'
+    tab: 'src_client_modules_window_components_window_tabbed_tabbar_tab_jsx-stylesheet-tab',
+    tab_checked: 'src_client_modules_window_components_window_tabbed_tabbar_tab_jsx-stylesheet-tab_checked',
+    label: 'src_client_modules_window_components_window_tabbed_tabbar_tab_jsx-stylesheet-label',
+    label_checked: 'src_client_modules_window_components_window_tabbed_tabbar_tab_jsx-stylesheet-label_checked'
 };
 
-exports.default = WindowContentTabbedTabbarTab;
+exports.default = WindowTabbedTabbarTab;

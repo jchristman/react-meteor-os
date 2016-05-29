@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 const getRefName = (props) => props.layer_id + '_' + props.window_id;
 
-class WindowContentTabbedTabcontent extends React.Component {
+class WindowTabbedTabcontent extends React.Component {
     render() {
         const props = this.props;
         
@@ -177,4 +177,4 @@ const stylesheet = cssInJS({
     }
 });
 
-export default WindowContentTabbedTabcontent;
+export default WindowTabbedTabcontent;

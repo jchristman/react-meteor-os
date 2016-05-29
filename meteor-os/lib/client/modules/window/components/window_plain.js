@@ -26,10 +26,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 var stylesheet = {
-    container: 'src_client_modules_window_components_window_content_plain_jsx-stylesheet-container'
+    container: 'src_client_modules_window_components_window_plain_jsx-stylesheet-container'
 };
 
-var WindowContentPlain = function WindowContentPlain(props) {
+var WindowPlain = function WindowPlain(props) {
     var classes = (0, _classnames2.default)(stylesheet.container, _themes2.default.Default.secondary_colors);
     return props.connectContextMenu(_react2.default.createElement(
         'div',
@@ -38,4 +38,4 @@ var WindowContentPlain = function WindowContentPlain(props) {
     ));
 };
 
-exports.default = WindowContentPlain;
+exports.default = WindowPlain;

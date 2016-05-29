@@ -16,13 +16,13 @@ var _reactModal = require('react-modal');
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
-var _window_content_plain = require('./window_content_plain.js');
+var _window_plain = require('./window_plain.js');
 
-var _window_content_plain2 = _interopRequireDefault(_window_content_plain);
+var _window_plain2 = _interopRequireDefault(_window_plain);
 
-var _window_content_tabbed = require('./window_content_tabbed.js');
+var _window_tabbed = require('./window_tabbed.js');
 
-var _window_content_tabbed2 = _interopRequireDefault(_window_content_tabbed);
+var _window_tabbed2 = _interopRequireDefault(_window_tabbed);
 
 var _constants = require('../../../configs/constants');
 
@@ -43,9 +43,9 @@ var stylesheet = {
 var leaf_type_switch = function leaf_type_switch(props) {
     switch (props.leaf_type) {
         case Constants.LeafTypes.Plain:
-            return _react2.default.createElement(_window_content_plain2.default, props);
+            return _react2.default.createElement(_window_plain2.default, props);
         case Constants.LeafTypes.Tabbed:
-            return _react2.default.createElement(_window_content_tabbed2.default, props);
+            return _react2.default.createElement(_window_tabbed2.default, props);
         default:
             return 'Unknown leaf type: ' + props.leaf_type;
     }

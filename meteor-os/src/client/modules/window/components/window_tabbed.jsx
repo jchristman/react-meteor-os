@@ -3,8 +3,8 @@ import React from 'react';
 import cx from 'classnames';
 
 // ----- Component Imports ----- //
-import WindowContentTabbedTabbar from './window_content_tabbed_tabbar.jsx';
-import WindowContentTabbedTabcontent from './window_content_tabbed_tabcontent.jsx';
+import WindowTabbedTabbar from './window_tabbed_tabbar.jsx';
+import WindowTabbedTabcontent from './window_tabbed_tabcontent.jsx';
 
 // ----- Library Imports ----- //
 import getWindowTabCheckedKey from '../lib/get_window_tab_checked_key.js';
@@ -21,13 +21,13 @@ const stylesheet = cssInJS({
     }
 });
 
-class WindowContentTabbed extends React.Component {
+class WindowTabbed extends React.Component {
     render() {
         const props = this.props;
 
         return (
             <div className={stylesheet.tabs}>
-                <WindowContentTabbedTabbar
+                <WindowTabbedTabbar
                     connectDropTarget={props.connectDropTargetTabbar}
                     isOver={props.isOverTabbar}
                     canDrop={props.canDropContentArea}
@@ -35,7 +35,7 @@ class WindowContentTabbed extends React.Component {
                     changeChecked={this.updateSelectedTab.bind(this)}
                     content={props.content}
                 />
-                <WindowContentTabbedTabcontent
+                <WindowTabbedTabcontent
                     connectDropTargetMiddle={props.connectDropTargetContentAreaMiddle}
                     connectDropTargetRight={props.connectDropTargetContentAreaRight}
                     connectDropTargetLeft={props.connectDropTargetContentAreaLeft}
@@ -62,4 +62,4 @@ class WindowContentTabbed extends React.Component {
     }
 }
 
-export default WindowContentTabbed;
+export default WindowTabbed;

@@ -15,7 +15,7 @@ const stylesheet = cssInJS({
     }
 });
 
-const WindowContentPlain = (props) => {
+const WindowPlain = (props) => {
     const classes = cx(stylesheet.container, Themes.Default.secondary_colors);
     return props.connectContextMenu(
         <div className={classes}>
@@ -24,4 +24,4 @@ const WindowContentPlain = (props) => {
     );
 }
 
-export default WindowContentPlain;
+export default WindowPlain;

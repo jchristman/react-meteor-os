@@ -1,7 +1,7 @@
-import {composeAll} from 'mantra-core';
+import {useDeps, composeAll} from 'mantra-core';
 import {DropTarget} from 'react-dnd';
 
-import WindowContent from '../components/window_content.jsx';
+import WindowTabbedTabcontent from '../components/window_tabbed_tabcontent.jsx';
 
 import {tabMoveType} from '../configs/drag_types.js';
 
@@ -12,7 +12,22 @@ const dropTargetSpecContentArea = (area) => {
     return {
         drop: (props, monitor) => {
             const item = monitor.getItem();
-            console.log(item);
+            const oldPath = item.path.substr(0, item.path.lastIndexOf('.'));
+            const newPath = props.path;
+            switch (area) {
+                case 'Middle':
+                    props.actions.moveTab(oldPath, item.index, newPath);
+                    break;
+                case 'Left':
+                    break;
+                case 'Right':
+                    break;
+                case 'Bottom':
+                    break;
+                default:
+                    console.log(`Unknown drop area: ${area}`);
+                    break;
+            }
         }
     }
 }
@@ -31,6 +46,7 @@ const dropCollectContentArea = (area) => {
 
 const contentAreaDropTargets = Array.from(['Middle','Left','Right','Bottom'], 
                                           area => DropTarget(layerType, dropTargetSpecContentArea(area), dropCollectContentArea(area)));
+
 export default composeAll(
-    ...contentAreaDropTargets
-)(WindowContent);
+    ...contentAreaDropTargets,
+)(WindowTabbedTabcontent);

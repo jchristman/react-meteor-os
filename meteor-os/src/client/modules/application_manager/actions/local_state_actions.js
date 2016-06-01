@@ -49,26 +49,26 @@ const splitPane = (context, path, orientation) => {
 
     let layoutNode = get_node(path, current);
     let _content = layoutNode.content;
-    let _content_type = layoutNode.content_type;
     let _leaf_type = layoutNode.leaf_type;
     delete layoutNode.content;
-    delete layoutNode.content_type;
     delete layoutNode.leaf_type;
 
     layoutNode.panes = {
         orientation,
         percentage: 50,
         pane1: {
-            _id: Random.id(),
             content: _content,
-            content_type: _content_type,
             leaf_type: _leaf_type
         },
         pane2: {
-            _id: Random.id(),
-            content: baconipsum(100),
-            content_type: Constants.ContentTypes.Text,
-            leaf_type: Constants.LeafTypes.Plain
+            content: [
+                {
+                    data: baconipsum(100),
+                    type: Constants.ContentTypes.Text,
+                    label: 'Tab 1'
+                }
+            ],
+            leaf_type: Constants.LeafTypes.Tabbed
         }
     }
     LocalState.set(stateVar, current);
@@ -96,11 +96,33 @@ const changeLeafType = (context, path, type) => {
     LocalState.set(stateVar, current);
 }
 
+// Expecting oldPath and newPath to point to content arrays, oldIndex required, newIndex optional (insert at end)
+const moveTab = (context, oldPath, oldIndex, newPath, newIndex) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    if (oldPath === newPath && newIndex === undefined) {
+        console.log('Moving in same window does nothing');
+        return;
+    }
+
+    let oldContentNode = get_node(oldPath, current);
+    let newContentNode = get_node(newPath, current);
+    // If newIndex is not defined, set it to the end of the newContentNode array
+    newIndex = newIndex || newContentNode.length;
+    let tab = oldContentNode.splice(oldIndex, 1)[0];
+    newContentNode.splice(newIndex, 0, tab);
+    
+    LocalState.set(stateVar, current);
+}
+
 export default { 
     changePosition,
     grabFocus,
     splitPaneVertical,
     splitPaneHorizontal,
     movePaneDivider,
-    changeLeafType
+    changeLeafType,
+    moveTab
 };

@@ -4,13 +4,12 @@ import cx from 'classnames';
 
 // ----- Library Imports ----- //
 import cancelBubble from '../lib/cancel_bubble.js';
+import optionalWrapper from '../lib/optional_wrapper.js';
 
 // ----- Config Imports ----- //
 import Themes from '../../../configs/themes';
 
 const WindowTabbedTabbarTab = (props) => {
-    const {connectDragSource} = props;
-
     const tab_classes = cx(stylesheet.tab,
                            Themes.Default.primary_colors,
                            Themes.Default.primary_colors_focus,
@@ -22,15 +21,21 @@ const WindowTabbedTabbarTab = (props) => {
                              !props.checked && Themes.Default.primary_colors_hover,
                              props.checked && stylesheet.label_checked);
 
+    const connectContextMenu = props.connectContextMenu || optionalWrapper;
+    const connectDragSource = props.connectDragSource || optionalWrapper;
     return connectDragSource(
         <div 
             className={tab_classes}>
-            <div
-                className={label_classes}
-                onMouseDown={cancelBubble}
-                onClick={() => props.check(props.index)}>
-                {props.label}
-            </div>
+            {
+                connectContextMenu(
+                    <div
+                        className={label_classes}
+                        onMouseDown={cancelBubble}
+                        onClick={() => props.check(props.index)}>
+                        {props.label}
+                    </div>
+                )
+            }
         </div>
     );
 }

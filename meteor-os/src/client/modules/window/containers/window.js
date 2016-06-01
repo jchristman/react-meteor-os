@@ -6,7 +6,7 @@ import Window from '../components/window.jsx';
 import {windowPositionType, windowResizerType} from '../configs/drag_types.js';
 import windowHandles from '../lib/window_handles.js';
 
-const layerType = (props) => props.parent_id;
+const layerType = (props) => props.layer_id;
 
 // This is a function that will return a DragSource specification based on a passed in handle
 const dragSourceSpec = (handle) => {

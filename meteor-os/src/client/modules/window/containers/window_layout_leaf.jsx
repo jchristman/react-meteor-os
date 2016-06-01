@@ -34,6 +34,12 @@ const items = (props) => {
     ];
 }
 
+const options = {
+    style: {
+        zIndex: 1
+    }
+}
+
 const type = () => dividerType;
 
 const spec = {
@@ -64,6 +70,6 @@ const collect = (connect, monitor) => {
 }
 
 export default composeAll(
-    ContextMenu(items),
+    ContextMenu(items, options),
     DropTarget(type, spec, collect)
 )(WindowLayoutLeaf);

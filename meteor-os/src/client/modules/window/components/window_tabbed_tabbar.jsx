@@ -8,16 +8,18 @@ import WindowTabbedTabbarTab from '../containers/window_tabbed_tabbar_tab.js';
 const WindowTabbedTab = (props) => {
     const tabbar_classes = cx(stylesheet.tabbar, props.isOver && stylesheet.tabbar_drop_isover);
     
-    return props.connectDropTarget(
+    return (
         <div className={tabbar_classes}>
             {
-                props.content.map((tab, index) => (
+                props.label.map((label, index) => (
                     <WindowTabbedTabbarTab
                         key={index}
                         index={index}
                         layer_id={props.layer_id}
-                        changeChecked={props.changeChecked}
-                        {...tab}
+                        window_id={props.window_id}
+                        check={props.check}
+                        checked={index === props.checked}
+                        label={label}
                     />
                 ))
             }

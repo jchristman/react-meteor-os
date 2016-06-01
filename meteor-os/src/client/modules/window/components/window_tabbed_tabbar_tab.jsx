@@ -28,8 +28,8 @@ const WindowTabbedTabbarTab = (props) => {
             <div
                 className={label_classes}
                 onMouseDown={cancelBubble}
-                onClick={() => props.changeChecked(props.index)}>
-                    {props.label}
+                onClick={() => props.check(props.index)}>
+                {props.label}
             </div>
         </div>
     );
@@ -46,8 +46,8 @@ const stylesheet = cssInJS({
         borderWidth: 1,
         borderStyle: 'solid',
         borderBottom: 'none',
-        borderTopLeftRadius: 6,
-        borderTopRightRadius: 6,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
     },
 
     tab_checked: {
@@ -59,15 +59,15 @@ const stylesheet = cssInJS({
         position: 'relative',
         padding: 5,
         cursor: 'pointer',
-        borderTopRightRadius: 6,
-        borderTopLeftRadius: 6,
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
 
         ':before': {
             position: 'absolute',
             bottom: 0,
-            left: -7,
-            width: 6,
-            height: 6,
+            left: -6,
+            width: 5,
+            height: 5,
             content: " ",
 
             borderTopWidth: 0,
@@ -76,16 +76,16 @@ const stylesheet = cssInJS({
             borderLeftWidth: 0,
             borderStyle: 'solid',
 
-            borderBottomRightRadius: 6,
+            borderBottomRightRadius: 5,
         },
 
         ':after': {
             content: ' ',
             position: 'absolute',
             bottom: 0,
-            right: -7,
-            width: 6,
-            height: 6,
+            right: -6,
+            width: 5,
+            height: 5,
 
             borderTopWidth: 0,
             borderRightWidth: 0,
@@ -93,7 +93,7 @@ const stylesheet = cssInJS({
             borderLeftWidth: 1,
             borderStyle: 'solid',
             
-            borderBottomLeftRadius: 6,
+            borderBottomLeftRadius: 5,
         }
     },
 

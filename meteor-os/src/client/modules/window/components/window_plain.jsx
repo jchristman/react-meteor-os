@@ -2,7 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import WindowContent from './window_content.jsx';
+import WindowContent from '../containers/window_content.js';
 
 import Themes from '../../../configs/themes';
 
@@ -19,7 +19,7 @@ const WindowPlain = (props) => {
     const classes = cx(stylesheet.container, Themes.Default.secondary_colors);
     return props.connectContextMenu(
         <div className={classes}>
-            <WindowContent {...props}/>
+            <WindowContent {..._.omit(props, 'connectContextMenu')}/>
         </div>
     );
 }

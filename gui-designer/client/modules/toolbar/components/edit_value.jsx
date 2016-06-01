@@ -8,8 +8,6 @@ import baconipsum from 'baconipsum';
 import get_node from '../lib/get_node.js';
 import set_node from '../lib/set_node.js';
 
-import default_tab from '../../../configs/default_tab.js';
-
 const stylesheet = cssInJS({
     default: {
         display: 'flex',
@@ -71,15 +69,6 @@ class EditValue extends React.Component {
         this.props.closeModal();
     }
 
-    addTab() {
-        const {LocalState, CurrentApp} = this.props.context();
-        const current = LocalState.get(CurrentApp);
-
-        let tabsArray = get_node(this.props.path, current);
-        tabsArray.push(default_tab());
-        LocalState.set(CurrentApp, current);
-    }
-
     render() {
         const {LocalState, CurrentApp} = this.props.context();
         const current = LocalState.get(CurrentApp);
@@ -92,11 +81,6 @@ class EditValue extends React.Component {
         let parentIsArray = Array.isArray(parentArray);
         let isFirst = parentIsArray && this.props.node === 0;
         let isLast = parentIsArray && this.props.node === parentArray.length - 1;
-
-        let addTabButton = false;
-        if (typeof this.props.value === 'object') {
-            if (this.props.node === 'tabs') addTabButton = true;
-        }
 
         return (
             <div className={stylesheet.default}>
@@ -120,12 +104,6 @@ class EditValue extends React.Component {
                         disabled={isLast}
                         onClick={this.shiftRight.bind(this)}>
                             <FontAwesome name='caret-square-o-down'/>
-                    </button> : null }
-                { addTabButton ?
-                    <button
-                        className={stylesheet.button}
-                        onClick={this.addTab.bind(this)}>
-                            Create New Tab <FontAwesome name='plus'/>
                     </button> : null }
             </div>
         );

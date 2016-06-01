@@ -32,7 +32,7 @@ class WindowLayer extends React.Component {
                     this.props.windows.map((_window, index) => (
                         <Window
                             key={_window._id}
-                            parent_id={this.props._id}
+                            layer_id={this.props._id}
                             index={index}
                             hideLayer={this.props.hideLayer}
                             unhideLayer={this.props.unhideLayer}

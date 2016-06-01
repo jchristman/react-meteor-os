@@ -7,7 +7,6 @@ export default function() {
         Meteor,
         FlowRouter,
         LocalState: new ReactiveDict(),
-        CurrentApp: '_gui_designer_current_app',
-        LastGoodCode: '_gui_designer_last_good_code'
+        CurrentApp: '_gui_designer_current_app'
     };
 }

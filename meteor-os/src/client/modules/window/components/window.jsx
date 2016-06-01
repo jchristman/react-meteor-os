@@ -101,12 +101,16 @@ class Window extends React.Component {
                         <WindowLayoutLeaf
                             actions={this.props.actions}
                             {...this.props.layout}
-                            path={this.props.path + '.layout'}/>
+                            path={this.props.path + '.layout'}
+                            layer_id={this.props.layer_id}
+                            window_id={this.props._id}/>
                         :
                         <WindowLayout
                             actions={this.props.actions}
                             {...this.props.layout}
-                            path={this.props.path + '.layout'}/>
+                            path={this.props.path + '.layout'}
+                            layer_id={this.props.layer_id}
+                            window_id={this.props._id}/>
                     }
                 </div>
 

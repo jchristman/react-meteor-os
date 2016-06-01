@@ -71,14 +71,18 @@ class WindowLayout extends React.Component {
                 <WindowLayoutLeaf
                     actions={actions}
                     {...pane}
-                    path={path}/>
+                    path={path}
+                    layer_id={this.props.layer_id}
+                    window_id={this.props._id}/>
             );
         } else {
             return (
                 <WindowLayoutWrapper
                     actions={actions}
                     {...pane}
-                    path={path}/>
+                    path={path}
+                    layer_id={this.props.layer_id}
+                    window_id={this.props._id}/>
             );
         }
     }

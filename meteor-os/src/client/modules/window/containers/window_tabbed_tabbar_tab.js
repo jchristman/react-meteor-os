@@ -4,7 +4,7 @@ import WindowTabbedTabbarTab from '../components/window_tabbed_tabbar_tab.jsx';
 
 import {tabMoveType} from '../configs/drag_types.js';
 
-const layerType = (props) => props.layer_id;
+const layerType = (props) => props.layer_id + '_tab';
 
 const dragSourceSpec = {
     beginDrag: (props) => {

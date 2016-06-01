@@ -18,10 +18,13 @@ const stylesheet = cssInJS({
 });
 
 const leaf_type_switch = (props) => {
-    const passOn = _.pick(props, '_id', 'content', 'content_type', 'label',
-                          'connectContextMenu', 'window_id', 'layer_id');
+    const passOn = _.pick(props, 'content', 'connectContextMenu', 
+                          'window_id', 'layer_id');
+
     switch(props.leaf_type) {
         case Constants.LeafTypes.Plain:
+            passOn.content = props.content[0].data;
+            passOn.type = props.content[0].type;
             return ( <WindowPlain {...passOn}/> );
         case Constants.LeafTypes.Tabbed:
             return ( <WindowTabbed {...passOn}/> );

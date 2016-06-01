@@ -12,9 +12,18 @@ export default () => ( {
         width: 500
     },
     layout: {
-        _id: Random.id(),
-        content: baconipsum(100),
-        content_type: Constants.ContentTypes.Text,
-        leaf_type: Constants.LeafTypes.Plain
+        content: [
+            {
+                data: baconipsum(100),
+                type: Constants.ContentTypes.Text,
+                label: 'Tab 1'
+            },
+            {
+                data: baconipsum(100),
+                type: Constants.ContentTypes.Text,
+                label: 'Tab 2'
+            }
+        ],
+        leaf_type: Constants.LeafTypes.Tabbed
     }
 } );

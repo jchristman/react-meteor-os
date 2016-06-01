@@ -13,11 +13,10 @@ const WindowTabbedTabcontent = (props) => {
                     return (
                         <div key={index} className={classes}>
                             <WindowPlain
-                                _id={props._id[index]}
                                 layer_id={props.layer_id}
                                 window_id={props.window_id}
-                                content={props.content[index]}
-                                content_type={props.content_type[index]}
+                                content={tab.data}
+                                type={tab.type}
                                 connectContextMenu={props.connectContextMenu}/>
                         </div>
                     );

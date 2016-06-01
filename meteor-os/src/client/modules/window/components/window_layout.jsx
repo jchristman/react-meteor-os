@@ -73,7 +73,7 @@ class WindowLayout extends React.Component {
                     {...pane}
                     path={path}
                     layer_id={this.props.layer_id}
-                    window_id={this.props._id}/>
+                    window_id={this.props.window_id}/>
             );
         } else {
             return (
@@ -82,7 +82,7 @@ class WindowLayout extends React.Component {
                     {...pane}
                     path={path}
                     layer_id={this.props.layer_id}
-                    window_id={this.props._id}/>
+                    window_id={this.props.window_id}/>
             );
         }
     }

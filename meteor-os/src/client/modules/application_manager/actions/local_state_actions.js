@@ -91,25 +91,6 @@ const changeLeafType = (context, path, type) => {
     const current = LocalState.get(stateVar);
 
     let layoutNode = get_node(path, current);
-    switch(type) {
-        case Constants.LeafTypes.Tabbed:
-            // If we are switching to a tabbed type, content needs to be an array
-            layoutNode._id = [ layoutNode._id ];
-            layoutNode.content = [ layoutNode.content ];
-            layoutNode.content_type = [ layoutNode.content_type ];
-            layoutNode.label = [ 'Tab 1' ];
-            break;
-        case Constants.LeafTypes.Plain:
-            // If we are switching to a plain type, content needs to be a string (component name or actual data)
-            layoutNode._id = layoutNode._id[0];
-            layoutNode.content = layoutNode.content[0];
-            layoutNode.content_type = layoutNode.content_type[0];
-            delete layoutNode.label;
-            break;
-        default:
-            console.log('Unknown leaf type!');
-            return;
-    }
     layoutNode.leaf_type = type;
 
     LocalState.set(stateVar, current);

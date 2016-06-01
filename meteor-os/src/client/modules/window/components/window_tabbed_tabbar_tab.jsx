@@ -40,8 +40,8 @@ const stylesheet = cssInJS({
         float: 'left',
         height: 'auto',
         width: 'auto',
-        marginTop: 4,
-        marginLeft: 4,
+        marginTop: 5,
+        marginLeft: 5,
 
         borderWidth: 1,
         borderStyle: 'solid',
@@ -64,7 +64,7 @@ const stylesheet = cssInJS({
 
         ':before': {
             position: 'absolute',
-            bottom: 0,
+            bottom: 1,
             left: -6,
             width: 5,
             height: 5,
@@ -82,7 +82,7 @@ const stylesheet = cssInJS({
         ':after': {
             content: ' ',
             position: 'absolute',
-            bottom: 0,
+            bottom: 1,
             right: -6,
             width: 5,
             height: 5,

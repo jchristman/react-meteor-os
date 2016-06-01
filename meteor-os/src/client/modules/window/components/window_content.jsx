@@ -4,7 +4,7 @@ import cx from 'classnames';
 import * as Constants from '../../../configs/constants';
 
 const type_switch = (props) => {
-    switch(props.content_type) {
+    switch(props.type) {
         case Constants.ContentTypes.Text:
             return props.content;
             break;
@@ -12,7 +12,7 @@ const type_switch = (props) => {
             return `Unknown component: ${props.content}`;
             break;
         default:
-            return `Unsupported content type: ${props.content_type}`;
+            return `Unsupported content type: ${props.type}`;
     }
 }
 
@@ -28,7 +28,7 @@ const WindowContent = (props) => {
 
     const isOver = props.isOverBottom || props.isOverMiddle || props.isOverLeft || props.isOverRight;
 
-    const classes = cx((props.content_type === Constants.ContentTypes.Text && stylesheet.prewrap) || stylesheet.nowrap,
+    const classes = cx((props.type === Constants.ContentTypes.Text && stylesheet.prewrap) || stylesheet.nowrap,
                        isOver && stylesheet.hover,
                        (props.isOverLeft || props.isOverRight) && stylesheet.hover_side,
                        props.isOverMiddle && stylesheet.hover_middle,

@@ -30,9 +30,22 @@ const WindowTabbedTabbarTab = (props) => {
                 connectContextMenu(
                     <div
                         className={label_classes}
+                        style={{ paddingTop: props.is_editing ? 2 : undefined }}
                         onMouseDown={cancelBubble}
                         onClick={() => props.check(props.index)}>
-                        {props.label}
+                        {
+                            props.is_editing ?
+                                <input
+                                    className={cx(Themes.Default.primary_font, Themes.Default.primary_font_size)}
+                                    type='text'
+                                    defaultValue={props.label}
+                                    autoFocus={true}
+                                    onFocus={(e) => e.target.select()}
+                                    onChange={props.setLabel}
+                                    onKeyPress={props.handleKeyPress}
+                                /> :
+                                props.label
+                        }
                     </div>
                 )
             }

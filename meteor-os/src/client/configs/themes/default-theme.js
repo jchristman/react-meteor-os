@@ -1,4 +1,12 @@
 const theme = cssInJS({
+    primary_font: {
+        fontFamily: '"Courier New", Courier, monospace',
+    },
+
+    primary_font_size: {
+        fontSize: '1em'
+    },
+
     primary_colors: {
         backgroundColor: '#D6D2D0',
         borderColor: '#898688',

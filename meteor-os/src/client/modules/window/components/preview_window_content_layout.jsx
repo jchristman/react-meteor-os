@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 import WindowLayout from './window_layout.jsx';
 
@@ -40,7 +41,7 @@ const LayoutPreview = (props) => {
     return (
         <div
             style={style(props)}
-            className={Themes.Default.primary_colors}>
+            className={cx(Themes.Default.primary_colors, Themes.Default.primary_font, Themes.Default.primary_font_size)}>
             <WindowLayout {...new_props}/>
         </div>
     );

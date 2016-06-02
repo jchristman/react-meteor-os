@@ -4,10 +4,7 @@ import cx from 'classnames';
 
 // ----- Component Imports ----- //
 import WindowTabbedTabbar from './window_tabbed_tabbar.jsx';
-import WindowTabbedContent from '../containers/window_tabbed_tabcontent.js';
-
-// ----- Library Imports ----- //
-import getWindowTabCheckedKey from '../lib/get_window_tab_checked_key.js';
+import WindowTabbedContent from '../containers/window_tabbed_tabcontent_drop.js';
 
 const stylesheet = cssInJS({
     tabs: {

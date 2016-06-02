@@ -17,7 +17,8 @@ const type_switch = (props) => {
 }
 
 const WindowContent = (props) => {
-    const classes = cx((props.type === Constants.ContentTypes.Text && stylesheet.prewrap) || stylesheet.nowrap);
+    const classes = cx(stylesheet.default,
+                       (props.type === Constants.ContentTypes.Text && stylesheet.prewrap) || stylesheet.nowrap);
                        
     return (
         <div className={classes}>
@@ -27,6 +28,10 @@ const WindowContent = (props) => {
 }
 
 const stylesheet = cssInJS({
+    default: {
+        padding: 3
+    },
+
     prewrap: {
         whiteSpace: 'pre-wrap'
     },

@@ -76,7 +76,9 @@ class Window extends React.Component {
             }
         }
 
-        const window_classes = cx(stylesheet.default, Themes.Default.primary_colors, this.props.classes);
+        const window_classes = cx(stylesheet.default, Themes.Default.primary_font, 
+                                  Themes.Default.primary_font_size, Themes.Default.primary_colors,
+                                  this.props.classes);
         const layout_classes = cx(stylesheet.layout, Themes.Default.primary_colors);
         
         return (

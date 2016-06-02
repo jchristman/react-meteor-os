@@ -17,6 +17,7 @@ const stylesheet = cssInJS({
         height: 'auto',
         marginRight: 2,
         padding: 1,
+        paddingTop: 2,
 
         cursor: 'pointer',
 

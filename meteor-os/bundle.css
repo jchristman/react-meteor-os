@@ -1,3 +1,9 @@
+.src_client_configs_themes_default-theme_js-theme-primary_font {
+  font-family: "Courier New", Courier, monospace;
+}
+.src_client_configs_themes_default-theme_js-theme-primary_font_size {
+  font-size: 1em;
+}
 .src_client_configs_themes_default-theme_js-theme-primary_colors {
   background-color: #D6D2D0;
   border-color: #898688;
@@ -54,6 +60,9 @@
   bottom: 3px;
   border-width: 1px;
   border-style: inset;
+}
+.src_client_modules_window_components_window_content_jsx-stylesheet-default {
+  padding: 3px;
 }
 .src_client_modules_window_components_window_content_jsx-stylesheet-prewrap {
   white-space: pre-wrap;
@@ -341,6 +350,7 @@
   height: auto;
   margin-right: 2px;
   padding: 1px;
+  padding-top: 2px;
   cursor: pointer;
   font-size: 10px;
   border-width: 1px;

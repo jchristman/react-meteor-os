@@ -1,13 +1,9 @@
-import {composeAll} from 'react-komposer';
 import ContextMenu from 'react-context-menus';
 import FontAwesome from 'react-fontawesome';
-import {DropTarget} from 'react-dnd';
-import ReactDOM from 'react-dom';
 import _ from 'underscore';
 
-import WindowLayoutLeaf from '../components/window_layout_leaf.jsx';
+import WindowLayoutLeaf from './window_layout_leaf_drop.js';
 
-import {dividerType} from '../configs/drag_types.js';
 import * as Constants from '../../../configs/constants';
 
 const items = (props) => {
@@ -35,41 +31,9 @@ const items = (props) => {
 }
 
 const options = {
-    style: {
-        zIndex: 1
+    container: {
+        zIndex: 3
     }
 }
 
-const type = () => dividerType;
-
-const spec = {
-    drop(props, monitor, component) {
-        const item = monitor.getItem();
-        const pointer = monitor.getClientOffset();
-        const parent = item.parent.getBoundingClientRect();
-
-        const path = item.path !== undefined ? item.path : 'layout';
-        const panes = item.panes !== undefined ? item.panes : item.layout.panes;
-
-        if (props.path.indexOf(path) > -1) {
-            const percentage = panes.orientation === 'horizontal' ?
-                (pointer.x - parent.left) / (parent.right - parent.left) * 100 :
-                (pointer.y - parent.top) / (parent.bottom - parent.top) * 100;
-
-            props.actions.movePaneDivider(path, percentage);
-        }
-    }
-}
-
-const collect = (connect, monitor) => {
-    return {
-        connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop()
-    };
-}
-
-export default composeAll(
-    ContextMenu(items, options),
-    DropTarget(type, spec, collect)
-)(WindowLayoutLeaf);
+export default ContextMenu(items, options)(WindowLayoutLeaf);

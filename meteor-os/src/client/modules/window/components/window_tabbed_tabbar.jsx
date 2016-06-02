@@ -16,6 +16,7 @@ const WindowTabbedTab = (props) => {
                     <WindowTabbedTabbarTab
                         key={index}
                         index={index}
+                        actions={props.actions}
                         layer_id={props.layer_id}
                         window_id={props.window_id}
                         check={props.check}

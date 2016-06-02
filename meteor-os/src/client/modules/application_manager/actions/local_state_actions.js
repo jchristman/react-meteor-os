@@ -1,4 +1,5 @@
 import baconipsum from 'baconipsum';
+import _ from 'underscore';
 
 import local_state_var from '../configs/local_state_var.js';
 import * as Constants from '../../../configs/constants';
@@ -39,10 +40,11 @@ const grabFocus = (context, layerIndex, windowIndex) => {
     LocalState.set(stateVar, current);
 }
 
-const splitPaneVertical = (context, path) => splitPane(context, path, 'vertical');
-const splitPaneHorizontal = (context, path) => splitPane(context, path, 'horizontal');
+const splitPaneVertical = (context, path, _switch) => splitPane(context, path, _switch, 'vertical');
+const splitPaneHorizontal = (context, path, _switch) => splitPane(context, path, _switch, 'horizontal');
 
-const splitPane = (context, path, orientation) => {
+const splitPane = (context, path, _switch, orientation) => {
+    if (_switch === undefined) _switch = false;
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
@@ -52,25 +54,48 @@ const splitPane = (context, path, orientation) => {
     let _leaf_type = layoutNode.leaf_type;
     delete layoutNode.content;
     delete layoutNode.leaf_type;
+        
+    const pane1 = {
+        content: _content,
+        leaf_type: _leaf_type
+    };
+    const pane2 = {
+        content: [],
+        leaf_type: Constants.LeafTypes.Tabbed
+    };
 
     layoutNode.panes = {
         orientation,
-        percentage: 50,
-        pane1: {
-            content: _content,
-            leaf_type: _leaf_type
-        },
-        pane2: {
-            content: [
-                {
-                    data: baconipsum(100),
-                    type: Constants.ContentTypes.Text,
-                    label: 'Tab 1'
-                }
-            ],
-            leaf_type: Constants.LeafTypes.Tabbed
-        }
+        percentage: 50
+    };
+
+    if (_switch) {
+        layoutNode.panes.pane1 = pane2;
+        layoutNode.panes.pane2 = pane1;
+    } else {
+        layoutNode.panes.pane1 = pane1;
+        layoutNode.panes.pane2 = pane2;
     }
+
+    LocalState.set(stateVar, current);
+}
+
+const closeLeaf = (context, path) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    // Here is where we are promoting to
+    let layoutNode = get_node(path.substr(0, path.lastIndexOf('.panes')), current); 
+
+    if (path.endsWith('.content')) path = path.substr(0, path.lastIndexOf('.'));
+    const paneToPromote = path.substr(0, path.length - 1) + (path.substr(-1) === '1' ? '2' : '1');
+    _.extend(layoutNode, get_node(paneToPromote, current));
+    if ((layoutNode.panes.pane1.content !== undefined && layoutNode.panes.pane1.content.length === 0) 
+        || (layoutNode.panes.pane2.content !== undefined && layoutNode.panes.pane2.content.length === 0)) {
+        delete layoutNode.panes;
+    }
+    
     LocalState.set(stateVar, current);
 }
 
@@ -103,7 +128,6 @@ const moveTab = (context, oldPath, oldIndex, newPath, newIndex) => {
     const current = LocalState.get(stateVar);
 
     if (oldPath === newPath && newIndex === undefined) {
-        console.log('Moving in same window does nothing');
         return;
     }
 
@@ -114,6 +138,23 @@ const moveTab = (context, oldPath, oldIndex, newPath, newIndex) => {
     let tab = oldContentNode.splice(oldIndex, 1)[0];
     newContentNode.splice(newIndex, 0, tab);
     
+    // Finish moving the tab
+    LocalState.set(stateVar, current);
+
+    // Close the old tab if there are no tabs left in the leaf
+    if (oldContentNode.length === 0) {
+        closeLeaf(context, oldPath);
+    }
+}
+
+const changeTabLabel = (context, path, label) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    let layoutNode = get_node(path, current);
+    layoutNode.label = label;
+
     LocalState.set(stateVar, current);
 }
 
@@ -122,7 +163,9 @@ export default {
     grabFocus,
     splitPaneVertical,
     splitPaneHorizontal,
+    closeLeaf,
     movePaneDivider,
     changeLeafType,
-    moveTab
+    moveTab,
+    changeTabLabel
 };

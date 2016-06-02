@@ -12,17 +12,36 @@ const dropTargetSpecContentArea = (area) => {
     return {
         drop: (props, monitor) => {
             const item = monitor.getItem();
-            const oldPath = item.path.substr(0, item.path.lastIndexOf('.'));
-            const newPath = props.path;
+            let oldPath = item.path.substr(0, item.path.lastIndexOf('.'));
+            let newPath = props.path;
+            let _newPath = _oldPath = undefined;
             switch (area) {
                 case 'Middle':
                     props.actions.moveTab(oldPath, item.index, newPath);
                     break;
                 case 'Left':
+                    _newPath = newPath.substr(0, newPath.lastIndexOf('.content'));
+                    _oldPath = oldPath.substr(0, oldPath.lastIndexOf('.content'));
+                    if (oldPath === newPath)    _oldPath += '.panes.pane2.content';
+                    else                        _oldPath += '.content';
+                    props.actions.splitPaneHorizontal(_newPath, true);
+                    props.actions.moveTab(_oldPath, item.index, _newPath + '.panes.pane1.content');
                     break;
                 case 'Right':
+                    _newPath = newPath.substr(0, newPath.lastIndexOf('.content'));
+                    _oldPath = oldPath.substr(0, oldPath.lastIndexOf('.content'));
+                    if (oldPath === newPath)    _oldPath += '.panes.pane1.content';
+                    else                        _oldPath += '.content';
+                    props.actions.splitPaneHorizontal(_newPath);
+                    props.actions.moveTab(_oldPath, item.index, _newPath + '.panes.pane2.content');
                     break;
                 case 'Bottom':
+                    _newPath = newPath.substr(0, newPath.lastIndexOf('.content'));
+                    _oldPath = oldPath.substr(0, oldPath.lastIndexOf('.content'));
+                    if (oldPath === newPath)    _oldPath += '.panes.pane1.content';
+                    else                        _oldPath += '.content';
+                    props.actions.splitPaneVertical(_newPath);
+                    props.actions.moveTab(_oldPath, item.index, _newPath + '.panes.pane2.content');
                     break;
                 default:
                     console.log(`Unknown drop area: ${area}`);

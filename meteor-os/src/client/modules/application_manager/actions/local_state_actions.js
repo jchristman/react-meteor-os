@@ -90,9 +90,11 @@ const closeLeaf = (context, path) => {
 
     if (path.endsWith('.content')) path = path.substr(0, path.lastIndexOf('.'));
     const paneToPromote = path.substr(0, path.length - 1) + (path.substr(-1) === '1' ? '2' : '1');
-    _.extend(layoutNode, get_node(paneToPromote, current));
-    if ((layoutNode.panes.pane1.content !== undefined && layoutNode.panes.pane1.content.length === 0) 
-        || (layoutNode.panes.pane2.content !== undefined && layoutNode.panes.pane2.content.length === 0)) {
+    const paneToPromoteNode = get_node(paneToPromote, current);
+    
+    _.extend(layoutNode, paneToPromoteNode);
+    
+    if (layoutNode.content !== undefined && layoutNode.panes !== undefined) {
         delete layoutNode.panes;
     }
     

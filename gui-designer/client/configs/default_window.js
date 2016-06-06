@@ -12,18 +12,7 @@ export default () => ( {
         width: 500
     },
     layout: {
-        content: [
-            {
-                data: baconipsum(100),
-                type: Constants.ContentTypes.Text,
-                label: 'Tab 1'
-            },
-            {
-                data: baconipsum(100),
-                type: Constants.ContentTypes.Text,
-                label: 'Tab 2'
-            }
-        ],
+        content: [],
         leaf_type: Constants.LeafTypes.Tabbed
     }
 } );

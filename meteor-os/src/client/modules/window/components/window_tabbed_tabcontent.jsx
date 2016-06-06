@@ -49,7 +49,7 @@ const WindowTabbedTabcontent = (props) => {
                             actions={props.actions}
                             layer_id={props.layer_id}
                             window_id={props.window_id}
-                            content={'No tabs are in this pane'}
+                            content={'No tabs. Right click to open...'}
                             path={props.path + '.content.0'}
                             type={Constants.ContentTypes.Text}
                             connectContextMenu={props.connectContextMenu}/>

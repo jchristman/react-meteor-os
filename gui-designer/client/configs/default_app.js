@@ -6,6 +6,7 @@ export default {
     _id: Random.id(),
     name: 'APPLICATION NAME',
     package: 'Package.Path',
+    unassigned_content: [],
     windows: [
         default_window()
     ]

@@ -38,6 +38,7 @@ class WindowLayer extends React.Component {
                             unhideLayer={this.props.unhideLayer}
                             grabFocus={this.grabFocus.bind(this)}
                             actions={this.props.actions}
+                            unassigned={this.props.unassigned}
                             path={this.props.index + '.windows.' + index}
                             {..._window}
                         />

@@ -30,7 +30,7 @@ const WindowTabbedTab = (props) => {
                 props.content.length === 0 ?
                     <UndraggableWindowTabbedTabbarTab
                         checked={true}
-                        label={'+'}
+                        label={(<span>&nbsp;</span>)}
                     /> :
                     null
             }

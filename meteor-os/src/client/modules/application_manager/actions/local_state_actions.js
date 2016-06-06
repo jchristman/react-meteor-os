@@ -94,7 +94,9 @@ const closeLeaf = (context, path) => {
     
     _.extend(layoutNode, paneToPromoteNode);
     
-    if (layoutNode.content !== undefined && layoutNode.panes !== undefined) {
+    if (layoutNode === undefined) {
+        // TODO: Maybe close the window here?
+    } else if (layoutNode.content !== undefined && layoutNode.panes !== undefined) {
         delete layoutNode.panes;
     }
     
@@ -121,10 +123,11 @@ const changeLeafType = (context, path, type) => {
     layoutNode.leaf_type = type;
 
     LocalState.set(stateVar, current);
+    closeAllTabsBut(context, path + '.content.0');
 }
 
 // Expecting oldPath and newPath to point to content arrays, oldIndex required, newIndex optional (insert at end)
-const moveTab = (context, oldPath, oldIndex, newPath, newIndex) => {
+const moveTab = (context, oldPath, oldIndex, newPath, newIndex, noClose = false) => {
     const {LocalState} = context;
     const stateVar = LocalState.get(local_state_var);
     const current = LocalState.get(stateVar);
@@ -144,7 +147,7 @@ const moveTab = (context, oldPath, oldIndex, newPath, newIndex) => {
     LocalState.set(stateVar, current);
 
     // Close the old tab if there are no tabs left in the leaf
-    if (oldContentNode.length === 0) {
+    if (oldContentNode.length === 0 && !noClose) {
         closeLeaf(context, oldPath);
     }
 }
@@ -160,6 +163,42 @@ const changeTabLabel = (context, path, label) => {
     LocalState.set(stateVar, current);
 }
 
+const closeAllTabsBut = (context, path) => {
+    const {LocalState} = context;
+    const stateVar = LocalState.get(local_state_var);
+    const current = LocalState.get(stateVar);
+
+    const stayOpen = parseInt(path.split('.').slice(-1));
+    const tabArrayPath = path.substr(0, path.lastIndexOf('.'));
+    const tabArray = get_node(tabArrayPath, current);
+
+    // We count down so that we are not modifying indices of things to move
+    for (let i = tabArray.length - 1; i >= 0; i--) {
+        if (i !== stayOpen) {
+            closeTab(context, tabArrayPath + '.' + i);
+        }
+    }
+}
+
+const closeAllTabs = (context, path) => {
+    closeAllTabsBut(context, path.substr(0, path.lastIndexOf('.')) + '.-1');
+}
+
+const closeTab = (context, path) => {
+    // We want to get to X.unassigned_content, which is all of the content not assigned to a leaf node for the application
+    const oldPath = path.substr(0, path.lastIndexOf('.'));
+    const oldIndex = parseInt(path.split('.').slice(-1));
+    const newPath = path.split('.')[0] + '.unassigned_content';
+    moveTab(context, oldPath, oldIndex, newPath);
+}
+
+const openTab = (context, path, index) => {
+    const oldPath = path.split('.')[0] + '.unassigned_content';
+    const oldIndex = index;
+    const newPath = path;
+    moveTab(context, oldPath, oldIndex, newPath, undefined, true);
+}
+
 export default { 
     changePosition,
     grabFocus,
@@ -169,5 +208,9 @@ export default {
     movePaneDivider,
     changeLeafType,
     moveTab,
-    changeTabLabel
+    changeTabLabel,
+    closeAllTabsBut,
+    closeAllTabs,
+    closeTab,
+    openTab
 };

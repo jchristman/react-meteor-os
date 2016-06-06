@@ -24,8 +24,13 @@ const leaf_type_switch = (props) => {
                           
     switch(props.leaf_type) {
         case Constants.LeafTypes.Plain:
-            passOn.content = props.content[0].data;
-            passOn.type = props.content[0].type;
+            if (props.content.length === 0) {
+                passOn.content = 'No content assigned here. Right click to open...';
+                passOn.type = Constants.ContentTypes.Text;
+            } else {
+                passOn.content = props.content[0].data;
+                passOn.type = props.content[0].type;
+            }
             return ( <WindowPlain {...passOn}/> );
         case Constants.LeafTypes.Tabbed:
             return ( <WindowTabbed {...passOn}/> );

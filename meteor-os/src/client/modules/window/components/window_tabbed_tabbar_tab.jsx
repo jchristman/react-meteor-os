@@ -1,5 +1,6 @@
 // ----- External Imports ----- //
 import React from 'react';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 import cx from 'classnames';
 
 // ----- Library Imports ----- //
@@ -9,48 +10,56 @@ import optionalWrapper from '../lib/optional_wrapper.js';
 // ----- Config Imports ----- //
 import Themes from '../../../configs/themes';
 
-const WindowTabbedTabbarTab = (props) => {
-    const tab_classes = cx(stylesheet.tab,
-                           Themes.Default.primary_colors,
-                           Themes.Default.primary_colors_focus,
-                           props.checked && stylesheet.tab_checked);
+class WindowTabbedTabbarTab extends React.Component {
+    componentDidMount() {
+        const {connectDragPreview = () => null} = this.props;
+        connectDragPreview(getEmptyImage());
+    }
 
-    const label_classes = cx(stylesheet.label,
-                             Themes.Default.primary_colors_pseudo,
-                             !props.checked && Themes.Default.primary_box_shadow_pseudo,
-                             !props.checked && Themes.Default.primary_colors_hover,
-                             props.checked && stylesheet.label_checked);
+    render() {
+        const {props} = this;
+        const tab_classes = cx(stylesheet.tab,
+                               Themes.Default.primary_colors,
+                               Themes.Default.primary_colors_focus,
+                               props.checked && stylesheet.tab_checked);
 
-    const connectContextMenu = props.connectContextMenu || optionalWrapper;
-    const connectDragSource = props.connectDragSource || optionalWrapper;
-    return connectDragSource(
-        <div 
-            className={tab_classes}>
-            {
-                connectContextMenu(
-                    <div
-                        className={label_classes}
-                        style={{ paddingTop: props.is_editing ? 2 : undefined }}
-                        onMouseDown={cancelBubble}
-                        onClick={() => props.check(props.index)}>
-                        {
-                            props.is_editing ?
-                                <input
-                                    className={cx(Themes.Default.primary_font, Themes.Default.primary_font_size)}
-                                    type='text'
-                                    defaultValue={props.label}
-                                    autoFocus={true}
-                                    onFocus={(e) => e.target.select()}
-                                    onChange={props.setLabel}
-                                    onKeyPress={props.handleKeyPress}
-                                /> :
-                                props.label
-                        }
-                    </div>
-                )
-            }
-        </div>
-    );
+        const label_classes = cx(stylesheet.label,
+                                 Themes.Default.primary_colors_pseudo,
+                                 !props.checked && Themes.Default.primary_box_shadow_pseudo,
+                                 !props.checked && Themes.Default.primary_colors_hover,
+                                 props.checked && stylesheet.label_checked);
+
+        const connectContextMenu = props.connectContextMenu || optionalWrapper;
+        const connectDragSource = props.connectDragSource || optionalWrapper;
+        return connectDragSource(
+            <div 
+                className={tab_classes}>
+                {
+                    connectContextMenu(
+                        <div
+                            className={label_classes}
+                            style={{ paddingTop: props.is_editing ? 2 : undefined }}
+                            onMouseDown={cancelBubble}
+                            onClick={() => props.check(props.index)}>
+                            {
+                                props.is_editing ?
+                                    <input
+                                        className={cx(Themes.Default.primary_font, Themes.Default.primary_font_size)}
+                                        type='text'
+                                        defaultValue={props.label}
+                                        autoFocus={true}
+                                        onFocus={(e) => e.target.select()}
+                                        onChange={props.setLabel}
+                                        onKeyPress={props.handleKeyPress}
+                                    /> :
+                                    props.label
+                            }
+                        </div>
+                    )
+                }
+            </div>
+        );
+    }
 }
 
 const stylesheet = cssInJS({

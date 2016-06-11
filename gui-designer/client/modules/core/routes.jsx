@@ -3,7 +3,7 @@ import {injectDeps} from 'react-simple-di';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 
-import MainLayout from './components/layouts.main.jsx';
+import MainLayout from './containers/layouts.main.js';
 
 export const nav_items = [
     {

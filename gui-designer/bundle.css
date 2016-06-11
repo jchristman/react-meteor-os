@@ -16,7 +16,7 @@
   border-color: black;
   border-width: 2px;
   border-style: solid;
-  z-index: 999999;
+  z-index: 1;
 }
 ._______________client_modules_code_components_code_jsx-stylesheet-textarea {
   position: absolute;
@@ -31,6 +31,13 @@
   left: auto;
   bottom: 10px;
   right: 20px;
+}
+._______________client_modules_code_components_code_jsx-stylesheet-tooltip {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  z-index: 2;
+  cursor: pointer;
 }
 ._______________client_modules_toolbar_components_edit_value_jsx-stylesheet-default {
   display: -webkit-box;
@@ -100,7 +107,7 @@
   border-width: 2px;
   border-color: black;
   border-style: solid;
-  z-index: 999999;
+  z-index: 3;
 }
 ._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_buttons {
   position: relative;
@@ -110,6 +117,35 @@
 ._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-toolbar_button {
   width: 80%;
   margin-top: 10px;
+}
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-footer {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top-width: 1px;
+  border-top-color: black;
+  border-top-style: solid;
+}
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-footer_left {
+  position: absolute;
+  width: 50%;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  text-align: left;
+}
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-footer_right {
+  position: absolute;
+  width: 50%;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  text-align: right;
+}
+._______________client_modules_toolbar_components_toolbar_jsx-stylesheet-tour_restart {
+  color: #268bd2;
+  cursor: pointer;
 }
 ._______________client_configs_global-css_js-stylesheet-button {
   padding: 10px;

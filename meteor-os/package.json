@@ -1,6 +1,6 @@
 {
   "name": "meteor-os",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "options": {
     "mocha": "--require .scripts/mocha_runner client/**/tests/**/*.js"

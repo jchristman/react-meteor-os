@@ -19,7 +19,7 @@ const stylesheet = cssInJS({
         borderColor: 'black',
         borderWidth: 2,
         borderStyle: 'solid',
-        zIndex: 999999
+        zIndex: 1
     },
 
     textarea: {
@@ -37,6 +37,14 @@ const stylesheet = cssInJS({
         left: 'auto',
         bottom: 10,
         right: 20
+    },
+
+    tooltip: {
+        position: 'absolute',
+        top: 7,
+        right: 20,
+        zIndex: 2,
+        cursor: 'pointer'
     }
 });
 
@@ -48,7 +56,7 @@ const copyModalStyle = {
         right: 0,
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        zIndex: 9999999
+        zIndex: 100
     },
 
     content: {
@@ -60,7 +68,7 @@ const copyModalStyle = {
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         borderRadius: 10,
         padding: 20,
-        zIndex: 10000000,
+        zIndex: 101,
 
         textAlign: 'center',
         fontSize: 50,
@@ -70,6 +78,24 @@ const copyModalStyle = {
 }
 
 class Code extends React.Component {
+    componentDidMount() {
+        this.props.addTooltip({
+            title: 'Standalone Tooltips',
+            text: '<h2 style="margin-bottom: 10px; line-height: 1.6">Now you can open tooltips independently!</h2>And even style them one by one!',
+            selector: `.${stylesheet.default} .${stylesheet.tooltip}`,
+            position: 'top',
+            event: 'hover',
+            style: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                borderRadius: 0,
+                color: '#fff',
+                mainColor: '#ff67b4',
+                textAlign: 'center',
+                width: '29rem'
+            }
+        });
+    }
+
     copyToClipboard(e) {
         const {LocalState, copyModalOpen} = this.props;
 
@@ -102,42 +128,43 @@ class Code extends React.Component {
                 <button
                     className={clipboard_classes}
                     onClick={this.copyToClipboard.bind(this)}>
-                        Copy to Clipboard&nbsp;&nbsp;<FontAwesome name='clipboard'/>
+                    Copy to Clipboard&nbsp;&nbsp;<FontAwesome name='clipboard'/>
                 </button>
                 <Modal
                     isOpen={this.props.is_copy_modal_open}
                     onAfterOpen={this.afterCopyModalOpen.bind(this)}
                     onRequestClose={this.props.copyModalClose}
                     style={copyModalStyle}>
-                        <FontAwesome name='check-circle-o'/>
+                    <FontAwesome name='check-circle-o'/>
                 </Modal>
+                <span className={stylesheet.tooltip}><FontAwesome name='question-circle'/></span>
             </div>
         )
     }
-    
+
     /*handleChange(event) {
-        const {LocalState, CurrentApp, LastGoodCode} = this.props;
-        let {value, selectionStart} = event.target;
-        let node = ReactDOM.findDOMNode(this).firstChild;
-        let scrollTop = node.scrollTop;
+      const {LocalState, CurrentApp, LastGoodCode} = this.props;
+      let {value, selectionStart} = event.target;
+      let node = ReactDOM.findDOMNode(this).firstChild;
+      let scrollTop = node.scrollTop;
 
-        try {
-            let js_value = eval('(' + event.target.value + ')');
-            
-            // Now only format it as an object if it has actually changed from the old object.
-            if (!_.isEqual(js_value, this.props.lastGoodCode)) {
-                value = js_value;
-                LocalState.set(LastGoodCode, value);
-            }
-        } catch (SyntaxError) {}
+      try {
+      let js_value = eval('(' + event.target.value + ')');
 
-        LocalState.set(CurrentApp, value);
-        
-        setTimeout(() => {
-            node.scrollTop = scrollTop
-            node.setSelectionRange(selectionStart, selectionStart)
-        });
-        }*/
+    // Now only format it as an object if it has actually changed from the old object.
+    if (!_.isEqual(js_value, this.props.lastGoodCode)) {
+    value = js_value;
+    LocalState.set(LastGoodCode, value);
+    }
+    } catch (SyntaxError) {}
+
+    LocalState.set(CurrentApp, value);
+
+    setTimeout(() => {
+    node.scrollTop = scrollTop
+    node.setSelectionRange(selectionStart, selectionStart)
+    });
+    }*/
 }
 
 export default Code;

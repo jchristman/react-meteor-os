@@ -2,16 +2,16 @@ import React from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+import AuthWrapper from '../containers/auth_wrapper.js';
+
 class Layout extends React.Component {
     render() {
-        let {
-            content = () => null,
-        } = this.props;
-        
         return (
-            <div className="main">
-                {content()}
-            </div>
+            <AuthWrapper>
+                <div className='main'>
+                    Logged in
+                </div>
+            </AuthWrapper>
         );
     };
 }

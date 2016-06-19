@@ -1,7 +1,6 @@
-import publications from './publications';
-import methods from './methods';
-import addInitialData from './configs/initial_adds.js';
+import { Server } from 'meteor-os';
+import Applications from '/lib/applications';
 
-publications();
-methods();
-addInitialData();
+const os = new Server.MeteorOS();
+os.add(Applications);
+os.boot();

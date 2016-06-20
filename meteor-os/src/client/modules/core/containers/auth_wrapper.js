@@ -9,13 +9,8 @@ export const composer = ({context}, onData) => {
     onData(null, {});
 };
 
-const depsMapper = (context) => {
-    console.log(context);
-    return { context: () => context }
-}
-
 export default composeAll(
     composeWithTracker(authComposer),
     composeWithTracker(composer),
-    useDeps(depsMapper)
+    useDeps()
 )(AuthWrapper);

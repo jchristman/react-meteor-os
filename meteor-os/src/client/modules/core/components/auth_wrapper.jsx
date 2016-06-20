@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LoginForm from '../containers/login_form.jsx';
+
 const AuthWrapper = ({loggedIn, loggingIn, children}) => {
     if (loggedIn) {
         return (
@@ -14,7 +16,7 @@ const AuthWrapper = ({loggedIn, loggingIn, children}) => {
     }
 
     return (
-        <div>Please sign in</div>
+        <LoginForm/>
     );
 };
 

@@ -21,3 +21,5 @@ random
 fortawesome:fontawesome
 standard-minifier-css
 standard-minifier-js
+accounts-base
+accounts-password

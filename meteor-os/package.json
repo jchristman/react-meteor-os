@@ -50,6 +50,7 @@
     "react-modal": "^1.2.1",
     "react-mounter": "1.x.x",
     "react-simple-di": "1.x.x",
+    "tcomb-form": "^0.9.7",
     "underscore": "^1.8.3"
   },
   "private": true

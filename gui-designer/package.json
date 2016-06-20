@@ -37,6 +37,7 @@
     "domready": "^1.0.8",
     "fontawesome": "^4.5.0",
     "mantra-core": "^1.2.0",
+    "meteor-auth": "^0.2.0",
     "meteor-node-stubs": "^0.2.1",
     "react": "0.14.x",
     "react-context-menus": "^1.0.9",
@@ -50,7 +51,8 @@
     "react-menus": "^2.0.4",
     "react-modal": "^1.2.1",
     "react-mounter": "1.x.x",
-    "react-simple-di": "1.x.x"
+    "react-simple-di": "1.x.x",
+    "tcomb-form": "^0.9.7"
   },
   "private": true
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Desktop from '../../desktop/components/desktop.js';
+import Desktop from '../../desktop/containers/desktop.js';
 
 const AppLoader = (props) => {
     if (props.ready) {

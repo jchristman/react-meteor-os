@@ -1,9 +1,10 @@
 import React from 'react';
+import ApplicationManager from '../../application_manager/components/application_manager_wrapper.jsx';
 
 const Canvas = (props) => {
     return (
         <div className={stylesheet.canvas}>
-
+            <ApplicationManager wrapper='state' stateVar={props.runningAppsStateVar}/>
         </div>
     );
 }

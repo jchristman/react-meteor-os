@@ -4,7 +4,6 @@ import local_state_var from '../configs/local_state_var.js';
 
 const composer = ({context, stateVar}, onData) => {
     const {LocalState} = context();
-
     // This is here so that the local state actions know which LocalState var to modify
     LocalState.setDefault(local_state_var, stateVar);
 

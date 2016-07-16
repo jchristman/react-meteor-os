@@ -1,20 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'underscore';
 
-import initAppCollection from '../../lib/initAppCollection.js';
+import Constants from '../../lib/MeteorOS.constants.js';
 
 class MeteorOS {
     constructor() {
-        this.AppCollection = initAppCollection();
-        const exists = this.AppCollection.findOne();
-        if (exists === undefined) this.AppCollection.insert({});
-        this.pub = 'MeteorOS.Applications';
+        this.App = Constants;
+        const exists = this.App.Collection.findOne();
+        if (exists === undefined) this.App.Collection.insert({});
     }
 
     add(apps) {
-        const applications = this.AppCollection.findOne();
+        const applications = this.App.Collection.findOne();
         
-        _.each(apps, (app) => {
+        _.each(apps, (_app) => {
+            const app = _app.Definition;
             const pkg = app.package.split('.');
 
             // This ensures that the structure exists in this.applications that can contain the application
@@ -36,14 +36,14 @@ class MeteorOS {
             pack[app._id] = app;
         });
 
-        this.AppCollection.update(applications._id, applications);
+        this.App.Collection.update(applications._id, applications);
     }
 
     boot() {
         const self = this;
-        Meteor.publish(this.pub, function() {
+        Meteor.publish(this.App.Publication, function() {
             if (this.userId === undefined) return this.ready();
-            return self.AppCollection.find();
+            return self.App.Collection.find();
         });
     }
 }

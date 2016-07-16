@@ -1,3 +1,5 @@
+import Test from './components/test.jsx';
+
 export default {
     "_id": "EgZny9HFiCdYBCHGc",
     "name": "Application 1",
@@ -16,8 +18,8 @@ export default {
             "layout": {
                 "content": [
                     {
-                        "data": "Kevin sint tongue nostrud elit pork loin? Nostrud minim chuck in aliqua ham ground round pancetta ball tip shoulder ball tip consequat swine incididunt pork belly incididunt ground round tri-tip drumstick nisi sausage nostrud ham hock rump et non sint tempor beef swine shank sint in beef shoulder nulla ad consectetur laborum beef ribs pancetta anim, shankle quis magna t-bone shoulder capicola short loin ut reprehenderit voluptate shank turducken in swine ut eiusmod voluptate dolore? Deserunt ground round ball tip ham hock minim tail consequat magna velit shoulder biltong pariatur short ribs andouille cow! Laboris pancetta pig laborum prosciutto.\n\nRibeye aliqua filet mignon ham! Commodo ea aliqua shank? T-bone! Ball tip chuck in consequat ea.",
-                        "type": "_meteor_os_constants_contenttypes_text",
+                        "data": Test.name,
+                        "type": "_meteor_os_constants_contenttypes_component",
                         "label": "Tab 4"
                     },
                     {

@@ -1,5 +1,5 @@
-import app1 from './app1.js';
-import app2 from './app2.js';
+import app1 from './app1';
+import app2 from './app2';
 
 export default [
     app1,

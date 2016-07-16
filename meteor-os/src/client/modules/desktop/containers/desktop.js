@@ -6,16 +6,15 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 import Desktop from '../components/desktop.jsx';
 
-const runningApps = '_meteor_os_currently_running_apps';
+const runningAppsStateVar = '_meteor_os_currently_running_apps';
 
 const composer = (props, onData) => {
-    const {LocalState} = props.context();
-    LocalState.setDefault(runningApps, []);
+    const {LocalState, OS} = props.context();
+    LocalState.setDefault(runningAppsStateVar, []);
 
-    let running = LocalState.get(runningApps);
-    const open = (app) => LocalState.set(runningApps, running.push(app));
+    const open = (app) => LocalState.set(runningAppsStateVar, LocalState.get(runningAppsStateVar).push(app));
 
-    onData(null, { running, open });
+    onData(null, { runningAppsStateVar, open });
 }
 
 export default composeAll(

@@ -9,16 +9,31 @@ import WindowModule from '../modules/window';
 
 class MeteorOS {
     constructor() {
-        this.context = initContext(); // Initialize the mantra app
-        this.app = createApp(this.context);
-        
-        this.app.loadModule(CoreModule);
-        this.app.loadModule(DesktopModule);
-        this.app.loadModule(ApplicationManagerModule);
-        this.app.loadModule(WindowManagerModule);
-        this.app.loadModule(WindowModule);
+        // Let's build the context for the mantra application
+        this.context = initContext();
+        this.context.OS = this; // Add a reference to this so that the mantra containers can access get_component
 
-        this.app.init();
+        this.os = createApp(this.context);
+        
+        this.os.loadModule(CoreModule);
+        this.os.loadModule(DesktopModule);
+        this.os.loadModule(ApplicationManagerModule);
+        this.os.loadModule(WindowManagerModule);
+        this.os.loadModule(WindowModule);
+
+        this.os.init();
+
+        this.components = {}
+    }
+
+    register(apps) {
+        _.each(apps, (app) => {
+            this.components[app.name] = app;
+        });
+    }
+
+    get_component(name) {
+        return this.components[name];
     }
 
     boot() {

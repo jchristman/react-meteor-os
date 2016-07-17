@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import TaskbarStartMenu from './taskbar_start_menu.jsx';
+import TaskbarStartMenu from '../containers/taskbar_start_menu.js';
 import TaskbarTray from './taskbar_tray.jsx';
 
 const Taskbar = (props) => {
@@ -11,8 +11,8 @@ const Taskbar = (props) => {
                 className={stylesheet.start_menu}
                 onClick={props.toggleStartMenuOpen}>
                 Applications&nbsp;&nbsp;&nbsp;<FontAwesome name='caret-up'/>
-                <TaskbarStartMenu open={props.startMenuOpen}/>
             </div>
+            <TaskbarStartMenu open={props.startMenuOpen} apps={props.apps}/>
 
             <div className={stylesheet.dock}>
 

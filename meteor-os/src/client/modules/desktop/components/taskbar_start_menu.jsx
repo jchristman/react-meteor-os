@@ -10,11 +10,19 @@ const TaskbarStartMenu = (props) => {
                         <div
                             key={index}
                             className={stylesheet.item}
-                            onClick={ () => props.itemClick(item.name) }>
+                            onClick={ () => item.type === 'pkg' ? props.pushPath(item.name) : props.startApp(item._id) }>
                             {item.name}&nbsp;&nbsp;&nbsp;<FontAwesome name={ item.type === 'pkg' ? 'caret-right' : 'play-circle' }/>
                         </div>
                     );
                 })
+            }
+            {
+                props.path === '' ? null :
+                <div
+                    className={stylesheet.item}
+                    onClick={ () => props.popPath() }>
+                    <FontAwesome name='caret-left'/>&nbsp;&nbsp;&nbsp;Back
+                </div>
             }
             <div className={stylesheet.divider}></div>
             <div className={stylesheet.item}>

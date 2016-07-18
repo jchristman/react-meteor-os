@@ -14,9 +14,19 @@ const composer = (props, onData) => {
     const { LocalState } = props.context();
     LocalState.setDefault(_start_menu_path, '');
 
+    // ----- Path Logic ----- //
     const path = LocalState.get(_start_menu_path);
-    const itemClick = (item) => console.log(item);
-
+    const pushPath = (item) => {
+        if (path === '') {
+            LocalState.set(_start_menu_path, item);
+            return;
+        }
+        LocalState.set(_start_menu_path, `${path}.${item}`);
+    };
+    const popPath = () => LocalState.set(_start_menu_path, path.substr(0, path.lastIndexOf('.')));
+    // ----- End Path Logic ----- //
+    
+    // ----- Current Path Apps ----- //
     let cur = props.apps;
     if (path !== '') {
         cur = o_get(cur, path);
@@ -31,16 +41,23 @@ const composer = (props, onData) => {
         }  
     });
 
-    if (cur._applications !== undefined) {
-        items.concat(Object.keys(cur._applications)).map((item) => {
+    const _apps = cur._applications;
+    if (_apps !== undefined) {
+        items = items.concat(Object.keys(_apps)).map((item) => {
             return {
-                name: item,
+                _id: item,
+                name: _apps[item].name,
                 type: 'app'
             }
         });
     }
+    // ----- End Current Path Apps ----- //
+    
+    const startApp = (_id) => {
+        console.log(`Starting application: ${_id}`);
+    }
 
-    onData(null, { path, itemClick, items });
+    onData(null, { path, pushPath, popPath, items, startApp });
 }
 
 export default composeAll(

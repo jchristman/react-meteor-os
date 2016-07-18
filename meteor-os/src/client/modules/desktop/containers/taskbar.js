@@ -9,9 +9,10 @@ const composer = (props, onData) => {
 
     const apps = App.Collection.findOne();
     const startMenuOpen = LocalState.get(_start_menu_open);
+    const hideStartMenu = () => LocalState.set(_start_menu_open, false);
     const toggleStartMenuOpen = () => LocalState.set(_start_menu_open, !startMenuOpen);
 
-    onData(null, { apps, startMenuOpen, toggleStartMenuOpen });
+    onData(null, { apps, startMenuOpen, hideStartMenu, toggleStartMenuOpen });
 }
 
 export default composeAll(

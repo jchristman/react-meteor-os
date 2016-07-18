@@ -4,25 +4,32 @@ import FontAwesome from 'react-fontawesome';
 import TaskbarStartMenu from '../containers/taskbar_start_menu.js';
 import TaskbarTray from './taskbar_tray.jsx';
 
-const Taskbar = (props) => {
-    return (
-        <div className={stylesheet.taskbar}>
-            <div
-                className={stylesheet.start_menu}
-                onClick={props.toggleStartMenuOpen}>
-                Applications&nbsp;&nbsp;&nbsp;<FontAwesome name='caret-up'/>
-            </div>
-            <TaskbarStartMenu open={props.startMenuOpen} apps={props.apps}/>
+class Taskbar extends React.Component {
+    render() {
+        const {props} = this;
+        return (
+            <div className={stylesheet.taskbar}>
+                <div
+                    className={stylesheet.start_menu}
+                    onClick={props.toggleStartMenuOpen}>
+                    Applications&nbsp;&nbsp;&nbsp;<FontAwesome name='caret-up'/>
+                </div>
+                {
+                    props.startMenuOpen ? 
+                        <TaskbarStartMenu open={props.startMenuOpen} apps={props.apps}/> :
+                        null
+                }
 
-            <div className={stylesheet.dock}>
+                <div className={stylesheet.dock}>
 
-            </div>
+                </div>
 
-            <div className={stylesheet.tray}>
-                <TaskbarTray/>
+                <div className={stylesheet.tray}>
+                    <TaskbarTray/>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 const stylesheet = cssInJS({

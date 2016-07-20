@@ -7,7 +7,8 @@ export default function() {
     return {
         Meteor,
         FlowRouter,
-        App: Constants,
+        Installed: Constants.Installed,
+        Running: Constants.Running,
         LocalState: new ReactiveDict('_meteor_os_local_state')
     };
 }

@@ -11,7 +11,7 @@ const o_get = (obj, path) => {
 }
 
 const composer = (props, onData) => {
-    const { LocalState } = props.context();
+    const { Installed, Running, LocalState } = props.context();
     LocalState.setDefault(_start_menu_path, '');
 
     // ----- Path Logic ----- //
@@ -53,8 +53,8 @@ const composer = (props, onData) => {
     }
     // ----- End Current Path Apps ----- //
     
-    const startApp = (_id) => {
-        console.log(`Starting application: ${_id}`);
+    const startApp = (_path) => {
+        const app = o_get(Installed.Collection.findOne(), _path);
     }
 
     onData(null, { path, pushPath, popPath, items, startApp });

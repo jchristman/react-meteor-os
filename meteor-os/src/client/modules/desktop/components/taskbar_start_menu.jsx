@@ -10,7 +10,7 @@ const TaskbarStartMenu = (props) => {
                         <div
                             key={index}
                             className={stylesheet.item}
-                            onClick={ () => item.type === 'pkg' ? props.pushPath(item.name) : props.startApp(item._id) }>
+                            onClick={ () => item.type === 'pkg' ? props.pushPath(item.name) : props.startApp(`${props.path}._applications.${item._id}`) }>
                             {item.name}&nbsp;&nbsp;&nbsp;<FontAwesome name={ item.type === 'pkg' ? 'caret-right' : 'play-circle' }/>
                         </div>
                     );

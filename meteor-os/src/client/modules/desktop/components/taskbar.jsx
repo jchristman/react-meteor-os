@@ -12,7 +12,7 @@ class Taskbar extends React.Component {
                 <div
                     className={stylesheet.start_menu}
                     onClick={props.toggleStartMenuOpen}>
-                    Applications&nbsp;&nbsp;&nbsp;<FontAwesome name='caret-up'/>
+                    Applications&nbsp;&nbsp;&nbsp;<FontAwesome name={ props.startMenuOpen ? 'caret-down' : 'caret-up' }/>
                 </div>
                 {
                     props.startMenuOpen ? 

@@ -5,13 +5,15 @@ import Constants from '../../lib/MeteorOS.constants.js';
 
 class MeteorOS {
     constructor() {
-        this.App = Constants;
-        const exists = this.App.Collection.findOne();
-        if (exists === undefined) this.App.Collection.insert({});
+        this.Installed = Constants.Installed;
+        this.Running = Constants.Running;
+        
+        let exists = this.Installed.Collection.findOne();
+        if (exists === undefined) this.Installed.Collection.insert({});
     }
 
     add(apps) {
-        const applications = this.App.Collection.findOne();
+        const applications = this.Installed.Collection.findOne();
         
         _.each(apps, (_app) => {
             const app = _app.Definition;
@@ -36,14 +38,20 @@ class MeteorOS {
             pack[app._id] = app;
         });
 
-        this.App.Collection.update(applications._id, applications);
+        this.Installed.Collection.update(applications._id, applications);
     }
 
     boot() {
         const self = this;
-        Meteor.publish(this.App.Publication, function() {
+    
+        Meteor.publish(self.Installed.Publication, function() {
             if (this.userId === undefined) return this.ready();
-            return self.App.Collection.find();
+            return self.Installed.Collection.find();
+        });
+
+        Meteor.publish(self.Running.Publication, function() {
+            if (this.userId === undefined) return this.ready();
+            return self.Running.Collection.find({ userId: this.userId });
         });
     }
 }

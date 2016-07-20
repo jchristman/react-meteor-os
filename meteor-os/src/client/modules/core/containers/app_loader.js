@@ -4,7 +4,8 @@ import Constants from '../../../../lib/MeteorOS.constants.js';
 
 const composer = (props, onData) => {
     const { Meteor, LocalState } = props.context();
-    const ready = Meteor.subscribe(Constants.Publication).ready();
+    let ready = Meteor.subscribe(Constants.Installed.Publication).ready();
+    let ready2 = Meteor.subscribe(Constants.Running.Publication).ready();
     onData(null, { ready });
 }
 

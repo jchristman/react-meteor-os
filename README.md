@@ -10,7 +10,7 @@ The current process to set this up is quite convoluted. You need to basically do
 
 ```bash
 ~ $ npm install -g npm    # Make sure that NPM is up to date. This is important!
-~ $ git clone https://git.christmanclan.com/josh/meteor-os.git
+~ $ git clone https://github.com/jchristman/meteor-os.git
 ~ $ cd meteor-os/meteor-os
 ~/meteor-os/meteor-os $ npm install --only=dev
 ~/meteor-os/meteor-os $ npm link

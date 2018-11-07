@@ -14,7 +14,8 @@ const dropTargetSpecContentArea = (area) => {
             const item = monitor.getItem();
             let oldPath = item.path.substr(0, item.path.lastIndexOf('.'));
             let newPath = props.path;
-            let _newPath = _oldPath = undefined;
+            let _newPath = undefined,
+                _oldPath = undefined;
             switch (area) {
                 case 'Middle':
                     props.actions.moveTab(oldPath, item.index, newPath);

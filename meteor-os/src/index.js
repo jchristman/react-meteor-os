@@ -1,4 +1,5 @@
-import { Modules, Components, Constants } from './client/index.js';
+import { Modules, Components, Constants } from './client/MeteorOS';
+    
 import CMeteorOS from './client/MeteorOS';
 import SMeteorOS from './server/MeteorOS';
 

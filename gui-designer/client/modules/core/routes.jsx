@@ -15,6 +15,7 @@ export const nav_items = [
 export default function (injectDeps, context) {
     const MainLayoutCtx = injectDeps(MainLayout);
 
+
     let {FlowRouter} = context;
 
     _.each(nav_items, (item) => {

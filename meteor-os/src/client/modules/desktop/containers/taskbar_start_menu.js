@@ -3,7 +3,7 @@ import _ from 'underscore';
 
 import TaskbarStartMenu from '../components/taskbar_start_menu.jsx';
 
-_start_menu_path = '_meteor_os_start_menu_path';
+const _start_menu_path = '_meteor_os_start_menu_path';
 
 const o_get = (obj, path) => {
     path = path.split('.');

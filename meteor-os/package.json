@@ -16,6 +16,7 @@
     "watch-tests": "cd src && mocha $npm_package_options_mocha --watch"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "6.x.x",
     "babel-plugin-css-in-js": "^1.2.2",
     "babel-plugin-react-require": "2.x.x",

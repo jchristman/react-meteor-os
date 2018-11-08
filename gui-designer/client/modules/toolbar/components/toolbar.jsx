@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
+import jss from 'react-jss';
 
 import default_window from '../../../configs/default_window.js';
 import default_content from '../../../configs/default_content.js';
@@ -8,7 +9,7 @@ import global_styles from '../../../configs/global-css.js';
 
 import Partlist from '../containers/partlist.js';
 
-const stylesheet = cssInJS({
+const stylesheet = {
     default: {
         display: 'flex',
         flexDirection: 'column',
@@ -73,7 +74,7 @@ const stylesheet = cssInJS({
         color: '#268bd2',
         cursor: 'pointer'
     }
-});
+};
 
 class Toolbar extends React.Component {
     componentDidMount() {
@@ -81,7 +82,7 @@ class Toolbar extends React.Component {
             {
                 title: 'MeteorOS GUI Designer Tour',
                 text: 'This tour will give you a spin around the MeteorOS GUI Designer tool, which will help you get started in designing the UI for your MeteorOS application.',
-                selector: `.${stylesheet.footer}`,
+                selector: `.${this.props.classes.footer}`,
                 position: 'top'
             }    
         ];
@@ -90,10 +91,10 @@ class Toolbar extends React.Component {
     }
 
     render() {
-        const add_window_classes = cx(stylesheet.toolbar_button, global_styles.button, global_styles.button_success);
+        const add_window_classes = cx(this.props.classes.toolbar_button, global_styles.button, global_styles.button_success);
         return (
-            <div className={stylesheet.default}>
-                <div className={stylesheet.toolbar_buttons}>
+            <div className={this.props.classes.default}>
+                <div className={this.props.classes.toolbar_buttons}>
                     <button
                         className={add_window_classes}
                         onClick={this.addWindow.bind(this)}>
@@ -108,12 +109,12 @@ class Toolbar extends React.Component {
 
                 <Partlist {...this.props}/>
 
-                <div className={stylesheet.footer}>
+                <div className={this.props.classes.footer}>
                     &nbsp;
-                    <div className={stylesheet.footer_left}>
-                        <a className={stylesheet.tour_restart} onClick={this.props.resetTour}>Reset Tour</a>
+                    <div className={this.props.classes.footer_left}>
+                        <a className={this.props.classes.tour_restart} onClick={this.props.resetTour}>Reset Tour</a>
                     </div>
-                    <div className={stylesheet.footer_right}>
+                    <div className={this.props.classes.footer_right}>
                         {this.props.version}
                     </div>
                 </div>
@@ -147,4 +148,4 @@ class Toolbar extends React.Component {
     }
 }
 
-export default Toolbar;
+export default jss(stylesheet)(Toolbar);

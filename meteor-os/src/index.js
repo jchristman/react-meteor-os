@@ -1,4 +1,4 @@
-import { Modules, Components, Constants } from './client/MeteorOS';
+import { Modules, Components, Constants } from './client';
     
 import CMeteorOS from './client/MeteorOS';
 import SMeteorOS from './server/MeteorOS';

@@ -1,9 +1,10 @@
 import React from 'react';
+import jss from 'react-jss';
 import JSONTree from 'react-json-tree';
 
 import PartLabel from '../containers/part_label.js';
 
-const stylesheet = cssInJS({
+const stylesheet = {
     default: {
         flex: 1,
         
@@ -17,12 +18,12 @@ const stylesheet = cssInJS({
         textAlign: 'left',
         overflowY: 'scroll'
     }
-});
+};
 
 class Partlist extends React.Component {
     render() {
         return (
-            <div className={stylesheet.default}>
+            <div className={this.props.classes.default}>
                 <JSONTree
                     data={this.props.app}
                     labelRenderer={(...fullPath) => {
@@ -41,4 +42,4 @@ class Partlist extends React.Component {
     }
 }
 
-export default Partlist;
+export default jss(stylesheet)(Partlist);

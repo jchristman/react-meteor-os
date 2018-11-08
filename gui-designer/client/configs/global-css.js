@@ -1,4 +1,4 @@
-const stylesheet = cssInJS({
+const stylesheet = {
     button: {
         padding: 10,
         
@@ -31,6 +31,6 @@ const stylesheet = cssInJS({
             backgroundColor: '#327BBA'
         }
     }
-});
+};
 
 export default stylesheet;

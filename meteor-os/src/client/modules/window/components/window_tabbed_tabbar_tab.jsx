@@ -18,7 +18,6 @@ class WindowTabbedTabbarTab extends React.Component {
 
     render() {
         const {props} = this;
-        console.log(props);
         const tab_classes = cx(stylesheet.tab,
                                Themes.Default.primary_colors,
                                Themes.Default.primary_colors_focus,

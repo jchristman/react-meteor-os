@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import cx from 'classnames';
+import jss from 'react-jss';
 
 import EditValue from './edit_value.jsx';
 
 import validate_editable from '../lib/validate_if_editable_key.js';
 
-const stylesheet = cssInJS({
+const stylesheet = {
     noneditable: {
         color: 'black'
     },
@@ -19,7 +20,7 @@ const stylesheet = cssInJS({
             backgroundColor: 'rgba(0, 0, 0, 0.15)'
         }
     }
-});
+};
 
 const editValueModalStyle = (props) => { 
     const height = 40,
@@ -75,7 +76,7 @@ class PartLabel extends React.Component {
     render() {
         const {props} = this;
         const editable = validate_editable(props.path);
-        const classes = cx(editable ? stylesheet.editable : stylesheet.noneditable);
+        const classes = cx(editable ? this.props.classes.editable : this.props.classes.noneditable);
         return (
             <strong
                 className={classes}
@@ -100,4 +101,4 @@ class PartLabel extends React.Component {
     }
 }
 
-export default PartLabel;
+export default jss(stylesheet)(PartLabel);

@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import jss from 'react-jss';
 import FontAwesome from 'react-fontawesome';
 import Modal from 'react-modal';
 import cx from 'classnames';
+import _ from 'lodash';
 
 import global_styles from '../../../configs/global-css.js';
 
-const stylesheet = cssInJS({
+const stylesheet = _.extend(global_styles, {
     default: {
         position: 'absolute',
         top: 'calc(100% - 300px)',
@@ -82,7 +84,7 @@ class Code extends React.Component {
         this.props.addTooltip({
             title: 'Standalone Tooltips',
             text: '<h2 style="margin-bottom: 10px; line-height: 1.6">Now you can open tooltips independently!</h2>And even style them one by one!',
-            selector: `.${stylesheet.default} .${stylesheet.tooltip}`,
+            selector: `.${this.props.classes.default} .${this.props.classes.tooltip}`,
             position: 'top',
             event: 'hover',
             style: {
@@ -116,12 +118,12 @@ class Code extends React.Component {
 
     render() {
         const {props} = this;
-        const clipboard_classes = cx(stylesheet.copy_to_clipboard, global_styles.button, global_styles.button_info);
+        const clipboard_classes = cx(this.props.classes.copy_to_clipboard, this.props.classes.button, this.props.classes.button_info);
         return (
-            <div className={stylesheet.default}>
+            <div className={this.props.classes.default}>
                 <textarea
                     ref='_gui_designer_textarea'
-                    className={stylesheet.textarea}
+                    className={this.props.classes.textarea}
                     value={props.code}
                     readOnly={true}>
                 </textarea>
@@ -137,7 +139,7 @@ class Code extends React.Component {
                     style={copyModalStyle}>
                     <FontAwesome name='check-circle-o'/>
                 </Modal>
-                <span className={stylesheet.tooltip}><FontAwesome name='question-circle'/></span>
+                <span className={this.props.classes.tooltip}><FontAwesome name='question-circle'/></span>
             </div>
         )
     }
@@ -167,4 +169,4 @@ class Code extends React.Component {
     }*/
 }
 
-export default Code;
+export default jss(stylesheet)(Code);

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import jss from 'react-jss';
 import FontAwesome from 'react-fontawesome';
 import {Random} from 'meteor/random';
 import {Constants} from 'meteor-os';
@@ -8,7 +9,7 @@ import baconipsum from 'baconipsum';
 import get_node from '../lib/get_node.js';
 import set_node from '../lib/set_node.js';
 
-const stylesheet = cssInJS({
+const stylesheet = {
     default: {
         display: 'flex',
         alignItems: 'center',
@@ -31,7 +32,7 @@ const stylesheet = cssInJS({
             cursor: 'default'
         }
     }
-});
+};
 
 class EditValue extends React.Component {
     inputChanged(event) {
@@ -83,24 +84,24 @@ class EditValue extends React.Component {
         let isLast = parentIsArray && this.props.node === parentArray.length - 1;
 
         return (
-            <div className={stylesheet.default}>
+            <div className={this.props.classes.default}>
                 { type !== null ?
                     <input
                         type={type}
-                        className={stylesheet.input}
+                        className={this.props.classes.input}
                         value={this.props.value}
                         onChange={this.inputChanged.bind(this)}/> :
                     null }
                 { parentIsArray ?
                     <button
-                        className={stylesheet.button}
+                        className={this.props.classes.button}
                         disabled={isFirst}
                         onClick={this.shiftLeft.bind(this)}>
                             <FontAwesome name='caret-square-o-up'/>
                     </button> : null }
                 { parentIsArray ?
                     <button
-                        className={stylesheet.button}
+                        className={this.props.classes.button}
                         disabled={isLast}
                         onClick={this.shiftRight.bind(this)}>
                             <FontAwesome name='caret-square-o-down'/>
@@ -110,4 +111,4 @@ class EditValue extends React.Component {
     }
 }
 
-export default EditValue;
+export default jss(stylesheet)(EditValue);
